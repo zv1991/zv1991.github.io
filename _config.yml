@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Personal Page"
+title                    : "Zurab Vashakidze"
 title_separator          : "-"
 name                     : &name "Zurab Vashakidze"
 description              : &description "personal description"
