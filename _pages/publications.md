@@ -5,7 +5,7 @@ permalink: /publications/
 author_profile: true
 ---
 
-My academic articles can be accessed via <u><a href="https://scholar.google.com/citations?user=uVz5JY0AAAAJ&hl=en">my Google Scholar profile</a>.</u>
+My academic articles can be accessed via <a href="https://scholar.google.com/citations?user=uVz5JY0AAAAJ&hl=en" target="_blank">my Google Scholar profile</a>.
 
 {% include base_path %}
 
