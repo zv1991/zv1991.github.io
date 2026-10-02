@@ -122,6 +122,80 @@
     });
   });
 
+  const emailParts = {
+    ug: ["z.vashakidze", "ug.edu.ge"],
+    tsu: ["zurab.vashakidze", "tsu.ge"]
+  };
+
+  function getActualEmail(element) {
+    const parts = emailParts[element?.dataset?.emailKey];
+    return parts ? parts[0] + "@" + parts[1] : "";
+  }
+
+  async function copyPlainText(text) {
+    if (!text) return false;
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        throw new Error("Clipboard API unavailable");
+      }
+      return true;
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      const copied = document.execCommand("copy");
+      textarea.remove();
+      return copied;
+    }
+  }
+
+  function showEmailCopied(element) {
+    element.classList.add("is-copied");
+    window.setTimeout(() => element.classList.remove("is-copied"), 1600);
+  }
+
+  document.querySelectorAll(".copy-email-address").forEach((element) => {
+    const copyEmail = async () => {
+      const actualEmail = getActualEmail(element);
+      if (await copyPlainText(actualEmail)) showEmailCopied(element);
+    };
+
+    element.addEventListener("click", copyEmail);
+    element.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        copyEmail();
+      }
+    });
+  });
+
+  document.addEventListener("copy", (event) => {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) return;
+
+    const selectedText = selection.toString().trim();
+
+    document.querySelectorAll(".copy-email-address").forEach((element) => {
+      if (selectedText !== element.textContent.trim()) return;
+
+      const actualEmail = getActualEmail(element);
+      if (!actualEmail || !event.clipboardData) return;
+
+      event.preventDefault();
+      event.clipboardData.setData("text/plain", actualEmail);
+      showEmailCopied(element);
+    });
+  });
+
   const searchInput = document.getElementById("publication-search");
   const filterHost = document.getElementById("publication-year-filters");
   const countLabel = document.getElementById("publication-count");
