@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Academic profile of Zurab Vashakidze — numerical analysis, computational mathematics, partial differential equations, and scientific computing." />
   <meta name="theme-color" content="#0b1220" />
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("theme");
+      const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = savedTheme || preferredTheme;
+    })();
+  </script>
   <title>Zurab Vashakidze | Numerical Analysis & Computational Mathematics</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -47,13 +54,19 @@
         <span class="brand-mark">ZV</span>
         <span>Zurab Vashakidze</span>
       </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#profiles">Profiles</a>
-      </nav>
+      <div class="nav-actions">
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#profiles">Profiles</a>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+          <span class="theme-toggle-label">Night mode</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -314,5 +327,6 @@
       <p>Built as a lightweight static site for GitHub Pages.</p>
     </div>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
