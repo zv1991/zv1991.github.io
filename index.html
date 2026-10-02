@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#0b1220" />
   <script>
     (() => {
+      document.documentElement.classList.add("js");
       const savedTheme = localStorage.getItem("theme");
       const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.dataset.theme = savedTheme || preferredTheme;
@@ -47,6 +48,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
 
   <header class="site-header">
     <div class="container nav-wrap">
@@ -179,6 +181,17 @@
           </div>
           <a class="text-link" href="https://arxiv.org/a/vashakidze_z_1" target="_blank" rel="noopener">View arXiv author page →</a>
         </div>
+
+        <div class="publication-tools" aria-label="Publication search and filters">
+          <label class="publication-search">
+            <span class="sr-only">Search publications</span>
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="publication-search" type="search" placeholder="Search publications, authors, journals…" autocomplete="off" />
+          </label>
+          <div class="year-filters" id="publication-year-filters" aria-label="Filter publications by year"></div>
+          <span class="publication-count" id="publication-count" aria-live="polite"></span>
+        </div>
+        <p class="publication-empty" id="publication-empty" hidden>No publications match the current filters.</p>
 
         <div class="publication-list">
           <article class="publication">
@@ -372,7 +385,7 @@
               </div>
             </div>
           </article>
-        </div>        </div>
+        </div>
       </div>
     </section>
 
@@ -479,6 +492,7 @@
       <p>Built as a lightweight static site for GitHub Pages.</p>
     </div>
   </footer>
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
   <script src="script.js"></script>
 </body>
 </html>
