@@ -208,3 +208,85 @@ html[data-theme="dark"] .featured-publication::before {
 html[data-theme="dark"] .contact-band { background: #0b1220; }
 html[data-theme="dark"] .site-footer { background: #070c14; }
 html[data-theme="dark"] .skip-link { background: #eef3fb; color: #101827; }
+
+
+/* Publication citation controls */
+.pub-content { min-width: 0; }
+.pub-links { align-items: center; flex-wrap: wrap; }
+.cite-button,
+.copy-bibtex {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-soft);
+  color: var(--accent-dark);
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 780;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.cite-button:hover,
+.copy-bibtex:hover { border-color: var(--accent); }
+.cite-button[aria-expanded="true"] { background: var(--accent-soft); }
+
+.citation-panel {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+.citation-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 720;
+}
+.citation-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.citation-toolbar a {
+  color: var(--accent-dark);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.citation-panel pre {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  background: transparent;
+  color: var(--ink);
+  font: 0.84rem/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  text-align: left;
+  white-space: pre;
+}
+.copy-bibtex.copied {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+html[data-theme="dark"] .cite-button,
+html[data-theme="dark"] .copy-bibtex,
+html[data-theme="dark"] .citation-panel {
+  background: #162135;
+  border-color: var(--line);
+}
+html[data-theme="dark"] .cite-button[aria-expanded="true"],
+html[data-theme="dark"] .copy-bibtex.copied {
+  background: var(--accent-soft);
+}
+
+@media (max-width: 620px) {
+  .citation-toolbar { align-items: flex-start; flex-direction: column; }
+  .citation-panel pre { font-size: 0.77rem; }
+}
