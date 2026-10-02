@@ -899,101 +899,45 @@ html[data-theme="dark"] .back-to-top {
 }
 
 
-/* Visitor counter and geographic statistics */
-.visitor-grid {
-  display: grid;
-  grid-template-columns: minmax(220px, .42fr) minmax(0, 1.58fr);
-  gap: 20px;
-  align-items: stretch;
-}
-.visitor-counter-card,
-.visitor-map-card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: 0 8px 24px rgba(20,31,52,.05);
-}
-.visitor-counter-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 28px;
-}
-.visitor-card-label {
-  margin: 0 0 12px;
-  color: var(--ink);
-  font-weight: 850;
-  font-size: 1rem;
-}
-.visitor-counter-link {
+/* Copy-aware obfuscated email addresses */
+.copy-email-address {
   display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
   max-width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
+  padding: 3px 6px;
+  margin-left: -6px;
+  border-radius: 7px;
+  cursor: copy;
+  user-select: text;
+  transition: background-color .18s ease, color .18s ease;
 }
-.visitor-counter-image {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.copy-email-address::after {
+  content: "Copy";
+  padding: 2px 6px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  color: #aebcd1;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: .68rem;
+  font-weight: 750;
+  line-height: 1.25;
 }
-.visitor-help {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: .86rem;
+.copy-email-address:hover,
+.copy-email-address:focus-visible {
+  background: rgba(255,255,255,.07);
+  outline: none;
 }
-.visitor-map-card {
-  overflow: hidden;
+.copy-email-address.is-copied::after {
+  content: "Copied";
+  color: #fff;
+  border-color: rgba(255,255,255,.35);
+  background: rgba(255,255,255,.10);
 }
-.visitor-map-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: flex-start;
-  padding: 18px 20px;
-  border-bottom: 1px solid var(--line);
-}
-.visitor-map-heading .visitor-card-label,
-.visitor-map-heading .visitor-help { margin-top: 0; }
-.visitor-map-heading a {
-  color: var(--accent-dark);
-  font-size: .86rem;
-  font-weight: 760;
-  white-space: nowrap;
-}
-.visitor-map-frame {
-  display: block;
-  width: 100%;
-  height: 430px;
-  border: 0;
-  background: #fff;
-}
-.visitor-privacy-note {
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: .8rem;
-}
-
-html[data-theme="dark"] .visitor-counter-card,
-html[data-theme="dark"] .visitor-map-card {
-  background: #162135;
-  border-color: var(--line);
-}
-html[data-theme="dark"] .visitor-counter-link {
-  background: #fff;
-}
-
-@media (max-width: 900px) {
-  .visitor-grid { grid-template-columns: 1fr; }
-  .visitor-counter-card { align-items: center; text-align: center; }
-  .visitor-map-frame { height: 390px; }
-}
-
-@media (max-width: 620px) {
-  .visitor-counter-card { padding: 22px; }
-  .visitor-map-heading { flex-direction: column; gap: 10px; }
-  .visitor-map-heading a { white-space: normal; }
-  .visitor-map-frame { height: 360px; }
+@media (max-width: 430px) {
+  .copy-email-address {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
