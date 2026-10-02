@@ -91,6 +91,7 @@
           <div class="hero-actions">
             <a class="button primary" href="#publications">Selected publications</a>
             <a class="button secondary" href="https://orcid.org/0000-0001-8736-6213" target="_blank" rel="me noopener">ORCID</a>
+            <button class="button secondary share-profile-button" id="share-profile" type="button">Share profile</button>
           </div>
           <ul class="quick-links" aria-label="Academic profile links">
             <li><a href="https://scholar.google.com/citations?user=uVz5JY0AAAAJ&hl=en" target="_blank" rel="noopener"><img class="platform-logo-small" src="https://cdn.simpleicons.org/googlescholar" alt="" aria-hidden="true" />Google Scholar</a></li>
@@ -189,7 +190,10 @@
             <input id="publication-search" type="search" placeholder="Search publications, authors, journals…" autocomplete="off" />
           </label>
           <div class="year-filters" id="publication-year-filters" aria-label="Filter publications by year"></div>
-          <span class="publication-count" id="publication-count" aria-live="polite"></span>
+          <div class="publication-tools-meta">
+            <span class="publication-count" id="publication-count" aria-live="polite"></span>
+            <button class="clear-publication-filters" id="clear-publication-filters" type="button" hidden>Clear filters</button>
+          </div>
         </div>
         <p class="publication-empty" id="publication-empty" hidden>No publications match the current filters.</p>
 
@@ -466,7 +470,8 @@
             </div>
             <div class="email-details">
               <span class="email-institution">The University of Georgia</span>
-              <span class="email-address copy-email-address" data-email-key="ug" role="button" tabindex="0" title="Copy actual email address" aria-label="Copy actual University of Georgia email address">z[dot]vashakidze[at]ug[dot]edu[dot]ge</span>
+              <span class="email-address">z[dot]vashakidze[at]ug[dot]edu[dot]ge</span>
+              <button class="email-copy-button" type="button" data-email-key="ug" aria-label="Copy University of Georgia email address">Copy email</button>
             </div>
           </div>
           <div class="email-card">
@@ -475,7 +480,8 @@
             </div>
             <div class="email-details">
               <span class="email-institution">Ivane Javakhishvili Tbilisi State University</span>
-              <span class="email-address copy-email-address" data-email-key="tsu" role="button" tabindex="0" title="Copy actual email address" aria-label="Copy actual Tbilisi State University email address">zurab[dot]vashakidze[at]tsu[dot]ge</span>
+              <span class="email-address">zurab[dot]vashakidze[at]tsu[dot]ge</span>
+              <button class="email-copy-button" type="button" data-email-key="tsu" aria-label="Copy Tbilisi State University email address">Copy email</button>
             </div>
           </div>
         </div>
@@ -492,6 +498,7 @@
       <p>Built as a lightweight static site for GitHub Pages.</p>
     </div>
   </footer>
+  <div class="site-toast" id="site-toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
   <script src="script.js"></script>
 </body>
