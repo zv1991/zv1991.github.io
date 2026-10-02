@@ -7,6 +7,16 @@
   const nav = document.getElementById("primary-nav");
   const progressBar = document.getElementById("scroll-progress-bar");
   const backToTop = document.getElementById("back-to-top");
+  const commandButton = document.getElementById("command-button");
+  const commandPalette = document.getElementById("command-palette");
+  const commandClose = document.getElementById("command-close");
+  const commandInput = document.getElementById("command-search-input");
+  const commandResults = document.getElementById("command-results");
+
+  const commandShortcut = commandButton?.querySelector(".command-shortcut");
+  if (commandShortcut && /Mac|iPhone|iPad/.test(navigator.platform)) {
+    commandShortcut.textContent = "⌘ K";
+  }
 
   function applyTheme(theme) {
     const dark = theme === "dark";
@@ -159,35 +169,56 @@
     const textarea = document.createElement("textarea");
     textarea.value = text;
     textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.top = "0";
-    textarea.style.left = "0";
-    textarea.style.width = "1px";
-    textarea.style.height = "1px";
-    textarea.style.opacity = "0";
+    textarea.setAttribute("aria-hidden", "true");
+    Object.assign(textarea.style, {
+      position: "fixed",
+      top: "8px",
+      left: "8px",
+      width: "2px",
+      height: "2px",
+      padding: "0",
+      border: "0",
+      opacity: "0.01",
+      pointerEvents: "none"
+    });
     document.body.appendChild(textarea);
 
-    const selection = document.getSelection();
-    const previousRange = selection && selection.rangeCount ? selection.getRangeAt(0) : null;
-
-    textarea.focus();
+    textarea.focus({ preventScroll: true });
     textarea.select();
     textarea.setSelectionRange(0, textarea.value.length);
 
     let copied = false;
     try {
       copied = document.execCommand("copy");
-    } catch {
-      copied = false;
-    }
+    } catch {}
 
     textarea.remove();
 
-    if (previousRange && selection) {
-      selection.removeAllRanges();
-      selection.addRange(previousRange);
-    }
+    if (copied) return true;
 
+    const fallback = document.createElement("span");
+    fallback.textContent = text;
+    fallback.contentEditable = "true";
+    fallback.setAttribute("aria-hidden", "true");
+    Object.assign(fallback.style, {
+      position: "fixed",
+      left: "-10000px",
+      top: "0"
+    });
+    document.body.appendChild(fallback);
+
+    const range = document.createRange();
+    range.selectNodeContents(fallback);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    try {
+      copied = document.execCommand("copy");
+    } catch {}
+
+    selection.removeAllRanges();
+    fallback.remove();
     return copied;
   }
 
@@ -236,6 +267,131 @@
       );
     });
   }
+
+  const commandItems = [
+    { type: "Section", title: "About", meta: "Biography and focus", target: "#about", search: "about biography numerical analysis" },
+    { type: "Section", title: "Research", meta: "Research themes", target: "#research", search: "research pde spectral hyperbolic wave" },
+    { type: "Section", title: "Publications", meta: "Recent work and BibTeX", target: "#publications", search: "publications papers bibtex cite" },
+    { type: "Section", title: "Teaching", meta: "Courses", target: "#teaching", search: "teaching courses calculus numerical methods" },
+    { type: "Section", title: "Profiles", meta: "Scholar · ORCID · Scopus", target: "#profiles", search: "profiles scholar orcid scopus researchgate arxiv" },
+    { type: "Section", title: "Contact", meta: "Institutional email", target: "#contact", search: "contact email ug tsu" }
+  ];
+
+  document.querySelectorAll(".publication").forEach((publication) => {
+    const title = publication.querySelector("h3")?.textContent.trim();
+    const year = publication.querySelector(".pub-year")?.textContent.trim() || "";
+    const authors = publication.querySelector(".pub-content > p")?.textContent.trim() || "";
+    if (!title) return;
+
+    commandItems.push({
+      type: "Paper",
+      title,
+      meta: year,
+      target: "#publications",
+      search: (title + " " + authors + " " + year).toLowerCase(),
+      publication
+    });
+  });
+
+  let activeCommandIndex = 0;
+  let filteredCommandItems = commandItems.slice();
+
+  function closeCommandPalette() {
+    if (!commandPalette?.open) return;
+    commandPalette.close();
+    commandButton?.focus();
+  }
+
+  function runCommandItem(item) {
+    if (!item) return;
+    closeCommandPalette();
+
+    if (item.publication) {
+      item.publication.scrollIntoView({ behavior: "smooth", block: "center" });
+      item.publication.classList.add("command-highlight");
+      window.setTimeout(() => item.publication.classList.remove("command-highlight"), 1800);
+      return;
+    }
+
+    document.querySelector(item.target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function renderCommandResults(query = "") {
+    if (!commandResults) return;
+
+    const normalized = query.trim().toLowerCase();
+    filteredCommandItems = commandItems.filter((item) =>
+      !normalized || (item.title + " " + item.meta + " " + item.search).toLowerCase().includes(normalized)
+    ).slice(0, 12);
+
+    activeCommandIndex = Math.min(activeCommandIndex, Math.max(0, filteredCommandItems.length - 1));
+    commandResults.innerHTML = "";
+
+    if (!filteredCommandItems.length) {
+      const empty = document.createElement("p");
+      empty.className = "command-empty";
+      empty.textContent = "No matching sections or publications.";
+      commandResults.appendChild(empty);
+      return;
+    }
+
+    filteredCommandItems.forEach((item, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "command-result" + (index === activeCommandIndex ? " is-active" : "");
+      button.setAttribute("role", "option");
+      button.setAttribute("aria-selected", String(index === activeCommandIndex));
+      button.innerHTML =
+        '<span class="command-result-type"></span>' +
+        '<span class="command-result-title"></span>' +
+        '<span class="command-result-meta"></span>';
+
+      button.querySelector(".command-result-type").textContent = item.type;
+      button.querySelector(".command-result-title").textContent = item.title;
+      button.querySelector(".command-result-meta").textContent = item.meta;
+      button.addEventListener("mouseenter", () => {
+        activeCommandIndex = index;
+        renderCommandResults(commandInput?.value || "");
+      });
+      button.addEventListener("click", () => runCommandItem(item));
+      commandResults.appendChild(button);
+    });
+  }
+
+  function openCommandPalette() {
+    if (!commandPalette) return;
+    renderCommandResults("");
+    if (commandInput) commandInput.value = "";
+    commandPalette.showModal();
+    window.setTimeout(() => commandInput?.focus(), 0);
+  }
+
+  commandButton?.addEventListener("click", openCommandPalette);
+  commandClose?.addEventListener("click", closeCommandPalette);
+
+  commandPalette?.addEventListener("click", (event) => {
+    if (event.target === commandPalette) closeCommandPalette();
+  });
+
+  commandInput?.addEventListener("input", () => {
+    activeCommandIndex = 0;
+    renderCommandResults(commandInput.value);
+  });
+
+  commandInput?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      activeCommandIndex = Math.min(filteredCommandItems.length - 1, activeCommandIndex + 1);
+      renderCommandResults(commandInput.value);
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      activeCommandIndex = Math.max(0, activeCommandIndex - 1);
+      renderCommandResults(commandInput.value);
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      runCommandItem(filteredCommandItems[activeCommandIndex]);
+    }
+  });
 
   const searchInput = document.getElementById("publication-search");
   const filterHost = document.getElementById("publication-year-filters");
@@ -314,6 +470,22 @@
   document.addEventListener("keydown", (event) => {
     const target = event.target;
     const typing = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target?.isContentEditable;
+
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault();
+      if (commandPalette?.open) {
+        closeCommandPalette();
+      } else {
+        openCommandPalette();
+      }
+      return;
+    }
+
+    if (event.key === "Escape" && commandPalette?.open) {
+      event.preventDefault();
+      closeCommandPalette();
+      return;
+    }
 
     if (event.key === "/" && !typing && searchInput) {
       event.preventDefault();
