@@ -897,3 +897,103 @@ html[data-theme="dark"] .back-to-top {
   }
   .js .reveal-item { opacity: 1 !important; }
 }
+
+
+/* Visitor counter and geographic statistics */
+.visitor-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, .42fr) minmax(0, 1.58fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.visitor-counter-card,
+.visitor-map-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(20,31,52,.05);
+}
+.visitor-counter-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px;
+}
+.visitor-card-label {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-weight: 850;
+  font-size: 1rem;
+}
+.visitor-counter-link {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.visitor-counter-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.visitor-help {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: .86rem;
+}
+.visitor-map-card {
+  overflow: hidden;
+}
+.visitor-map-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.visitor-map-heading .visitor-card-label,
+.visitor-map-heading .visitor-help { margin-top: 0; }
+.visitor-map-heading a {
+  color: var(--accent-dark);
+  font-size: .86rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+.visitor-map-frame {
+  display: block;
+  width: 100%;
+  height: 430px;
+  border: 0;
+  background: #fff;
+}
+.visitor-privacy-note {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+html[data-theme="dark"] .visitor-counter-card,
+html[data-theme="dark"] .visitor-map-card {
+  background: #162135;
+  border-color: var(--line);
+}
+html[data-theme="dark"] .visitor-counter-link {
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .visitor-grid { grid-template-columns: 1fr; }
+  .visitor-counter-card { align-items: center; text-align: center; }
+  .visitor-map-frame { height: 390px; }
+}
+
+@media (max-width: 620px) {
+  .visitor-counter-card { padding: 22px; }
+  .visitor-map-heading { flex-direction: column; gap: 10px; }
+  .visitor-map-heading a { white-space: normal; }
+  .visitor-map-frame { height: 360px; }
+}
