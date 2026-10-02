@@ -122,83 +122,125 @@
     });
   });
 
+  const toast = document.getElementById("site-toast");
+  let toastTimer = null;
+
+  function showToast(message, isError = false) {
+    if (!toast) return;
+    window.clearTimeout(toastTimer);
+    toast.textContent = message;
+    toast.classList.toggle("is-error", isError);
+    toast.classList.add("is-visible");
+    toastTimer = window.setTimeout(() => {
+      toast.classList.remove("is-visible", "is-error");
+    }, 2200);
+  }
+
   const emailParts = {
     ug: ["z.vashakidze", "ug.edu.ge"],
     tsu: ["zurab.vashakidze", "tsu.ge"]
   };
 
-  function getActualEmail(element) {
-    const parts = emailParts[element?.dataset?.emailKey];
+  function getActualEmailFromKey(key) {
+    const parts = emailParts[key];
     return parts ? parts[0] + "@" + parts[1] : "";
   }
 
   async function copyPlainText(text) {
     if (!text) return false;
 
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
         await navigator.clipboard.writeText(text);
-      } else {
-        throw new Error("Clipboard API unavailable");
-      }
-      return true;
-    } catch {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      textarea.setAttribute("readonly", "");
-      textarea.style.position = "fixed";
-      textarea.style.left = "-9999px";
-      textarea.style.top = "0";
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-      const copied = document.execCommand("copy");
-      textarea.remove();
-      return copied;
+        return true;
+      } catch {}
     }
+
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "0";
+    textarea.style.left = "0";
+    textarea.style.width = "1px";
+    textarea.style.height = "1px";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+
+    const selection = document.getSelection();
+    const previousRange = selection && selection.rangeCount ? selection.getRangeAt(0) : null;
+
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } catch {
+      copied = false;
+    }
+
+    textarea.remove();
+
+    if (previousRange && selection) {
+      selection.removeAllRanges();
+      selection.addRange(previousRange);
+    }
+
+    return copied;
   }
 
-  function showEmailCopied(element) {
-    element.classList.add("is-copied");
-    window.setTimeout(() => element.classList.remove("is-copied"), 1600);
-  }
+  document.querySelectorAll(".email-copy-button").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const actualEmail = getActualEmailFromKey(button.dataset.emailKey);
+      const copied = await copyPlainText(actualEmail);
 
-  document.querySelectorAll(".copy-email-address").forEach((element) => {
-    const copyEmail = async () => {
-      const actualEmail = getActualEmail(element);
-      if (await copyPlainText(actualEmail)) showEmailCopied(element);
-    };
-
-    element.addEventListener("click", copyEmail);
-    element.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        copyEmail();
+      if (copied) {
+        const original = button.textContent;
+        button.textContent = "Copied";
+        button.classList.add("is-copied");
+        showToast("Email address copied to clipboard");
+        window.setTimeout(() => {
+          button.textContent = original;
+          button.classList.remove("is-copied");
+        }, 1600);
+      } else {
+        showToast("Copy failed. Please copy the address manually.", true);
       }
     });
   });
 
-  document.addEventListener("copy", (event) => {
-    const selection = window.getSelection();
-    if (!selection || selection.isCollapsed) return;
+  const shareButton = document.getElementById("share-profile");
+  if (shareButton) {
+    shareButton.addEventListener("click", async () => {
+      const shareData = {
+        title: document.title,
+        text: "Zurab Vashakidze — academic profile",
+        url: window.location.href.split("#")[0]
+      };
 
-    const selectedText = selection.toString().trim();
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
 
-    document.querySelectorAll(".copy-email-address").forEach((element) => {
-      if (selectedText !== element.textContent.trim()) return;
-
-      const actualEmail = getActualEmail(element);
-      if (!actualEmail || !event.clipboardData) return;
-
-      event.preventDefault();
-      event.clipboardData.setData("text/plain", actualEmail);
-      showEmailCopied(element);
+      const copied = await copyPlainText(shareData.url);
+      showToast(
+        copied ? "Profile link copied to clipboard" : "Could not copy the profile link",
+        !copied
+      );
     });
-  });
+  }
 
   const searchInput = document.getElementById("publication-search");
   const filterHost = document.getElementById("publication-year-filters");
   const countLabel = document.getElementById("publication-count");
+  const clearFiltersButton = document.getElementById("clear-publication-filters");
   const emptyState = document.getElementById("publication-empty");
   const publications = Array.from(document.querySelectorAll(".publication"));
   let activeYear = "all";
@@ -247,12 +289,43 @@
     if (countLabel) {
       countLabel.textContent = visibleCount + (visibleCount === 1 ? " publication" : " publications");
     }
+    if (clearFiltersButton) {
+      clearFiltersButton.hidden = activeYear === "all" && !query;
+    }
     if (emptyState) emptyState.hidden = visibleCount !== 0;
   }
 
   if (searchInput) {
     searchInput.addEventListener("input", applyPublicationFilters);
   }
+
+  if (clearFiltersButton) {
+    clearFiltersButton.addEventListener("click", () => {
+      activeYear = "all";
+      if (searchInput) searchInput.value = "";
+      filterHost?.querySelectorAll(".year-filter").forEach((item) => {
+        item.classList.toggle("is-active", item.dataset.year === "all");
+      });
+      applyPublicationFilters();
+      searchInput?.focus();
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    const target = event.target;
+    const typing = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target?.isContentEditable;
+
+    if (event.key === "/" && !typing && searchInput) {
+      event.preventDefault();
+      searchInput.focus();
+    }
+
+    if (event.key === "Escape" && document.activeElement === searchInput && searchInput?.value) {
+      searchInput.value = "";
+      applyPublicationFilters();
+    }
+  });
+
   applyPublicationFilters();
 
   const navLinks = nav ? Array.from(nav.querySelectorAll('a[href^="#"]')) : [];
