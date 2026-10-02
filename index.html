@@ -14,7 +14,7 @@
     })();
   </script>
   <title>Zurab Vashakidze | Numerical Analysis & Computational Mathematics</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261003-4" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <script type="application/ld+json">
   {
@@ -54,17 +54,24 @@
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Zurab Vashakidze home">
         <span class="brand-mark">ZV</span>
-        <span>Zurab Vashakidze</span>
+        <span class="brand-name">Zurab Vashakidze</span>
       </a>
-      <div class="nav-actions">
-        <nav class="nav" id="primary-nav" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#research">Research</a>
-          <a href="#publications">Publications</a>
-          <a href="#teaching">Teaching</a>
-          <a href="#profiles">Profiles</a>
-          <a href="#contact">Contact</a>
-        </nav>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#profiles">Profiles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-controls">
+        <button class="command-button" id="command-button" type="button" aria-haspopup="dialog" aria-controls="command-palette">
+          <span class="command-icon" aria-hidden="true">⌕</span>
+          <span class="command-label">Quick find</span>
+          <span class="command-shortcut" aria-hidden="true">Ctrl K</span>
+        </button>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
           <span class="theme-toggle-icon" aria-hidden="true">☾</span>
           <span class="theme-toggle-label">Night mode</span>
@@ -471,7 +478,11 @@
             <div class="email-details">
               <span class="email-institution">The University of Georgia</span>
               <span class="email-address">z[dot]vashakidze[at]ug[dot]edu[dot]ge</span>
-              <button class="email-copy-button" type="button" data-email-key="ug" aria-label="Copy University of Georgia email address">Copy email</button>
+            </div>
+            <div class="email-card-actions">
+              <button class="email-copy-button" type="button" data-email-key="ug" aria-label="Copy University of Georgia email address">
+                <span aria-hidden="true">⧉</span><span>Copy email</span>
+              </button>
             </div>
           </div>
           <div class="email-card">
@@ -481,7 +492,11 @@
             <div class="email-details">
               <span class="email-institution">Ivane Javakhishvili Tbilisi State University</span>
               <span class="email-address">zurab[dot]vashakidze[at]tsu[dot]ge</span>
-              <button class="email-copy-button" type="button" data-email-key="tsu" aria-label="Copy Tbilisi State University email address">Copy email</button>
+            </div>
+            <div class="email-card-actions">
+              <button class="email-copy-button" type="button" data-email-key="tsu" aria-label="Copy Tbilisi State University email address">
+                <span aria-hidden="true">⧉</span><span>Copy email</span>
+              </button>
             </div>
           </div>
         </div>
@@ -498,8 +513,26 @@
       <p>Built as a lightweight static site for GitHub Pages.</p>
     </div>
   </footer>
+  <dialog class="command-palette" id="command-palette" aria-labelledby="command-palette-title">
+    <div class="command-palette-shell">
+      <div class="command-palette-head">
+        <div>
+          <p class="command-kicker">Quick navigation</p>
+          <h2 id="command-palette-title">Find a section or publication</h2>
+        </div>
+        <button class="command-close" id="command-close" type="button" aria-label="Close quick navigation">×</button>
+      </div>
+      <label class="command-search">
+        <span class="sr-only">Search this website</span>
+        <span aria-hidden="true">⌕</span>
+        <input id="command-search-input" type="search" placeholder="Type a section, paper title, author, or year…" autocomplete="off" />
+      </label>
+      <div class="command-results" id="command-results" role="listbox" aria-label="Quick navigation results"></div>
+      <p class="command-hint"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>Enter</kbd> open · <kbd>Esc</kbd> close</p>
+    </div>
+  </dialog>
   <div class="site-toast" id="site-toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
-  <script src="script.js"></script>
+  <script src="script.js?v=20261003-4"></script>
 </body>
 </html>
