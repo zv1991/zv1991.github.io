@@ -1541,3 +1541,340 @@ html[data-theme="dark"] .publication-view-toggle {
     background-position: 50% 50% !important;
   }
 }
+
+
+/* ========================================================================
+   Live geometric header — original triangulated field
+   ======================================================================== */
+.site-header {
+  min-height: 68px;
+  background: rgba(6, 10, 20, .74);
+  border-bottom: 1px solid rgba(139,180,255,.14);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  overflow: visible;
+  isolation: isolate;
+}
+.toolbar-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .82;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+.nav-wrap {
+  min-height: 68px;
+}
+.brand-mark {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 7px;
+  background: rgba(255,255,255,.04);
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .78rem;
+  letter-spacing: .07em;
+}
+.brand-mark::before,
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(121,166,255,.28);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.brand-mark::after {
+  inset: 11px;
+  border-color: rgba(255,255,255,.18);
+}
+.brand-mark { isolation: isolate; }
+.brand-mark > * { position: relative; z-index: 2; }
+
+.nav {
+  gap: clamp(.8rem, 1.6vw, 1.35rem);
+}
+.nav a {
+  position: relative;
+  padding: .45rem 0;
+  color: #aebbd0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .69rem;
+  font-weight: 650;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  height: 1px;
+  background: #79a6ff;
+  transition: left .18s ease, right .18s ease, box-shadow .18s ease;
+}
+.nav a:hover::after,
+.nav a.is-active::after {
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 12px rgba(121,166,255,.6);
+}
+.nav a.is-active {
+  background: transparent;
+  color: #fff;
+}
+.header-controls > button {
+  border-radius: 8px;
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.045);
+}
+.header-controls > button:hover {
+  border-color: rgba(121,166,255,.42);
+  background: rgba(121,166,255,.08);
+}
+
+/* Hero wireframe */
+.hero {
+  min-height: min(790px, calc(100svh - 30px));
+  padding: 116px 0 92px;
+  background:
+    radial-gradient(85% 80% at 72% 8%, rgba(35,70,145,.42) 0%, transparent 62%),
+    linear-gradient(180deg, #09101d 0%, #0b1220 55%, #0a111e 100%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(9,16,29,.93) 0%, rgba(9,16,29,.67) 46%, rgba(9,16,29,.08) 78%, rgba(9,16,29,.20) 100%),
+    linear-gradient(0deg, rgba(9,16,29,.52) 0%, transparent 38%);
+}
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .95;
+}
+.hero-grid {
+  z-index: 2;
+}
+.hero-copy {
+  max-width: 790px;
+}
+.hero h1 {
+  text-shadow: 0 12px 40px rgba(0,0,0,.28);
+}
+.profile-card {
+  background: rgba(9,17,31,.58);
+  border-color: rgba(137,171,235,.18);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+}
+
+/* Journal cover cards */
+.publication.has-journal-cover {
+  grid-template-columns: 64px 94px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.journal-cover {
+  position: relative;
+  width: 88px;
+  height: 122px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 9px;
+  border: 1px solid rgba(18,24,38,.12);
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(10,24,48,.12);
+  text-decoration: none;
+  text-align: left;
+  line-height: 1.12;
+  transform-origin: center;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.journal-cover:hover {
+  transform: translateY(-3px) rotate(-.5deg);
+  box-shadow: 0 14px 30px rgba(10,24,48,.18);
+}
+.journal-cover-publisher {
+  font-size: .48rem;
+  font-weight: 850;
+  letter-spacing: .08em;
+}
+.journal-cover-title {
+  margin-top: 15px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .69rem;
+  font-weight: 700;
+}
+.journal-cover-title--large {
+  margin-top: 18px;
+  font-size: 1.45rem;
+  letter-spacing: -.04em;
+}
+.journal-cover-subtitle {
+  margin-top: 5px;
+  font-size: .44rem;
+  line-height: 1.2;
+}
+.journal-cover-script {
+  margin-top: 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .62rem;
+  font-style: italic;
+}
+.journal-cover-meta {
+  margin-top: auto;
+  font-size: .45rem;
+  font-weight: 700;
+  opacity: .76;
+}
+.journal-cover--nmpde {
+  color: #fff;
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.12), transparent 32%),
+    #14365d;
+}
+.journal-cover--nmpde::after {
+  content: "∂";
+  position: absolute;
+  right: -4px;
+  bottom: -20px;
+  color: rgba(255,255,255,.07);
+  font-family: Georgia, serif;
+  font-size: 5.5rem;
+  font-style: italic;
+}
+.journal-cover--zamm {
+  color: #fff;
+  background:
+    linear-gradient(135deg, transparent 0 62%, rgba(255,255,255,.07) 62% 63%, transparent 63%),
+    #284537;
+}
+.journal-cover--zamm::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 37px;
+  height: 1px;
+  background: rgba(255,255,255,.24);
+}
+.journal-cover--jmaa {
+  color: #ede7cf;
+  background:
+    linear-gradient(180deg, #e8e1c8 0 23%, #22204c 23% 60%, #e8e1c8 60% 100%);
+}
+.journal-cover--jmaa .journal-cover-publisher,
+.journal-cover--jmaa .journal-cover-script,
+.journal-cover--jmaa .journal-cover-meta {
+  color: #28233f;
+}
+.journal-cover--jmaa .journal-cover-title {
+  margin-top: 9px;
+  color: #f1ead2;
+  font-size: .64rem;
+}
+.journal-cover--image {
+  padding: 0;
+  background: #f2f2f2;
+}
+.journal-cover--image img {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.journal-cover-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 9px;
+  color: #191919;
+  background: #f5a735;
+}
+.journal-cover--gmj .journal-cover-title {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+}
+
+html[data-theme="dark"] .journal-cover {
+  border-color: rgba(255,255,255,.13);
+  box-shadow: 0 8px 20px rgba(0,0,0,.22);
+}
+
+.publication-list.is-compact .publication.has-journal-cover {
+  grid-template-columns: 58px 70px minmax(0,1fr);
+  gap: 16px;
+}
+.publication-list.is-compact .journal-cover {
+  width: 66px;
+  height: 92px;
+}
+.publication-list.is-compact .journal-cover-title,
+.publication-list.is-compact .journal-cover-subtitle,
+.publication-list.is-compact .journal-cover-script {
+  transform: scale(.82);
+  transform-origin: left top;
+}
+.publication-list.is-compact .journal-cover-meta {
+  font-size: .4rem;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding-top: 96px;
+  }
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(9,16,29,.55) 0%, rgba(9,16,29,.82) 72%, #0b1220 100%);
+  }
+  .toolbar-mesh { opacity: .6; }
+}
+
+@media (max-width: 620px) {
+  .site-header { min-height: 64px; }
+  .nav-wrap { min-height: 64px; }
+  .hero { padding-top: 88px; }
+  .hero-mesh { opacity: .72; }
+  .publication.has-journal-cover {
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .publication.has-journal-cover .pub-year {
+    grid-column: 1 / -1;
+  }
+  .journal-cover {
+    width: 72px;
+    height: 100px;
+  }
+  .journal-cover-title { font-size: .58rem; }
+  .journal-cover-title--large { font-size: 1.1rem; }
+  .journal-cover-subtitle { font-size: .38rem; }
+  .journal-cover-meta { font-size: .39rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journal-cover { transition: none; }
+}
