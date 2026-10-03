@@ -38,30 +38,8 @@
     commandShortcut.textContent = "⌘ K";
   }
 
-  function applyTheme(theme) {
-    const dark = theme === "dark";
-    root.dataset.theme = dark ? "dark" : "light";
-
-    if (themeButton) {
-      const icon = themeButton.querySelector(".theme-toggle-icon");
-      const label = themeButton.querySelector(".theme-toggle-label");
-      themeButton.setAttribute("aria-pressed", String(dark));
-      themeButton.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to night mode");
-      if (icon) icon.textContent = dark ? "☀" : "☾";
-      if (label) label.textContent = dark ? "Light mode" : "Night mode";
-    }
-
-    const themeMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeMeta) themeMeta.setAttribute("content", dark ? "#0b1220" : "#ffffff");
-  }
-
-  if (themeButton) {
-    applyTheme(root.dataset.theme || "light");
-    themeButton.addEventListener("click", () => {
-      const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
-      localStorage.setItem("theme", nextTheme);
-      applyTheme(nextTheme);
-    });
+  if (window.SolarTheme?.apply) {
+    window.SolarTheme.apply();
   }
 
   function closeMenu() {
