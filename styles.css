@@ -1878,3 +1878,147 @@ html[data-theme="dark"] .journal-cover {
 @media (prefers-reduced-motion: reduce) {
   .journal-cover { transition: none; }
 }
+
+
+/* ========================================================================
+   Fluid journal-cover layout across desktop, tablet and mobile
+   ======================================================================== */
+.publication.has-journal-cover {
+  --cover-width: clamp(78px, 7.2vw, 96px);
+  grid-template-columns: minmax(56px, 64px) var(--cover-width) minmax(0, 1fr);
+  column-gap: clamp(16px, 2vw, 24px);
+  row-gap: 10px;
+  align-items: start;
+}
+
+.publication.has-journal-cover > .pub-year {
+  min-width: 0;
+}
+
+.publication.has-journal-cover > .journal-cover {
+  width: var(--cover-width);
+  height: auto;
+  aspect-ratio: 88 / 122;
+  max-width: 100%;
+  justify-self: start;
+}
+
+.publication.has-journal-cover > .pub-content {
+  min-width: 0;
+  width: 100%;
+}
+
+.journal-cover--image img {
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+}
+
+/* Compact view remains fluid rather than forcing a fixed cover width. */
+.publication-list.is-compact .publication.has-journal-cover {
+  --cover-width: clamp(62px, 5.8vw, 76px);
+  grid-template-columns: minmax(50px, 58px) var(--cover-width) minmax(0, 1fr);
+  column-gap: clamp(12px, 1.6vw, 18px);
+}
+
+.publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+  width: var(--cover-width);
+  height: auto;
+  aspect-ratio: 88 / 122;
+}
+
+/* Tablets and small laptops */
+@media (min-width: 621px) and (max-width: 900px) {
+  .publication.has-journal-cover {
+    --cover-width: clamp(72px, 10vw, 86px);
+    grid-template-columns: 54px var(--cover-width) minmax(0, 1fr);
+    column-gap: 16px;
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(60px, 8vw, 70px);
+    grid-template-columns: 50px var(--cover-width) minmax(0, 1fr);
+    column-gap: 13px;
+  }
+
+  .journal-cover-title {
+    font-size: clamp(.56rem, 1.15vw, .66rem);
+  }
+
+  .journal-cover-title--large {
+    font-size: clamp(1.05rem, 2.1vw, 1.3rem);
+  }
+}
+
+/* Phones: stack cover and text so neither is squeezed. */
+@media (max-width: 620px) {
+  .publication.has-journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(82px, 27vw, 108px);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding-block: 24px;
+  }
+
+  .publication.has-journal-cover > .pub-year,
+  .publication.has-journal-cover > .journal-cover,
+  .publication.has-journal-cover > .pub-content,
+  .publication-list.is-compact .publication.has-journal-cover > .pub-year,
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover > .pub-content {
+    grid-column: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .publication.has-journal-cover > .journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+    width: var(--cover-width);
+    max-width: min(36vw, 108px);
+    aspect-ratio: 88 / 122;
+    justify-self: start;
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover {
+    padding-block: 18px;
+  }
+
+  .publication-list.is-compact .journal-cover-title,
+  .publication-list.is-compact .journal-cover-subtitle,
+  .publication-list.is-compact .journal-cover-script {
+    transform: none;
+  }
+
+  .journal-cover-title {
+    font-size: clamp(.58rem, 2.6vw, .68rem);
+  }
+
+  .journal-cover-title--large {
+    font-size: clamp(1.12rem, 5vw, 1.4rem);
+  }
+
+  .journal-cover-subtitle {
+    font-size: clamp(.39rem, 1.8vw, .46rem);
+  }
+
+  .journal-cover-meta {
+    font-size: clamp(.39rem, 1.7vw, .45rem);
+  }
+
+  .journal-cover-publisher {
+    font-size: clamp(.42rem, 1.8vw, .49rem);
+  }
+}
+
+/* Very narrow phones */
+@media (max-width: 390px) {
+  .publication.has-journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(76px, 25vw, 92px);
+  }
+
+  .publication.has-journal-cover > .journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+    max-width: 92px;
+  }
+}
