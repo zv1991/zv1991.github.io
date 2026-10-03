@@ -2015,3 +2015,41 @@ html[data-theme="dark"] .journal-cover {
     max-width: 92px;
   }
 }
+
+
+/* Non-interactive visual example of the Copy email control */
+.copy-email-example {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  margin: 0 3px;
+  padding: 2px 8px;
+  border: 1px solid rgba(255,255,255,.20);
+  border-radius: 8px;
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  font: inherit;
+  font-size: .78em;
+  font-weight: 780;
+  line-height: 1.2;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.025);
+}
+.copy-email-example-icon {
+  font-size: .92em;
+  line-height: 1;
+  opacity: .9;
+}
+
+@media (max-width: 430px) {
+  .copy-email-example {
+    min-height: 26px;
+    padding: 2px 7px;
+    font-size: .74em;
+  }
+}
