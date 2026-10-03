@@ -61,7 +61,9 @@ The previous placeholder university SVG marks were removed after the official lo
    - Eight selected publications are currently shown.
    - Six published journal papers have responsive journal-cover/identity cards.
    - Two recent arXiv preprints are displayed without journal covers.
-   - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv links, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
+   - The restored publication list includes the 2022 *Georgian Mathematical Journal* article **“On the convergence of a three-layer semi-discrete scheme for the nonlinear dynamic Kirchhoff string equation”**, 29(4), 615–627, DOI `10.1515/gmj-2022-2149`.
+   - It also includes the 2020 article **“An Application of the Legendre Polynomials for the Numerical Solution of the Nonlinear Dynamical Kirchhoff String Equation”**, *Memoirs on Differential Equations and Mathematical Physics*, 79, 107–119.
+   - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
    - Verified co-author ORCID profiles are linked through small ORCID icons.
 
 5. **Teaching**
@@ -107,6 +109,22 @@ Responsive rules adjust:
 - button sizes and touch targets.
 
 Published journal entries use fluid `clamp()`-based cover sizing. On narrow phones, the publication year, cover, and text stack vertically instead of competing for horizontal space.
+
+Publication media are also constrained responsively: images, SVGs, video, and canvas elements cannot exceed their publication container, and wide tables are allowed to scroll horizontally on small screens rather than overflowing the viewport. These safeguards are intended to behave consistently on Android, iOS, tablets, laptops, and desktop displays.
+
+### Journal-cover treatments
+
+Published journal records use compact, responsive cover/identity cards designed to remain legible across device sizes.
+
+Current cover treatments include:
+
+- **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card.
+- **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
+- **ZAMM — Journal of Applied Mathematics and Mechanics** — Wiley/GAMM identity card.
+- **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography.
+- **Memoirs on Differential Equations and Mathematical Physics** — dark blue journal identity card for the restored 2020 publication.
+
+The JMAA card uses separate title spans for **“Journal of”**, **“Mathematical Analysis”**, and **“and Applications.”** Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary.
 
 ### Live geometric header and hero
 
@@ -343,7 +361,7 @@ When changing academic facts, publication details, teaching entries, profile lin
 
 ### `styles.css`
 
-This file is intentionally comprehensive and currently about 55 KB.
+This file is intentionally comprehensive and layered; its size changes as responsive cover refinements and interface features are added.
 
 It contains the original base design plus later responsive and feature-specific override sections added as the site evolved.
 
@@ -356,7 +374,9 @@ Important styling areas include:
 - hero/profile card;
 - research and course cards;
 - publication layout;
-- journal-cover identity cards;
+- journal-cover identity cards, including GMJ, JMAA, ZAMM, NMPDE, and Memoirs-specific treatments;
+- JMAA dual-contrast text outlines/halos for mixed light/dark cover regions;
+- responsive publication images and horizontally scrollable tables on small screens;
 - citation controls;
 - profile/institution icons;
 - contact/email controls;
@@ -472,7 +492,7 @@ They are served from the same GitHub Pages origin so visitors do not need to fet
 
 The page currently references versioned static files, for example:
 
-- `styles.css?v=20261003-10`
+- `styles.css?v=20261003-19`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -523,7 +543,7 @@ When making future changes:
 4. **Wireframe/geometry changes** — edit `geometry.js`.
 5. **Automatic solar-theme changes** — edit `solar-theme.js` and, if needed, the `SOLAR_TZ_COORDS` table in `index.html`.
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
-7. **Publication updates** — update the visible record, DOI/arXiv links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together.
+7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together. For journal-cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
 9. **Before publishing** — verify desktop, tablet, mobile, light/day mode, dark/night mode, keyboard navigation, copy actions, citation panels, and outbound profile links.
 
@@ -543,6 +563,10 @@ The current website is the result of iterative refinement. Major changes made du
 - command-palette navigation;
 - geometric toolbar/hero redesign;
 - responsive journal-cover cards;
+- restoration of the omitted 2022 *Georgian Mathematical Journal* and 2020 *Memoirs on Differential Equations and Mathematical Physics* records;
+- iterative GMJ cover fitting so all cover text remains within bounds;
+- JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
+- publication-level responsive image/table safeguards for Android, iOS, tablet, laptop, and desktop layouts;
 - verified co-author ORCID links;
 - automatic sunrise/sunset theming;
 - removal of visitor-tracking/counter experiments;
