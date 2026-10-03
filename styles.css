@@ -125,8 +125,6 @@ a:focus-visible { outline: 3px solid #8bb4ff; outline-offset: 4px; border-radius
 .publication p { margin: 0; color: var(--muted); }
 .pub-links { display: flex; gap: 16px; margin-top: 11px; }
 .pub-links a { color: var(--accent-dark); font-weight: 760; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.featured-publication { position: relative; }
-.featured-publication::before { content: "Journal article"; position: absolute; right: 0; top: 30px; background: var(--accent-soft); color: var(--accent-dark); border-radius: 999px; padding: 5px 9px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
 
 .course-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .course-card { background: #fff; border: 1px solid var(--line); padding: 24px; border-radius: 18px; }
@@ -152,7 +150,6 @@ a:focus-visible { outline: 3px solid #8bb4ff; outline-offset: 4px; border-radius
   .profile-card { max-width: 460px; }
   .research-grid, .profile-links-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .section-heading-row, .contact-inner { align-items: flex-start; flex-direction: column; }
-  .featured-publication::before { display: none; }
 }
 
 @media (max-width: 620px) {
@@ -201,10 +198,6 @@ html[data-theme="dark"] .profile-link-card {
 }
 
 html[data-theme="dark"] .profile-link-card:hover { border-color: #5375ad; }
-html[data-theme="dark"] .featured-publication::before {
-  background: var(--accent-soft);
-  color: #bfd1ff;
-}
 html[data-theme="dark"] .contact-band { background: #0b1220; }
 html[data-theme="dark"] .site-footer { background: #070c14; }
 html[data-theme="dark"] .skip-link { background: #eef3fb; color: #101827; }
