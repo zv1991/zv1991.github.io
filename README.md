@@ -1,16 +1,16 @@
 # Zurab Vashakidze — Academic Website
 
-Personal academic website published with GitHub Pages at **https://zv1991.github.io/**.
+<p align="justify">Personal academic website published with GitHub Pages at **https://zv1991.github.io/**.</p>
 
-This repository contains a static, client-side academic profile. There is no framework, package manager, build step, server application, database, analytics service, or backend API. GitHub Pages serves the files directly from the `main` branch.
+<p align="justify">This repository contains a static, client-side academic profile. There is no framework, package manager, build step, server application, database, analytics service, or backend API. GitHub Pages serves the files directly from the `main` branch.</p>
 
-The site currently presents research interests, selected publications, teaching information, academic profiles, institutional contact details, publication citation tools, and an interactive mathematical visual design.
+<p align="justify">The site currently presents research interests, selected publications, teaching information, academic profiles, institutional contact details, publication citation tools, and an interactive mathematical visual design.</p>
 
 ---
 
 ## Current repository inventory
 
-The repository currently contains **14 files**: six site/documentation files and eight files under `assets/`.
+<p align="justify">The repository currently contains **14 files**: six site/documentation files and eight files under `assets/`.</p>
 
 ### Root files
 
@@ -36,13 +36,13 @@ The repository currently contains **14 files**: six site/documentation files and
 | `assets/ug-official-logo.jpg` | Official University of Georgia logo copied from the university's own website and served locally by this repository. |
 | `assets/tsu-official-logo.jpg` | Official Ivane Javakhishvili Tbilisi State University coat of arms copied from the university's own website and served locally by this repository. |
 
-The previous placeholder university SVG marks were removed after the official logo files were retrieved.
+<p align="justify">The previous placeholder university SVG marks were removed after the official logo files were retrieved.</p>
 
 ---
 
 ## Page structure
 
-`index.html` is a single-page document with these primary sections:
+<p align="justify">`index.html` is a single-page document with these primary sections:</p>
 
 1. **Hero / top**
    - Name, position, research-interest summary, profile shortcuts, share control, and a compact profile card.
@@ -94,9 +94,9 @@ The previous placeholder university SVG marks were removed after the official lo
 
 ### Responsive design
 
-The site is designed for desktop monitors, laptops, tablets, and phones.
+<p align="justify">The site is designed for desktop monitors, laptops, tablets, and phones.</p>
 
-Responsive rules adjust:
+<p align="justify">Responsive rules adjust:</p>
 
 - navigation presentation;
 - hero typography and spacing;
@@ -108,15 +108,15 @@ Responsive rules adjust:
 - command-palette layout;
 - button sizes and touch targets.
 
-Published journal entries use fluid `clamp()`-based cover sizing. On narrow phones, the publication year, cover, and text stack vertically instead of competing for horizontal space.
+<p align="justify">Published journal entries use fluid `clamp()`-based cover sizing. On narrow phones, the publication year, cover, and text stack vertically instead of competing for horizontal space.</p>
 
-Publication media are also constrained responsively: images, SVGs, video, and canvas elements cannot exceed their publication container, and wide tables are allowed to scroll horizontally on small screens rather than overflowing the viewport. These safeguards are intended to behave consistently on Android, iOS, tablets, laptops, and desktop displays.
+<p align="justify">Publication media are also constrained responsively: images, SVGs, video, and canvas elements cannot exceed their publication container, and wide tables are allowed to scroll horizontally on small screens rather than overflowing the viewport. These safeguards are intended to behave consistently on Android, iOS, tablets, laptops, and desktop displays.</p>
 
 ### Journal-cover treatments
 
-Published journal records use compact, responsive cover/identity cards designed to remain legible across device sizes.
+<p align="justify">Published journal records use compact, responsive cover/identity cards designed to remain legible across device sizes.</p>
 
-Current cover treatments include:
+<p align="justify">Current cover treatments include:</p>
 
 - **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
@@ -124,16 +124,16 @@ Current cover treatments include:
 - **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography.
 - **Memoirs on Differential Equations and Mathematical Physics** — dark blue journal identity card for the restored 2020 publication.
 
-The JMAA card uses separate title spans for **“Journal of”**, **“Mathematical Analysis”**, and **“and Applications.”** Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary.
+<p align="justify">The JMAA card uses separate title spans for **“Journal of”**, **“Mathematical Analysis”**, and **“and Applications.”** Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary.</p>
 
 ### Live geometric header and hero
 
-Two `<canvas>` elements are rendered by `geometry.js`:
+<p align="justify">Two `<canvas>` elements are rendered by `geometry.js`:</p>
 
 - `#toolbar-mesh` — a fine wireframe behind the translucent toolbar;
 - `#hero-mesh` — a larger triangulated/perspective mathematical surface in the hero.
 
-The renderer:
+<p align="justify">The renderer:</p>
 
 - scales for device pixel ratio, capped for efficiency;
 - reacts subtly to pointer position on fine-pointer devices;
@@ -141,13 +141,13 @@ The renderer:
 - uses `IntersectionObserver` to reduce unnecessary rendering;
 - respects `prefers-reduced-motion`.
 
-The geometric implementation is original and is not copied from another website.
+<p align="justify">The geometric implementation is original and is not copied from another website.</p>
 
 ### Automatic day/night theme
 
-Automatic solar theming is implemented by `solar-theme.js`.
+<p align="justify">Automatic solar theming is implemented by `solar-theme.js`.</p>
 
-The default behavior is:
+<p align="justify">The default behavior is:</p>
 
 1. Read the browser's IANA time-zone identifier with `Intl.DateTimeFormat().resolvedOptions().timeZone`.
 2. Look up a representative latitude/longitude from `window.SOLAR_TZ_COORDS`, defined in `index.html`.
@@ -155,20 +155,20 @@ The default behavior is:
 4. Use light mode while the calculated solar altitude is above approximately **−0.833°**, and dark mode after it falls below that horizon threshold.
 5. Recalculate once per minute while the page remains open.
 
-If a time zone is not in the coordinate table, the site falls back to local civil time: approximately 06:30–18:30 is treated as daytime.
+<p align="justify">If a time zone is not in the coordinate table, the site falls back to local civil time: approximately 06:30–18:30 is treated as daytime.</p>
 
-Important privacy properties:
+<p align="justify">Important privacy properties:</p>
 
 - no `navigator.geolocation`;
 - no GPS/browser location prompt;
 - no IP-geolocation API;
 - no network request is required for theme calculation.
 
-The theme button remains available as a **temporary per-tab override**. Manual override state is stored in `sessionStorage` under `themeOverride`. Returning to automatic mode clears that session override.
+<p align="justify">The theme button remains available as a **temporary per-tab override**. Manual override state is stored in `sessionStorage` under `themeOverride`. Returning to automatic mode clears that session override.</p>
 
 ### Publication discovery and display
 
-`script.js` provides:
+<p align="justify">`script.js` provides:</p>
 
 - free-text publication search;
 - automatically generated year-filter buttons;
@@ -177,59 +177,59 @@ The theme button remains available as a **temporary per-tab override**. Manual o
 - sorting by newest, oldest, or title;
 - compact/comfortable display modes.
 
-The selected sort order is stored in `localStorage` as `publicationSort`.
+<p align="justify">The selected sort order is stored in `localStorage` as `publicationSort`.</p>
 
-The compact/comfortable preference is stored in `localStorage` as `publicationCompact`.
+<p align="justify">The compact/comfortable preference is stored in `localStorage` as `publicationCompact`.</p>
 
 ### Citation and BibTeX tools
 
-Each publication has a **Cite** control.
+<p align="justify">Each publication has a **Cite** control.</p>
 
-Opening it reveals:
+<p align="justify">Opening it reveals:</p>
 
 - a BibTeX block;
 - a **Copy BibTeX** button;
 - a MathSciNet/MR Lookup link.
 
-Journal articles use journal/DOI metadata. Recent preprints without a confirmed MathSciNet journal record are explicitly represented as arXiv fallbacks rather than being presented as indexed journal records.
+<p align="justify">Journal articles use journal/DOI metadata. Recent preprints without a confirmed MathSciNet journal record are explicitly represented as arXiv fallbacks rather than being presented as indexed journal records.</p>
 
-Clipboard copying uses the modern Clipboard API when possible and includes fallback copy methods for browsers where that API is unavailable.
+<p align="justify">Clipboard copying uses the modern Clipboard API when possible and includes fallback copy methods for browsers where that API is unavailable.</p>
 
 ### ORCID links
 
-Small ORCID icons appear beside co-authors whose ORCID identity was reliably verified.
+<p align="justify">Small ORCID icons appear beside co-authors whose ORCID identity was reliably verified.</p>
 
-The icon itself is the link, so selecting it opens the co-author's ORCID profile in a new tab.
+<p align="justify">The icon itself is the link, so selecting it opens the co-author's ORCID profile in a new tab.</p>
 
-Where an ORCID could not be confidently matched, no ORCID link is shown rather than risking an incorrect identity.
+<p align="justify">Where an ORCID could not be confidently matched, no ORCID link is shown rather than risking an incorrect identity.</p>
 
 ### Quick navigation / command palette
 
-The **Quick find** control opens a searchable command palette.
+<p align="justify">The **Quick find** control opens a searchable command palette.</p>
 
-Keyboard shortcut:
+<p align="justify">Keyboard shortcut:</p>
 
 - **Ctrl+K** on Windows/Linux;
 - **Cmd+K** on macOS.
 
-The palette can search:
+<p align="justify">The palette can search:</p>
 
 - major page sections;
 - publication titles;
 - authors;
 - publication years.
 
-Within the palette:
+<p align="justify">Within the palette:</p>
 
 - Up/Down arrows move through results;
 - Enter opens the highlighted result;
 - Escape closes the palette.
 
-The regular publication search can also be focused with the **/** key when the user is not already typing in an input.
+<p align="justify">The regular publication search can also be focused with the **/** key when the user is not already typing in an input.</p>
 
 ### Scroll and navigation feedback
 
-The site includes:
+<p align="justify">The site includes:</p>
 
 - active navigation highlighting based on the section in view;
 - a thin scroll-progress indicator;
@@ -237,30 +237,30 @@ The site includes:
 - card hover interactions on pointer-capable devices;
 - a floating back-to-top button after sufficient scrolling.
 
-Motion-sensitive users are supported through `prefers-reduced-motion`.
+<p align="justify">Motion-sensitive users are supported through `prefers-reduced-motion`.</p>
 
 ### Sharing
 
-The **Share profile** button uses the Web Share API on compatible devices. If native sharing is unavailable, it falls back to copying the profile URL to the clipboard.
+<p align="justify">The **Share profile** button uses the Web Share API on compatible devices. If native sharing is unavailable, it falls back to copying the profile URL to the clipboard.</p>
 
 ### Email privacy and copying
 
-Visible email addresses are intentionally obfuscated:
+<p align="justify">Visible email addresses are intentionally obfuscated:</p>
 
 - `z[dot]vashakidze[at]ug[dot]edu[dot]ge`
 - `zurab[dot]vashakidze[at]tsu[dot]ge`
 
-The standard addresses are reconstructed in JavaScript only when the visitor activates the corresponding **Copy email** button.
+<p align="justify">The standard addresses are reconstructed in JavaScript only when the visitor activates the corresponding **Copy email** button.</p>
 
-This provides a modest reduction in simple HTML email harvesting while still making the addresses convenient for visitors.
+<p align="justify">This provides a modest reduction in simple HTML email harvesting while still making the addresses convenient for visitors.</p>
 
 ---
 
 ## Privacy and browser-permission design
 
-The site is intentionally designed to avoid asking visitors for permissions.
+<p align="justify">The site is intentionally designed to avoid asking visitors for permissions.</p>
 
-It does **not** use:
+<p align="justify">It does **not** use:</p>
 
 - geolocation;
 - camera;
@@ -276,13 +276,13 @@ It does **not** use:
 - advertising scripts;
 - background `fetch()`/XHR requests.
 
-The page currently self-hosts all images/icons required at load time.
+<p align="justify">The page currently self-hosts all images/icons required at load time.</p>
 
-External URLs such as ORCID, DOI, arXiv, Google Scholar, publishers, MathSciNet, ResearchGate, Scopus, and university profile pages are ordinary links opened only when the visitor chooses them.
+<p align="justify">External URLs such as ORCID, DOI, arXiv, Google Scholar, publishers, MathSciNet, ResearchGate, Scopus, and university profile pages are ordinary links opened only when the visitor chooses them.</p>
 
 ### Content Security Policy
 
-`index.html` defines a restrictive Content Security Policy:
+<p align="justify">`index.html` defines a restrictive Content Security Policy:</p>
 
 ```text
 default-src 'self';
@@ -300,17 +300,17 @@ base-uri 'self';
 form-action 'none';
 ```
 
-Of particular importance, `connect-src 'none'` prevents the page from initiating background network connections through mechanisms governed by that directive.
+<p align="justify">Of particular importance, `connect-src 'none'` prevents the page from initiating background network connections through mechanisms governed by that directive.</p>
 
-The policy still allows normal visitor-initiated navigation to external academic/profile links.
+<p align="justify">The policy still allows normal visitor-initiated navigation to external academic/profile links.</p>
 
-All current `target="_blank"` links use `rel="noopener"`.
+<p align="justify">All current `target="_blank"` links use `rel="noopener"`.</p>
 
 ---
 
 ## Academic metadata and source links
 
-The site contains Schema.org `Person` structured data with:
+<p align="justify">The site contains Schema.org `Person` structured data with:</p>
 
 - name;
 - job title;
@@ -318,7 +318,7 @@ The site contains Schema.org `Person` structured data with:
 - academic profile URLs;
 - research-topic keywords.
 
-Public profile links include:
+<p align="justify">Public profile links include:</p>
 
 - Google Scholar;
 - ResearchGate;
@@ -327,9 +327,9 @@ Public profile links include:
 - ORCID **0000-0001-8736-6213**;
 - University of Georgia staff profile.
 
-Citation metrics are intentionally not hard-coded because they change over time and Google Scholar may restrict automated access.
+<p align="justify">Citation metrics are intentionally not hard-coded because they change over time and Google Scholar may restrict automated access.</p>
 
-Publication information should be checked against publisher pages, DOI records, arXiv, and MathSciNet/MR Lookup before future bibliographic changes are committed.
+<p align="justify">Publication information should be checked against publisher pages, DOI records, arXiv, and MathSciNet/MR Lookup before future bibliographic changes are committed.</p>
 
 ---
 
@@ -337,9 +337,9 @@ Publication information should be checked against publisher pages, DOI records, 
 
 ### `index.html`
 
-This is the authoritative content file.
+<p align="justify">This is the authoritative content file.</p>
 
-It contains:
+<p align="justify">It contains:</p>
 
 - document metadata;
 - viewport configuration;
@@ -357,15 +357,15 @@ It contains:
 - command-palette dialog;
 - script references.
 
-When changing academic facts, publication details, teaching entries, profile links, or contact text, this is usually the first file to edit.
+<p align="justify">When changing academic facts, publication details, teaching entries, profile links, or contact text, this is usually the first file to edit.</p>
 
 ### `styles.css`
 
-This file is intentionally comprehensive and layered; its size changes as responsive cover refinements and interface features are added.
+<p align="justify">This file is intentionally comprehensive and layered; its size changes as responsive cover refinements and interface features are added.</p>
 
-It contains the original base design plus later responsive and feature-specific override sections added as the site evolved.
+<p align="justify">It contains the original base design plus later responsive and feature-specific override sections added as the site evolved.</p>
 
-Important styling areas include:
+<p align="justify">Important styling areas include:</p>
 
 - CSS custom properties for light/dark palettes;
 - responsive containers and typography;
@@ -387,15 +387,15 @@ Important styling areas include:
 - co-author ORCID icons;
 - accessibility/reduced-motion rules.
 
-Because later CSS declarations override earlier ones, when modifying a component it is important to search the entire file for the selector and check the final applicable rule.
+<p align="justify">Because later CSS declarations override earlier ones, when modifying a component it is important to search the entire file for the selector and check the final applicable rule.</p>
 
-Known harmless legacy styling remains for the retired static geometry selectors `.header-geometry` and `.hero-geometry`. The live implementation now uses `.toolbar-mesh` and `.hero-mesh` canvases instead. A future cleanup pass could remove those older selectors after regression testing.
+<p align="justify">Known harmless legacy styling remains for the retired static geometry selectors `.header-geometry` and `.hero-geometry`. The live implementation now uses `.toolbar-mesh` and `.hero-mesh` canvases instead. A future cleanup pass could remove those older selectors after regression testing.</p>
 
 ### `script.js`
 
-This is the main behavior layer, currently about 22 KB.
+<p align="justify">This is the main behavior layer, currently about 22 KB.</p>
 
-Responsibilities include:
+<p align="justify">Responsibilities include:</p>
 
 - mobile menu opening/closing;
 - Escape-key behavior;
@@ -413,25 +413,25 @@ Responsibilities include:
 - back-to-top behavior;
 - toast feedback.
 
-Persistent settings:
+<p align="justify">Persistent settings:</p>
 
 - `publicationSort` in `localStorage`;
 - `publicationCompact` in `localStorage`.
 
-The automatic theme is no longer implemented here; `script.js` delegates theme state to `solar-theme.js`.
+<p align="justify">The automatic theme is no longer implemented here; `script.js` delegates theme state to `solar-theme.js`.</p>
 
-There is also some harmless legacy pointer/scroll code that updates the old `--geo-x`, `--geo-y`, and `--geo-scroll` CSS variables. The current canvas geometry is independently rendered by `geometry.js`, so these variables are no longer required by the live mesh. They may be removed in a future code-cleanup pass after visual regression testing.
+<p align="justify">There is also some harmless legacy pointer/scroll code that updates the old `--geo-x`, `--geo-y`, and `--geo-scroll` CSS variables. The current canvas geometry is independently rendered by `geometry.js`, so these variables are no longer required by the live mesh. They may be removed in a future code-cleanup pass after visual regression testing.</p>
 
 ### `geometry.js`
 
-This file is dedicated to decorative mathematical animation.
+<p align="justify">This file is dedicated to decorative mathematical animation.</p>
 
-It creates two independent meshes with different parameters:
+<p align="justify">It creates two independent meshes with different parameters:</p>
 
 - a shallow, fine toolbar mesh;
 - a larger hero mesh with perspective and diagonal triangulation.
 
-It handles:
+<p align="justify">It handles:</p>
 
 - canvas sizing;
 - DPR-aware rendering;
@@ -443,13 +443,13 @@ It handles:
 - resize handling;
 - reduced-motion behavior.
 
-Keeping this code separate prevents decorative animation changes from affecting publication/search/contact behavior.
+<p align="justify">Keeping this code separate prevents decorative animation changes from affecting publication/search/contact behavior.</p>
 
 ### `solar-theme.js`
 
-This file controls automatic day/night mode.
+<p align="justify">This file controls automatic day/night mode.</p>
 
-It contains:
+<p align="justify">It contains:</p>
 
 - a solar-altitude approximation;
 - the −0.833° horizon threshold;
@@ -460,11 +460,11 @@ It contains:
 - temporary per-tab manual override;
 - periodic one-minute recalculation.
 
-It contains no network request and no geolocation call.
+<p align="justify">It contains no network request and no geolocation call.</p>
 
 ### Platform SVG assets
 
-The five academic-platform SVG files are self-hosted identity icons:
+<p align="justify">The five academic-platform SVG files are self-hosted identity icons:</p>
 
 - `google-scholar.svg`
 - `orcid.svg`
@@ -472,40 +472,40 @@ The five academic-platform SVG files are self-hosted identity icons:
 - `arxiv.svg`
 - `scopus.svg`
 
-They use small 24×24 SVG view boxes and are referenced directly by `index.html`.
+<p align="justify">They use small 24×24 SVG view boxes and are referenced directly by `index.html`.</p>
 
 ### `assets/favicon.svg`
 
-A small 64×64 custom favicon with a dark background and white Z-shaped mark.
+<p align="justify">A small 64×64 custom favicon with a dark background and white Z-shaped mark.</p>
 
 ### Official university JPG assets
 
-`ug-official-logo.jpg` and `tsu-official-logo.jpg` are binary JPEG assets copied from the universities' official websites.
+<p align="justify">`ug-official-logo.jpg` and `tsu-official-logo.jpg` are binary JPEG assets copied from the universities' official websites.</p>
 
-They replaced earlier hand-made placeholder SVG marks, which have been deleted.
+<p align="justify">They replaced earlier hand-made placeholder SVG marks, which have been deleted.</p>
 
-They are served from the same GitHub Pages origin so visitors do not need to fetch the institutional logos from third-party domains during normal page loading.
+<p align="justify">They are served from the same GitHub Pages origin so visitors do not need to fetch the institutional logos from third-party domains during normal page loading.</p>
 
 ---
 
 ## Cache-busting query strings
 
-The page currently references versioned static files, for example:
+<p align="justify">The page currently references versioned static files, for example:</p>
 
 - `styles.css?v=20261003-19`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
 
-These query strings are used only to encourage browsers to fetch a new revision after significant updates.
+<p align="justify">These query strings are used only to encourage browsers to fetch a new revision after significant updates.</p>
 
-When changing CSS or JavaScript and browser caching becomes a concern, increment the corresponding version string in `index.html`.
+<p align="justify">When changing CSS or JavaScript and browser caching becomes a concern, increment the corresponding version string in `index.html`.</p>
 
 ---
 
 ## Accessibility considerations
 
-The site currently includes:
+<p align="justify">The site currently includes:</p>
 
 - semantic section headings;
 - a skip-to-content link;
@@ -519,23 +519,23 @@ The site currently includes:
 - mobile touch targets;
 - alt/hidden treatment appropriate to decorative versus meaningful images.
 
-When adding new interactive features, preserve keyboard access and avoid relying on hover alone.
+<p align="justify">When adding new interactive features, preserve keyboard access and avoid relying on hover alone.</p>
 
 ---
 
 ## Deployment
 
-The repository is public and uses `main` as its default branch.
+<p align="justify">The repository is public and uses `main` as its default branch.</p>
 
-The site is designed for GitHub Pages deployment directly from the repository root.
+<p align="justify">The site is designed for GitHub Pages deployment directly from the repository root.</p>
 
-There is no compilation step. A normal deployment consists of committing the edited static files to `main`; GitHub Pages then publishes the updated content.
+<p align="justify">There is no compilation step. A normal deployment consists of committing the edited static files to `main`; GitHub Pages then publishes the updated content.</p>
 
 ---
 
 ## Recommended maintenance workflow
 
-When making future changes:
+<p align="justify">When making future changes:</p>
 
 1. **Content changes** — edit `index.html`.
 2. **Visual/layout changes** — edit `styles.css`; search for all occurrences of the relevant selector because the stylesheet has layered overrides.
@@ -551,7 +551,7 @@ When making future changes:
 
 ## Notes on the development history
 
-The current website is the result of iterative refinement. Major changes made during development include:
+<p align="justify">The current website is the result of iterative refinement. Major changes made during development include:</p>
 
 - initial GitHub Pages academic profile;
 - justified typography and light/night theming;
@@ -575,7 +575,7 @@ The current website is the result of iterative refinement. Major changes made du
 - replacement of placeholder university marks with official self-hosted logos;
 - cleanup of obsolete asset files.
 
-The guiding design goals are now:
+<p align="justify">The guiding design goals are now:</p>
 
 - academically professional rather than promotional;
 - modest and welcoming in tone;
