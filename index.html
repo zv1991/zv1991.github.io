@@ -14,7 +14,7 @@
     })();
   </script>
   <title>Zurab Vashakidze | Numerical Analysis & Computational Mathematics</title>
-  <link rel="stylesheet" href="styles.css?v=20261003-5" />
+  <link rel="stylesheet" href="styles.css?v=20261003-6" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <script type="application/ld+json">
   {
@@ -51,7 +51,7 @@
   <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
 
   <header class="site-header">
-    <div class="header-geometry" aria-hidden="true"></div>
+    <canvas class="toolbar-mesh" id="toolbar-mesh" aria-hidden="true"></canvas>
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Zurab Vashakidze home">
         <span class="brand-mark">ZV</span>
@@ -86,24 +86,7 @@
 
   <main id="main">
     <section class="hero" id="top">
-      <svg class="hero-geometry" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <pattern id="triangle-grid-pattern" width="96" height="83.14" patternUnits="userSpaceOnUse">
-            <path d="M0 83.14 L48 0 L96 83.14 M0 0 H96 M0 83.14 H96" />
-          </pattern>
-          <linearGradient id="triangle-grid-fade" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="white" stop-opacity="0" />
-            <stop offset="45%" stop-color="white" stop-opacity=".28" />
-            <stop offset="100%" stop-color="white" stop-opacity=".9" />
-          </linearGradient>
-          <mask id="triangle-grid-mask">
-            <rect width="1200" height="620" fill="url(#triangle-grid-fade)" />
-          </mask>
-        </defs>
-        <rect class="triangle-grid-fill" width="1200" height="620" fill="url(#triangle-grid-pattern)" mask="url(#triangle-grid-mask)" />
-        <path class="triangle-grid-accent" d="M780 85 L930 345 L1080 85 Z" />
-        <path class="triangle-grid-accent triangle-grid-accent-small" d="M910 300 L1000 456 L1090 300 Z" />
-      </svg>
+      <canvas class="hero-mesh" id="hero-mesh" aria-hidden="true"></canvas>
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Academic profile</p>
@@ -295,8 +278,13 @@
             </div>
           </article>
 
-          <article class="publication featured-publication">
+          <article class="publication has-journal-cover featured-publication">
             <div class="pub-year">2026</div>
+            <a class="journal-cover journal-cover--nmpde" href="https://onlinelibrary.wiley.com/journal/10982426" target="_blank" rel="noopener" aria-label="Numerical Methods for Partial Differential Equations journal">
+              <span class="journal-cover-publisher">WILEY</span>
+              <span class="journal-cover-title">Numerical Methods<br>for Partial Differential<br>Equations</span>
+              <span class="journal-cover-meta">Vol. 42 · No. 4 · 2026</span>
+            </a>
             <div class="pub-content">
               <h3>On the Numerical Treatment of an Abstract Nonlinear System of Coupled Hyperbolic Equations Associated With the Timoshenko Model</h3>
               <p>Jemal Rogava, Zurab Vashakidze · <em>Numerical Methods for Partial Differential Equations</em>, 42(4), e70127</p>
@@ -328,8 +316,15 @@
             </div>
           </article>
 
-          <article class="publication">
+          <article class="publication has-journal-cover">
             <div class="pub-year">2025</div>
+            <a class="journal-cover journal-cover--image journal-cover--gmj" href="https://www.degruyterbrill.com/journal/key/gmj/html" target="_blank" rel="noopener" aria-label="Georgian Mathematical Journal">
+              <span class="journal-cover-fallback">
+                <span class="journal-cover-publisher">DE GRUYTER</span>
+                <span class="journal-cover-title">Georgian<br>Mathematical<br>Journal</span>
+              </span>
+              <img src="https://www.degruyterbrill.com/document/cover/journal_key/GMJ/product_pages" alt="Georgian Mathematical Journal cover" loading="lazy" decoding="async" />
+            </a>
             <div class="pub-content">
               <h3>Propagation of Waves from Finite Sources Arranged in Line Segments within an Infinite Triangular Lattice</h3>
               <p>David Kapanadze, Zurab Vashakidze · <em>Georgian Mathematical Journal</em>, 32(5), 837–858</p>
@@ -361,8 +356,14 @@
             </div>
           </article>
 
-          <article class="publication">
+          <article class="publication has-journal-cover">
             <div class="pub-year">2024</div>
+            <a class="journal-cover journal-cover--zamm" href="https://onlinelibrary.wiley.com/journal/15214001" target="_blank" rel="noopener" aria-label="ZAMM Journal of Applied Mathematics and Mechanics">
+              <span class="journal-cover-publisher">WILEY · GAMM</span>
+              <span class="journal-cover-title journal-cover-title--large">ZAMM</span>
+              <span class="journal-cover-subtitle">Journal of Applied Mathematics and Mechanics</span>
+              <span class="journal-cover-meta">Vol. 104 · 2024</span>
+            </a>
             <div class="pub-content">
               <h3>On Convergence of a Three-Layer Semi-Discrete Scheme for the Nonlinear Dynamic String Equation of Kirchhoff-Type with Time-Dependent Coefficients</h3>
               <p>Jemal Rogava, Zurab Vashakidze · <em>ZAMM</em>, 104, e202300608</p>
@@ -394,8 +395,14 @@
             </div>
           </article>
 
-          <article class="publication">
+          <article class="publication has-journal-cover">
             <div class="pub-year">2023</div>
+            <a class="journal-cover journal-cover--jmaa" href="https://shop.elsevier.com/journals/journal-of-mathematical-analysis-and-applications/0022-247X" target="_blank" rel="noopener" aria-label="Journal of Mathematical Analysis and Applications">
+              <span class="journal-cover-publisher">ELSEVIER</span>
+              <span class="journal-cover-script">Journal of</span>
+              <span class="journal-cover-title">Mathematical Analysis<br>and Applications</span>
+              <span class="journal-cover-meta">Vol. 518 · No. 1 · 2023</span>
+            </a>
             <div class="pub-content">
               <h3>On Stability and Convergence of a Three-Layer Semi-Discrete Scheme for an Abstract Analogue of the Ball Integro-Differential Equation</h3>
               <p>Jemal Rogava, Mikheil Tsiklauri, Zurab Vashakidze · <em>Journal of Mathematical Analysis and Applications</em>, 518(1), 126664</p>
@@ -563,6 +570,7 @@
   </dialog>
   <div class="site-toast" id="site-toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
-  <script src="script.js?v=20261003-5"></script>
+  <script src="geometry.js?v=20261003-6"></script>
+  <script src="script.js?v=20261003-6"></script>
 </body>
 </html>
