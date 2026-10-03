@@ -58,8 +58,8 @@ The previous placeholder university SVG marks were removed after the official lo
    - Wave propagation.
 
 4. **Publications**
-   - Six selected publications are currently shown.
-   - Four published journal papers have responsive journal-cover/identity cards.
+   - Eight selected publications are currently shown.
+   - Six published journal papers have responsive journal-cover/identity cards.
    - Two recent arXiv preprints are displayed without journal covers.
    - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv links, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
    - Verified co-author ORCID profiles are linked through small ORCID icons.
