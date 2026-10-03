@@ -2398,3 +2398,117 @@ html[data-theme="dark"] .journal-cover {
     font-size: clamp(.52rem, 2.45vw, .66rem);
   }
 }
+
+
+/* Final GMJ text-fit safeguards */
+.journal-cover--gmj {
+  container-type: inline-size;
+}
+
+.journal-cover--gmj .gmj-topband {
+  grid-template-columns: .92fr 1.28fr;
+  height: 19%;
+}
+
+.journal-cover--gmj .gmj-imprint,
+.journal-cover--gmj .gmj-issue {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 8% 7% 0;
+  overflow: hidden;
+}
+
+.journal-cover--gmj .gmj-imprint {
+  font-size: clamp(.27rem, 5.1cqw, .37rem);
+  line-height: 1.02;
+}
+
+.journal-cover--gmj .gmj-issue {
+  display: flex;
+  flex-direction: column;
+  gap: .12em;
+  font-size: clamp(.245rem, 4.55cqw, .34rem);
+  line-height: 1.04;
+  letter-spacing: .005em;
+  white-space: nowrap;
+}
+
+.journal-cover--gmj .gmj-issue > span {
+  display: block;
+  max-width: 100%;
+}
+
+.journal-cover--gmj .gmj-title-block {
+  left: 7.5%;
+  right: 3.5%;
+  top: 24%;
+  max-width: 89%;
+  overflow: hidden;
+}
+
+.journal-cover--gmj .journal-cover-title,
+.publication-list.is-compact .journal-cover--gmj .journal-cover-title {
+  width: 100%;
+  max-width: 100%;
+  gap: .015em;
+  margin: 0;
+  font-size: clamp(.40rem, 8.15cqw, .64rem);
+  line-height: .97;
+  letter-spacing: -.032em;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: none;
+}
+
+.journal-cover--gmj .journal-cover-title > span {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.journal-cover--gmj .gmj-footer-url {
+  right: 5%;
+  max-width: 68%;
+  font-size: clamp(.20rem, 3.9cqw, .29rem);
+}
+
+.journal-cover--gmj .gmj-deg-mark {
+  width: 12%;
+  min-width: 13px;
+  max-width: 22px;
+  font-size: clamp(.22rem, 4.0cqw, .32rem);
+}
+
+/* Fallback for browsers without container-query units. */
+@supports not (font-size: 1cqw) {
+  .journal-cover--gmj .gmj-imprint {
+    font-size: .29rem;
+  }
+
+  .journal-cover--gmj .gmj-issue {
+    font-size: .255rem;
+  }
+
+  .journal-cover--gmj .journal-cover-title,
+  .publication-list.is-compact .journal-cover--gmj .journal-cover-title {
+    font-size: .46rem;
+  }
+
+  .journal-cover--gmj .gmj-footer-url {
+    font-size: .22rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .journal-cover--gmj .gmj-title-block {
+    left: 7%;
+    right: 3%;
+  }
+
+  .journal-cover--gmj .journal-cover-title,
+  .publication-list.is-compact .journal-cover--gmj .journal-cover-title {
+    font-size: clamp(.42rem, 8.0cqw, .61rem);
+  }
+}
