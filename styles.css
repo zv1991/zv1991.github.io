@@ -2512,3 +2512,50 @@ html[data-theme="dark"] .journal-cover {
     font-size: clamp(.42rem, 8.0cqw, .61rem);
   }
 }
+
+
+/* Journal of Mathematical Analysis and Applications — title contrast fix */
+.journal-cover--jmaa .journal-cover-title--jmaa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .10em;
+  width: 100%;
+  margin-top: 9px;
+  line-height: 1.08;
+}
+
+.journal-cover--jmaa .jmaa-title-main,
+.journal-cover--jmaa .jmaa-title-sub {
+  display: block;
+  max-width: 100%;
+}
+
+.journal-cover--jmaa .jmaa-title-main {
+  color: #f3ecd5;
+}
+
+.journal-cover--jmaa .jmaa-title-sub {
+  color: #28233f;
+  font-weight: 750;
+  text-shadow: none;
+}
+
+/* Keep the lower title line readable in compact/mobile cover sizes. */
+.publication-list.is-compact .journal-cover--jmaa .journal-cover-title--jmaa {
+  gap: .06em;
+}
+
+@media (max-width: 620px) {
+  .journal-cover--jmaa .journal-cover-title--jmaa {
+    gap: .06em;
+  }
+}
+
+html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-main {
+  color: #f3ecd5;
+}
+
+html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
+  color: #28233f;
+}
