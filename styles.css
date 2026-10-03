@@ -1310,3 +1310,234 @@ html[data-theme="dark"] .command-result.is-active {
   background: var(--accent-soft);
   box-shadow: 0 0 0 4px rgba(44,107,237,.10);
 }
+
+
+/* Geometric toolbar + hero system */
+:root {
+  --geo-x: 0px;
+  --geo-y: 0px;
+  --geo-scroll: 0px;
+}
+
+.site-header {
+  isolation: isolate;
+}
+.header-geometry {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .72;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(rgba(121,166,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(121,166,255,.045) 1px, transparent 1px);
+  background-size:
+    32px 32px,
+    32px 32px,
+    8px 8px,
+    8px 8px;
+  background-position:
+    calc(50% + var(--geo-x)) calc(50% + var(--geo-y)),
+    calc(50% + var(--geo-x)) calc(50% + var(--geo-y)),
+    calc(50% + var(--geo-x)) calc(50% + var(--geo-y)),
+    calc(50% + var(--geo-x)) calc(50% + var(--geo-y));
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  transition: opacity .25s ease;
+}
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(121,166,255,.45), transparent);
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hero-grid {
+  position: relative;
+  z-index: 2;
+}
+.hero-geometry {
+  position: absolute;
+  z-index: 1;
+  width: min(1080px, 82vw);
+  height: auto;
+  right: -180px;
+  top: -72px;
+  color: rgba(132,172,255,.22);
+  pointer-events: none;
+  transform:
+    translate3d(
+      calc(var(--geo-x) * .45),
+      calc(var(--geo-y) * .3 + var(--geo-scroll) * .08),
+      0
+    );
+  transform-origin: 70% 30%;
+  transition: opacity .25s ease;
+}
+.hero-geometry pattern path,
+.triangle-grid-fill {
+  stroke: currentColor;
+  stroke-width: 1;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.triangle-grid-accent {
+  fill: rgba(44,107,237,.035);
+  stroke: rgba(121,166,255,.34);
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+}
+.triangle-grid-accent-small {
+  fill: rgba(255,255,255,.018);
+  stroke: rgba(255,255,255,.15);
+}
+html[data-theme="dark"] .hero-geometry {
+  color: rgba(121,166,255,.19);
+}
+
+/* Refined interaction surfaces */
+.button,
+.theme-toggle,
+.command-button,
+.menu-toggle,
+.cite-button,
+.copy-bibtex,
+.email-copy-button,
+.year-filter,
+.publication-view-toggle,
+.clear-publication-filters {
+  transition:
+    transform .16s ease,
+    background-color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    color .18s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover,
+  .theme-toggle:hover,
+  .command-button:hover,
+  .email-copy-button:hover,
+  .publication-view-toggle:hover,
+  .clear-publication-filters:hover {
+    transform: translateY(-1px);
+  }
+  .button:active,
+  .theme-toggle:active,
+  .command-button:active,
+  .email-copy-button:active,
+  .publication-view-toggle:active {
+    transform: translateY(0) scale(.98);
+  }
+}
+
+.publication-sort select {
+  min-height: 36px;
+  padding: 0 32px 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-soft);
+  color: var(--ink);
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 720;
+  cursor: pointer;
+}
+.publication-view-toggle {
+  min-height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-soft);
+  color: var(--accent-dark);
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 760;
+  cursor: pointer;
+}
+.publication-view-toggle[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.publication-list {
+  transition: opacity .16s ease;
+}
+.publication-list.is-reordering {
+  opacity: .35;
+}
+.publication-list.is-compact .publication {
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 0;
+}
+.publication-list.is-compact .publication h3 {
+  font-size: 1.01rem;
+  margin-bottom: 4px;
+}
+.publication-list.is-compact .publication p {
+  font-size: .9rem;
+}
+.publication-list.is-compact .pub-links {
+  margin-top: 7px;
+}
+.publication-list.is-compact .citation-panel {
+  margin-top: 10px;
+}
+
+html[data-theme="dark"] .publication-sort select,
+html[data-theme="dark"] .publication-view-toggle {
+  background: #162135;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .header-geometry {
+    background-size: 28px 28px, 28px 28px, 7px 7px, 7px 7px;
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 80%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0%, #000 80%, transparent 100%);
+  }
+  .hero-geometry {
+    width: 1180px;
+    right: -460px;
+    top: -40px;
+    opacity: .72;
+  }
+  .publication-tools-meta {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-geometry {
+    right: -590px;
+    opacity: .52;
+  }
+  .publication-sort,
+  .publication-sort select,
+  .publication-view-toggle {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-geometry {
+    transform: none !important;
+  }
+  .header-geometry {
+    background-position: 50% 50% !important;
+  }
+}
