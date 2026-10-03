@@ -2559,3 +2559,45 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-main {
 html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
   color: #28233f;
 }
+
+
+/* JMAA boundary-safe title treatment */
+.journal-cover--jmaa .jmaa-title-sub {
+  color: #201d3e;
+  font-weight: 800;
+  -webkit-text-stroke: .34px rgba(255, 253, 244, .96);
+  paint-order: stroke fill;
+  text-shadow:
+    -.34px 0 rgba(255, 253, 244, .96),
+     .34px 0 rgba(255, 253, 244, .96),
+     0 -.34px rgba(255, 253, 244, .96),
+     0  .34px rgba(255, 253, 244, .96),
+     0 0 1.2px rgba(255, 253, 244, .72);
+}
+
+.publication-list.is-compact .journal-cover--jmaa .jmaa-title-sub {
+  -webkit-text-stroke-width: .28px;
+  text-shadow:
+    -.28px 0 rgba(255, 253, 244, .96),
+     .28px 0 rgba(255, 253, 244, .96),
+     0 -.28px rgba(255, 253, 244, .96),
+     0  .28px rgba(255, 253, 244, .96),
+     0 0 1px rgba(255, 253, 244, .68);
+}
+
+@media (max-width: 620px) {
+  .journal-cover--jmaa .jmaa-title-sub {
+    -webkit-text-stroke-width: .30px;
+    text-shadow:
+      -.30px 0 rgba(255, 253, 244, .96),
+       .30px 0 rgba(255, 253, 244, .96),
+       0 -.30px rgba(255, 253, 244, .96),
+       0  .30px rgba(255, 253, 244, .96),
+       0 0 1px rgba(255, 253, 244, .70);
+  }
+}
+
+html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
+  color: #201d3e;
+  -webkit-text-stroke-color: rgba(255, 253, 244, .96);
+}
