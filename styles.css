@@ -2712,3 +2712,36 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
     font-size: clamp(.50rem, 2.3vw, .61rem);
   }
 }
+
+
+/* JMAA: improve visibility of the "Journal of" line on the dark band */
+.journal-cover--jmaa .journal-cover-script {
+  color: #f7f1df;
+  font-weight: 700;
+  -webkit-text-stroke: .32px rgba(255, 253, 244, .92);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 1px rgba(255, 253, 244, .80),
+    0 0 4px rgba(255, 253, 244, .12);
+}
+
+.publication-list.is-compact .journal-cover--jmaa .journal-cover-script {
+  -webkit-text-stroke-width: .26px;
+  text-shadow:
+    0 0 .8px rgba(255, 253, 244, .78),
+    0 0 3px rgba(255, 253, 244, .10);
+}
+
+@media (max-width: 620px) {
+  .journal-cover--jmaa .journal-cover-script {
+    -webkit-text-stroke-width: .28px;
+    text-shadow:
+      0 0 .9px rgba(255, 253, 244, .80),
+      0 0 3px rgba(255, 253, 244, .10);
+  }
+}
+
+html[data-theme="dark"] .journal-cover--jmaa .journal-cover-script {
+  color: #f7f1df;
+  -webkit-text-stroke-color: rgba(255, 253, 244, .92);
+}
