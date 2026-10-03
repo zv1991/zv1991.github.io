@@ -14,7 +14,7 @@
     })();
   </script>
   <title>Zurab Vashakidze | Numerical Analysis & Computational Mathematics</title>
-  <link rel="stylesheet" href="styles.css?v=20261003-4" />
+  <link rel="stylesheet" href="styles.css?v=20261003-5" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <script type="application/ld+json">
   {
@@ -51,6 +51,7 @@
   <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
 
   <header class="site-header">
+    <div class="header-geometry" aria-hidden="true"></div>
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Zurab Vashakidze home">
         <span class="brand-mark">ZV</span>
@@ -85,6 +86,24 @@
 
   <main id="main">
     <section class="hero" id="top">
+      <svg class="hero-geometry" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <pattern id="triangle-grid-pattern" width="96" height="83.14" patternUnits="userSpaceOnUse">
+            <path d="M0 83.14 L48 0 L96 83.14 M0 0 H96 M0 83.14 H96" />
+          </pattern>
+          <linearGradient id="triangle-grid-fade" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="white" stop-opacity="0" />
+            <stop offset="45%" stop-color="white" stop-opacity=".28" />
+            <stop offset="100%" stop-color="white" stop-opacity=".9" />
+          </linearGradient>
+          <mask id="triangle-grid-mask">
+            <rect width="1200" height="620" fill="url(#triangle-grid-fade)" />
+          </mask>
+        </defs>
+        <rect class="triangle-grid-fill" width="1200" height="620" fill="url(#triangle-grid-pattern)" mask="url(#triangle-grid-mask)" />
+        <path class="triangle-grid-accent" d="M780 85 L930 345 L1080 85 Z" />
+        <path class="triangle-grid-accent triangle-grid-accent-small" d="M910 300 L1000 456 L1090 300 Z" />
+      </svg>
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Academic profile</p>
@@ -198,6 +217,17 @@
           </label>
           <div class="year-filters" id="publication-year-filters" aria-label="Filter publications by year"></div>
           <div class="publication-tools-meta">
+            <label class="publication-sort">
+              <span class="sr-only">Sort publications</span>
+              <select id="publication-sort" aria-label="Sort publications">
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+                <option value="title">Title A–Z</option>
+              </select>
+            </label>
+            <button class="publication-view-toggle" id="publication-view-toggle" type="button" aria-pressed="false">
+              Compact view
+            </button>
             <span class="publication-count" id="publication-count" aria-live="polite"></span>
             <button class="clear-publication-filters" id="clear-publication-filters" type="button" hidden>Clear filters</button>
           </div>
@@ -533,6 +563,6 @@
   </dialog>
   <div class="site-toast" id="site-toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
-  <script src="script.js?v=20261003-4"></script>
+  <script src="script.js?v=20261003-5"></script>
 </body>
 </html>
