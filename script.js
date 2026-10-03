@@ -12,6 +12,26 @@
   const commandClose = document.getElementById("command-close");
   const commandInput = document.getElementById("command-search-input");
   const commandResults = document.getElementById("command-results");
+  const publicationSort = document.getElementById("publication-sort");
+  const publicationViewToggle = document.getElementById("publication-view-toggle");
+  const publicationList = document.querySelector(".publication-list");
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  if (!reducedMotion.matches && finePointer.matches) {
+    let geometryFrame = 0;
+    window.addEventListener("pointermove", (event) => {
+      if (geometryFrame) return;
+      geometryFrame = window.requestAnimationFrame(() => {
+        geometryFrame = 0;
+        const x = ((event.clientX / window.innerWidth) - 0.5) * 14;
+        const y = ((event.clientY / window.innerHeight) - 0.5) * 10;
+        root.style.setProperty("--geo-x", x.toFixed(2) + "px");
+        root.style.setProperty("--geo-y", y.toFixed(2) + "px");
+      });
+    }, { passive: true });
+  }
 
   const commandShortcut = commandButton?.querySelector(".command-shortcut");
   if (commandShortcut && /Mac|iPhone|iPad/.test(navigator.platform)) {
@@ -401,6 +421,55 @@
   const publications = Array.from(document.querySelectorAll(".publication"));
   let activeYear = "all";
 
+  function sortPublications(mode) {
+    if (!publicationList) return;
+
+    publicationList.classList.add("is-reordering");
+    const sorted = publications.slice().sort((a, b) => {
+      const aYear = Number(a.querySelector(".pub-year")?.textContent.trim() || 0);
+      const bYear = Number(b.querySelector(".pub-year")?.textContent.trim() || 0);
+      const aTitle = a.querySelector("h3")?.textContent.trim() || "";
+      const bTitle = b.querySelector("h3")?.textContent.trim() || "";
+
+      if (mode === "oldest") return aYear - bYear || aTitle.localeCompare(bTitle);
+      if (mode === "title") return aTitle.localeCompare(bTitle);
+      return bYear - aYear || aTitle.localeCompare(bTitle);
+    });
+
+    sorted.forEach((publication) => publicationList.appendChild(publication));
+    window.setTimeout(() => publicationList.classList.remove("is-reordering"), 120);
+  }
+
+  if (publicationSort) {
+    publicationSort.addEventListener("change", () => {
+      localStorage.setItem("publicationSort", publicationSort.value);
+      sortPublications(publicationSort.value);
+    });
+
+    const savedSort = localStorage.getItem("publicationSort");
+    if (savedSort && ["newest", "oldest", "title"].includes(savedSort)) {
+      publicationSort.value = savedSort;
+      sortPublications(savedSort);
+    }
+  }
+
+  if (publicationViewToggle && publicationList) {
+    const applyPublicationDensity = (compact) => {
+      publicationList.classList.toggle("is-compact", compact);
+      publicationViewToggle.setAttribute("aria-pressed", String(compact));
+      publicationViewToggle.textContent = compact ? "Comfortable view" : "Compact view";
+    };
+
+    const savedCompact = localStorage.getItem("publicationCompact") === "true";
+    applyPublicationDensity(savedCompact);
+
+    publicationViewToggle.addEventListener("click", () => {
+      const compact = !publicationList.classList.contains("is-compact");
+      localStorage.setItem("publicationCompact", String(compact));
+      applyPublicationDensity(compact);
+    });
+  }
+
   if (filterHost && publications.length) {
     const years = [...new Set(publications.map((publication) => {
       const yearNode = publication.querySelector(".pub-year");
@@ -553,6 +622,9 @@
 
     if (progressBar) progressBar.style.width = progress + "%";
     if (backToTop) backToTop.classList.toggle("is-visible", scrollTop > 520);
+    if (!reducedMotion.matches) {
+      root.style.setProperty("--geo-scroll", Math.min(scrollTop, 900).toFixed(0) + "px");
+    }
   }
 
   window.addEventListener("scroll", updateScrollUI, { passive: true });
