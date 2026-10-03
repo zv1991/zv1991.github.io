@@ -2745,3 +2745,185 @@ html[data-theme="dark"] .journal-cover--jmaa .journal-cover-script {
   color: #f7f1df;
   -webkit-text-stroke-color: rgba(255, 253, 244, .92);
 }
+
+
+/* ========================================================================
+   JMAA cross-device responsiveness and dual-contrast typography
+   ======================================================================== */
+
+/* Keep publication media and tables inside their containers on all devices. */
+.publication img,
+.publication svg,
+.publication video,
+.publication canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.publication table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.publication .table-scroll,
+.citation-panel {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Make the JMAA cover fluid instead of relying on fixed dimensions. */
+.journal-cover--jmaa {
+  --jmaa-cover-width: clamp(76px, 7.2vw, 96px);
+  width: var(--jmaa-cover-width);
+  height: auto;
+  aspect-ratio: 88 / 122;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.publication.has-journal-cover > .journal-cover--jmaa {
+  justify-self: start;
+}
+
+.publication-list.is-compact .journal-cover--jmaa {
+  --jmaa-cover-width: clamp(60px, 5.8vw, 74px);
+  width: var(--jmaa-cover-width);
+  height: auto;
+  aspect-ratio: 88 / 122;
+}
+
+/* Dual-contrast title treatment:
+   light inner edge + dark outer halo for mixed light/dark backgrounds. */
+.journal-cover--jmaa .journal-cover-script,
+.journal-cover--jmaa .jmaa-title-main,
+.journal-cover--jmaa .jmaa-title-sub {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* "Journal of" — light fill, light inner outline, dark outer separation. */
+.journal-cover--jmaa .journal-cover-script {
+  color: #fff8e8;
+  font-weight: 760;
+  -webkit-text-stroke: .30px rgba(255,255,255,.96);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 .75px rgba(255,255,255,.96),
+    0 0 1.8px rgba(20,18,42,.88),
+    .55px .55px 0 rgba(20,18,42,.72),
+   -.55px -.55px 0 rgba(20,18,42,.58);
+}
+
+/* Main title on the dark band: light fill with dark outer halo. */
+.journal-cover--jmaa .jmaa-title-main {
+  color: #f5eed8;
+  -webkit-text-stroke: .28px rgba(255,255,255,.90);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 .7px rgba(255,255,255,.80),
+    0 0 1.7px rgba(25,22,52,.86);
+}
+
+/* Lower title crosses the dark/light boundary:
+   dark fill + white edge + dark outer halo. */
+.journal-cover--jmaa .jmaa-title-sub {
+  color: #211e42;
+  font-weight: 800;
+  -webkit-text-stroke: .34px rgba(255,255,255,.97);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 .8px rgba(255,255,255,.96),
+    0 0 1.9px rgba(24,21,47,.84),
+    .50px .50px 0 rgba(24,21,47,.55),
+   -.50px -.50px 0 rgba(24,21,47,.45);
+}
+
+/* Tablet / small laptop */
+@media (min-width: 621px) and (max-width: 900px) {
+  .journal-cover--jmaa {
+    --jmaa-cover-width: clamp(70px, 10vw, 86px);
+  }
+
+  .publication-list.is-compact .journal-cover--jmaa {
+    --jmaa-cover-width: clamp(58px, 8vw, 69px);
+  }
+
+  .journal-cover--jmaa .journal-cover-script {
+    -webkit-text-stroke-width: .27px;
+  }
+
+  .journal-cover--jmaa .jmaa-title-main {
+    -webkit-text-stroke-width: .26px;
+  }
+
+  .journal-cover--jmaa .jmaa-title-sub {
+    -webkit-text-stroke-width: .30px;
+  }
+}
+
+/* Phones: keep the cover comfortably inside the viewport. */
+@media (max-width: 620px) {
+  .journal-cover--jmaa,
+  .publication-list.is-compact .journal-cover--jmaa {
+    --jmaa-cover-width: clamp(82px, 27vw, 106px);
+    width: var(--jmaa-cover-width);
+    max-width: min(36vw, 106px);
+    height: auto;
+    aspect-ratio: 88 / 122;
+  }
+
+  .journal-cover--jmaa .journal-cover-script {
+    -webkit-text-stroke-width: .28px;
+    text-shadow:
+      0 0 .7px rgba(255,255,255,.96),
+      0 0 1.6px rgba(20,18,42,.88);
+  }
+
+  .journal-cover--jmaa .jmaa-title-main {
+    -webkit-text-stroke-width: .25px;
+  }
+
+  .journal-cover--jmaa .jmaa-title-sub {
+    -webkit-text-stroke-width: .29px;
+    text-shadow:
+      0 0 .75px rgba(255,255,255,.96),
+      0 0 1.6px rgba(24,21,47,.84);
+  }
+
+  /* Generic publication tables become horizontally scrollable on phones. */
+  .publication table {
+    min-width: 520px;
+  }
+}
+
+/* Very narrow iOS/Android screens */
+@media (max-width: 390px) {
+  .journal-cover--jmaa,
+  .publication-list.is-compact .journal-cover--jmaa {
+    --jmaa-cover-width: clamp(76px, 25vw, 92px);
+    max-width: 92px;
+  }
+
+  .publication table {
+    min-width: 480px;
+  }
+}
+
+html[data-theme="dark"] .journal-cover--jmaa .journal-cover-script {
+  color: #fff8e8;
+  -webkit-text-stroke-color: rgba(255,255,255,.96);
+}
+
+html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-main {
+  color: #f5eed8;
+  -webkit-text-stroke-color: rgba(255,255,255,.90);
+}
+
+html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
+  color: #211e42;
+  -webkit-text-stroke-color: rgba(255,255,255,.97);
+}
