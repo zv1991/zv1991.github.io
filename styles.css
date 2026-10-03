@@ -2927,3 +2927,163 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
   color: #211e42;
   -webkit-text-stroke-color: rgba(255,255,255,.97);
 }
+
+
+/* ========================================================================
+   Memoirs cover — cover-relative typography and cross-device text fitting
+   ======================================================================== */
+.journal-cover--mdemp {
+  container-type: inline-size;
+  box-sizing: border-box;
+  padding: 8% 7%;
+  isolation: isolate;
+}
+
+.journal-cover--mdemp .mdemp-topline,
+.journal-cover--mdemp .mdemp-title,
+.journal-cover--mdemp .mdemp-volume,
+.journal-cover--mdemp .mdemp-year,
+.journal-cover--mdemp .mdemp-issn {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.journal-cover--mdemp .mdemp-topline {
+  margin: 0;
+  font-size: clamp(.34rem, 5.4cqw, .50rem);
+  line-height: 1;
+  letter-spacing: .11em;
+  white-space: nowrap;
+}
+
+.journal-cover--mdemp .mdemp-title {
+  display: block;
+  width: 100%;
+  margin: clamp(6px, 8cqw, 10px) 0 0;
+  color: #f7f8fb;
+  font-size: clamp(.46rem, 8.1cqw, .66rem);
+  line-height: 1.04;
+  letter-spacing: -.012em;
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-shadow: 0 1px 1px rgba(5,18,35,.42);
+}
+
+.journal-cover--mdemp .mdemp-rule {
+  width: min(62%, 54px);
+  margin-top: clamp(5px, 6.5cqw, 8px);
+}
+
+.journal-cover--mdemp .mdemp-volume {
+  margin-top: clamp(5px, 6.5cqw, 8px);
+  font-size: clamp(.34rem, 5.0cqw, .46rem);
+  line-height: 1.05;
+  letter-spacing: .025em;
+  white-space: nowrap;
+}
+
+.journal-cover--mdemp .mdemp-year {
+  margin-top: clamp(1px, 2cqw, 3px);
+  font-size: clamp(.31rem, 4.5cqw, .41rem);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.journal-cover--mdemp .mdemp-issn {
+  left: 7%;
+  right: 7%;
+  bottom: 6%;
+  width: auto;
+  font-size: clamp(.235rem, 3.55cqw, .32rem);
+  line-height: 1;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+.journal-cover--mdemp::before {
+  z-index: 0;
+  inset: auto -22% 12% 26%;
+  height: 43%;
+}
+
+.journal-cover--mdemp::after {
+  z-index: 0;
+  right: 2%;
+  bottom: -10%;
+  font-size: clamp(3.7rem, 72cqw, 5rem);
+}
+
+/* Compact view: retain the same proportions, only tighten vertical rhythm. */
+.publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+  margin-top: clamp(5px, 6.5cqw, 8px);
+  font-size: clamp(.43rem, 7.8cqw, .58rem);
+  line-height: 1.03;
+}
+
+.publication-list.is-compact .journal-cover--mdemp .mdemp-rule,
+.publication-list.is-compact .journal-cover--mdemp .mdemp-volume {
+  margin-top: clamp(4px, 5.5cqw, 7px);
+}
+
+/* Tablet and small-laptop covers get slightly more breathing room. */
+@media (min-width: 621px) and (max-width: 900px) {
+  .journal-cover--mdemp .mdemp-title {
+    font-size: clamp(.44rem, 8cqw, .60rem);
+  }
+
+  .journal-cover--mdemp .mdemp-issn {
+    font-size: clamp(.23rem, 3.5cqw, .29rem);
+  }
+}
+
+/* iOS/Android layouts use the larger stacked cover supplied by the
+   publication grid; typography continues to scale from the cover width. */
+@media (max-width: 620px) {
+  .journal-cover--mdemp {
+    padding: 8% 7%;
+  }
+
+  .journal-cover--mdemp .mdemp-title,
+  .publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+    margin-top: clamp(6px, 7cqw, 9px);
+    font-size: clamp(.48rem, 8.0cqw, .66rem);
+    line-height: 1.04;
+  }
+
+  .journal-cover--mdemp .mdemp-topline {
+    font-size: clamp(.35rem, 5.2cqw, .48rem);
+  }
+
+  .journal-cover--mdemp .mdemp-volume {
+    font-size: clamp(.35rem, 4.8cqw, .44rem);
+  }
+
+  .journal-cover--mdemp .mdemp-year {
+    font-size: clamp(.32rem, 4.3cqw, .40rem);
+  }
+
+  .journal-cover--mdemp .mdemp-issn {
+    bottom: 5.5%;
+    font-size: clamp(.25rem, 3.5cqw, .31rem);
+  }
+}
+
+@media (max-width: 390px) {
+  .journal-cover--mdemp .mdemp-title,
+  .publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+    font-size: clamp(.45rem, 7.8cqw, .60rem);
+  }
+}
+
+/* Conservative fallback for engines without container-query units. */
+@supports not (font-size: 1cqw) {
+  .journal-cover--mdemp .mdemp-topline { font-size: .38rem; }
+  .journal-cover--mdemp .mdemp-title { font-size: .50rem; }
+  .journal-cover--mdemp .mdemp-volume { font-size: .36rem; }
+  .journal-cover--mdemp .mdemp-year { font-size: .33rem; }
+  .journal-cover--mdemp .mdemp-issn { font-size: .25rem; }
+}
