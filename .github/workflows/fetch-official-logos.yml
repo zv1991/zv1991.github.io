@@ -1,0 +1,40 @@
+name: Fetch official university logos
+
+on:
+  push:
+    paths:
+      - ".github/workflows/fetch-official-logos.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-logos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download official logos
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets
+          curl --fail --location --retry 3             "https://ug.edu.ge/assets/images/logo.jpg"             --output assets/ug-official-logo.jpg
+          curl --fail --location --retry 3             "https://tsu.ge/assets/media/files/21/Coat_of_Arms_of_Tbilisi_State_University.jpg"             --output assets/tsu-official-logo.jpg
+          file assets/ug-official-logo.jpg
+          file assets/tsu-official-logo.jpg
+
+      - name: Commit downloaded assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/ug-official-logo.jpg assets/tsu-official-logo.jpg
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Add official university logos"
+          git push
