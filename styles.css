@@ -2100,3 +2100,74 @@ html[data-theme="dark"] .journal-cover {
     transition: none;
   }
 }
+
+
+/* Georgian Mathematical Journal cover: keep all text within the cover bounds */
+.journal-cover--gmj .journal-cover-fallback {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 8px 7px 9px;
+  overflow: hidden;
+}
+
+.journal-cover--gmj .journal-cover-publisher {
+  margin: 0;
+  font-size: clamp(.36rem, .52vw, .44rem);
+  line-height: 1.05;
+  letter-spacing: .055em;
+  white-space: normal;
+}
+
+.journal-cover--gmj .journal-cover-title {
+  margin: 9px 0 0;
+  max-width: 100%;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(.50rem, .70vw, .61rem);
+  font-weight: 780;
+  line-height: 1.08;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: none;
+}
+
+.publication-list.is-compact .journal-cover--gmj .journal-cover-title {
+  margin-top: 6px;
+  font-size: clamp(.43rem, .58vw, .52rem);
+  line-height: 1.05;
+  transform: none;
+}
+
+@media (min-width: 621px) and (max-width: 900px) {
+  .journal-cover--gmj .journal-cover-title {
+    font-size: clamp(.48rem, 1.05vw, .56rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .journal-cover--gmj .journal-cover-fallback {
+    padding: 7px 6px 8px;
+  }
+
+  .journal-cover--gmj .journal-cover-publisher {
+    font-size: clamp(.36rem, 1.65vw, .42rem);
+  }
+
+  .journal-cover--gmj .journal-cover-title,
+  .publication-list.is-compact .journal-cover--gmj .journal-cover-title {
+    margin-top: 7px;
+    font-size: clamp(.47rem, 2.35vw, .57rem);
+    line-height: 1.06;
+    transform: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .journal-cover--gmj .journal-cover-title,
+  .publication-list.is-compact .journal-cover--gmj .journal-cover-title {
+    font-size: clamp(.43rem, 2.25vw, .52rem);
+  }
+}
