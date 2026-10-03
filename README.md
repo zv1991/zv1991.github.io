@@ -1,6 +1,6 @@
 # Zurab Vashakidze — Academic Website
 
-<p align="justify">Personal academic website published with GitHub Pages at **https://zv1991.github.io/**.</p>
+<p align="justify">Personal academic website published with GitHub Pages at <strong>https://zv1991.github.io/</strong>.</p>
 
 <p align="justify">This repository contains a static, client-side academic profile. There is no framework, package manager, build step, server application, database, analytics service, or backend API. GitHub Pages serves the files directly from the `main` branch.</p>
 
@@ -10,7 +10,7 @@
 
 ## Current repository inventory
 
-<p align="justify">The repository currently contains **14 files**: six site/documentation files and eight files under `assets/`.</p>
+<p align="justify">The repository currently contains <strong>14 files</strong>: six site/documentation files and eight files under `assets/`.</p>
 
 ### Root files
 
@@ -124,7 +124,7 @@
 - **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography.
 - **Memoirs on Differential Equations and Mathematical Physics** — dark blue journal identity card for the restored 2020 publication. Its title now wraps naturally rather than using a hard line break, while cover-relative typography, anchored volume/year/ISSN metadata, and Compact/tablet/phone overrides keep all text within the cover across desktop, laptop, Android, and iOS layouts.
 
-<p align="justify">The JMAA card uses separate title spans for **“Journal of”**, **“Mathematical Analysis”**, and **“and Applications.”** Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary.</p>
+<p align="justify">The JMAA card uses separate title spans for <strong>“Journal of”</strong>, <strong>“Mathematical Analysis”</strong>, and <strong>“and Applications.”</strong> Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary.</p>
 
 <p align="justify">The Memoirs cover uses CSS container-query units so its typography follows the actual rendered cover width rather than the viewport alone. The journal title is allowed to wrap at word boundaries, with balanced line distribution and no forced hyphenation. Volume, year, and ISSN metadata remain anchored inside the cover, and dedicated Compact, tablet/small-laptop, phone, and very-narrow-phone rules preserve spacing and legibility.</p>
 
@@ -166,7 +166,7 @@
 - no IP-geolocation API;
 - no network request is required for theme calculation.
 
-<p align="justify">The theme button remains available as a **temporary per-tab override**. Manual override state is stored in `sessionStorage` under `themeOverride`. Returning to automatic mode clears that session override.</p>
+<p align="justify">The theme button remains available as a <strong>temporary per-tab override</strong>. Manual override state is stored in `sessionStorage` under `themeOverride`. Returning to automatic mode clears that session override.</p>
 
 ### Publication discovery and display
 
@@ -185,7 +185,7 @@
 
 ### Citation and BibTeX tools
 
-<p align="justify">Each publication has a **Cite** control.</p>
+<p align="justify">Each publication has a <strong>Cite</strong> control.</p>
 
 <p align="justify">Opening it reveals:</p>
 
@@ -207,7 +207,7 @@
 
 ### Quick navigation / command palette
 
-<p align="justify">The **Quick find** control opens a searchable command palette.</p>
+<p align="justify">The <strong>Quick find</strong> control opens a searchable command palette.</p>
 
 <p align="justify">Keyboard shortcut:</p>
 
@@ -227,7 +227,7 @@
 - Enter opens the highlighted result;
 - Escape closes the palette.
 
-<p align="justify">The regular publication search can also be focused with the **/** key when the user is not already typing in an input.</p>
+<p align="justify">The regular publication search can also be focused with the <strong>/</strong> key when the user is not already typing in an input.</p>
 
 ### Scroll and navigation feedback
 
@@ -243,7 +243,7 @@
 
 ### Sharing
 
-<p align="justify">The **Share profile** button uses the Web Share API on compatible devices. If native sharing is unavailable, it falls back to copying the profile URL to the clipboard.</p>
+<p align="justify">The <strong>Share profile</strong> button uses the Web Share API on compatible devices. If native sharing is unavailable, it falls back to copying the profile URL to the clipboard.</p>
 
 ### Email privacy and copying
 
@@ -252,7 +252,7 @@
 - `z[dot]vashakidze[at]ug[dot]edu[dot]ge`
 - `zurab[dot]vashakidze[at]tsu[dot]ge`
 
-<p align="justify">The standard addresses are reconstructed in JavaScript only when the visitor activates the corresponding **Copy email** button.</p>
+<p align="justify">The standard addresses are reconstructed in JavaScript only when the visitor activates the corresponding <strong>Copy email</strong> button.</p>
 
 <p align="justify">This provides a modest reduction in simple HTML email harvesting while still making the addresses convenient for visitors.</p>
 
@@ -262,7 +262,7 @@
 
 <p align="justify">The site is intentionally designed to avoid asking visitors for permissions.</p>
 
-<p align="justify">It does **not** use:</p>
+<p align="justify">It does <strong>not</strong> use:</p>
 
 - geolocation;
 - camera;
