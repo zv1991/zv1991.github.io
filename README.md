@@ -64,7 +64,7 @@
    - Two recent arXiv preprints are displayed without journal covers.
    - The restored publication list includes the 2022 *Georgian Mathematical Journal* article **“On the convergence of a three-layer semi-discrete scheme for the nonlinear dynamic Kirchhoff string equation”**, 29(4), 615–627, DOI `10.1515/gmj-2022-2149`.
    - It also includes the 2020 article **“An Application of the Legendre Polynomials for the Numerical Solution of the Nonlinear Dynamical Kirchhoff String Equation”**, *Memoirs on Differential Equations and Mathematical Physics*, 79, 107–119.
-   - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
+   - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links for arXiv-backed papers, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
    - Verified co-author ORCID profiles are linked through small ORCID icons.
 
 5. **Teaching**
@@ -190,7 +190,7 @@
 
 ### alphaXiv links
 
-<p align="justify">Each selected publication now includes an <strong>alphaXiv</strong> link in its publication action row. For the five papers with verified direct alphaXiv records, the link opens the corresponding alphaXiv paper page directly. The 2023 <em>Journal of Mathematical Analysis and Applications</em> article, the 2022 <em>Georgian Mathematical Journal</em> article, and the 2020 <em>Memoirs on Differential Equations and Mathematical Physics</em> article do not currently expose a stable direct alphaXiv paper URL in public search results; those three entries therefore use exact-title alphaXiv search links rather than guessed paper identifiers.</p>
+<p align="justify">An <strong>alphaXiv</strong> link is shown only when the same publication already has a corresponding arXiv preprint link. The alphaXiv URL is derived deterministically by replacing the arXiv prefix <code>https://arxiv.org/abs/</code> with <code>https://www.alphaxiv.org/abs/</code> while preserving the same arXiv identifier. Publications without an arXiv preprint link do not display or imply an alphaXiv link. Under the current publication list, six entries have arXiv/alphaXiv pairs, while the 2022 <em>Georgian Mathematical Journal</em> article and the 2020 <em>Memoirs on Differential Equations and Mathematical Physics</em> article have no alphaXiv link because no arXiv link is listed for them.</p>
 
 ### Citation and BibTeX tools
 
@@ -362,7 +362,7 @@ form-action 'none';
 - hero content;
 - About, Research, Publications, Teaching, Profiles, and Contact sections;
 - all selected publication titles and BibTeX blocks;
-- per-publication alphaXiv destinations, using direct paper pages where verified and exact-title alphaXiv searches for journal-only records without a stable direct page;
+- alphaXiv destinations only for publications that already have an arXiv preprint link, using the same identifier under `https://www.alphaxiv.org/abs/`;
 - journal-cover card markup;
 - verified co-author ORCID URLs;
 - obfuscated contact addresses;
@@ -559,7 +559,7 @@ form-action 'none';
 4. **Wireframe/geometry changes** — edit `geometry.js`.
 5. **Automatic solar-theme changes** — edit `solar-theme.js` and, if needed, the `SOLAR_TZ_COORDS` table in `index.html`.
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
-7. **Publication updates** — update the visible record, DOI/arXiv/PDF/alphaXiv links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together. Prefer a verified direct alphaXiv paper URL when available; otherwise use an exact-title alphaXiv search rather than guessing an identifier. For journal-cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
+7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal-cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
 9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, and outbound profile links.
 
@@ -577,7 +577,7 @@ form-action 'none';
 - academic-platform branding;
 - institutional email/contact cards;
 - dynamic publication search/filter/sort tools;
-- alphaXiv links added to all eight selected publications, with verified direct records where available and exact-title alphaXiv searches for the three entries without stable direct paper URLs;
+- alphaXiv linking policy revised so only arXiv-backed publications receive an alphaXiv link, using the same arXiv identifier under the `alphaxiv.org/abs/` path; journal-only entries without arXiv links omit alphaXiv entirely;
 - command-palette navigation;
 - geometric toolbar/hero redesign;
 - responsive journal-cover cards;
