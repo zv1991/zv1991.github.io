@@ -4111,3 +4111,186 @@ html[data-theme="dark"] .journal-cover--arxiv {
   border-color: rgba(255,255,255,.15);
   box-shadow: 0 8px 20px rgba(0,0,0,.24);
 }
+
+
+/* ========================================================================
+   arXiv cover size normalization
+   Keep preprint covers at the same nominal footprint as the original journal
+   covers while continuing to scale internal content from the rendered width.
+   ======================================================================== */
+.publication.has-journal-cover > .journal-cover--arxiv {
+  --arxiv-cover-max: 88px;
+  width: min(var(--cover-width), var(--arxiv-cover-max));
+  max-width: min(100%, var(--arxiv-cover-max));
+  height: auto;
+  aspect-ratio: 88 / 122;
+  justify-self: start;
+  flex: none;
+}
+
+.publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+  --arxiv-cover-max: 66px;
+  width: min(var(--cover-width), var(--arxiv-cover-max));
+  max-width: min(100%, var(--arxiv-cover-max));
+}
+
+/* Slightly reduce visual density so the identity treatment does not make the
+   card appear larger than neighboring journal covers. */
+.journal-cover--arxiv {
+  padding: 8px 7px 7px;
+}
+
+.journal-cover--arxiv .arxiv-cover-wordmark {
+  font-size: .88rem;
+}
+
+.journal-cover--arxiv .arxiv-cover-label {
+  font-size: .27rem;
+  letter-spacing: .10em;
+}
+
+.journal-cover--arxiv .arxiv-cover-rule {
+  width: 62%;
+  margin-top: 6px;
+}
+
+.journal-cover--arxiv .arxiv-cover-subject {
+  margin-top: 6px;
+  font-size: .31rem;
+}
+
+.journal-cover--arxiv .arxiv-cover-id {
+  margin-top: 3px;
+  font-size: .37rem;
+  letter-spacing: -.03em;
+}
+
+.journal-cover--arxiv .arxiv-cover-year {
+  font-size: .30rem;
+}
+
+@supports (font-size: 1cqw) {
+  .journal-cover--arxiv {
+    padding: 9cqw 7cqw 7cqw;
+  }
+
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.70rem, 16.5cqw, .92rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-label {
+    font-size: clamp(.23rem, 3.7cqw, .29rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-rule {
+    margin-top: clamp(4px, 6.5cqw, 7px);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-subject {
+    margin-top: clamp(4px, 6.5cqw, 7px);
+    font-size: clamp(.27rem, 4.2cqw, .33rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    margin-top: clamp(2px, 3.5cqw, 4px);
+    font-size: clamp(.32rem, 5.15cqw, .39rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-year {
+    font-size: clamp(.26rem, 3.9cqw, .31rem);
+  }
+
+  .journal-cover--arxiv::after {
+    font-size: clamp(3.2rem, 62cqw, 4.4rem);
+  }
+}
+
+/* Tablet covers remain within the same shared journal-cover size range. */
+@media (min-width: 621px) and (max-width: 1024px) {
+  .publication.has-journal-cover > .journal-cover--arxiv {
+    --arxiv-cover-max: 80px;
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+    --arxiv-cover-max: 64px;
+  }
+}
+
+/* Phones use a modestly larger stacked card, but never the 108px upper bound
+   used by the generic grid. This keeps arXiv visually consistent with the
+   traditional journal-cover footprint. */
+@media (max-width: 620px) {
+  .publication.has-journal-cover > .journal-cover--arxiv,
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+    --arxiv-cover-max: 92px;
+    width: min(var(--cover-width), var(--arxiv-cover-max));
+    max-width: var(--arxiv-cover-max);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.72rem, 16cqw, .94rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    font-size: clamp(.32rem, 5cqw, .40rem);
+  }
+}
+
+@media (max-width: 390px) {
+  .publication.has-journal-cover > .journal-cover--arxiv,
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+    --arxiv-cover-max: 86px;
+  }
+}
+
+/* Large desktop/TV screens: do not enlarge arXiv beyond the canonical cover. */
+@media (min-width: 1440px) {
+  .publication.has-journal-cover > .journal-cover--arxiv {
+    --arxiv-cover-max: 88px;
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+    --arxiv-cover-max: 66px;
+  }
+}
+
+/* Match the normalized footprint in older browsers without aspect-ratio. */
+@supports not (aspect-ratio: 1 / 1) {
+  .publication.has-journal-cover > .journal-cover--arxiv {
+    width: 88px;
+    height: 122px;
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+    width: 66px;
+    height: 92px;
+  }
+
+  @media (min-width: 621px) and (max-width: 1024px) {
+    .publication.has-journal-cover > .journal-cover--arxiv {
+      width: 80px;
+      height: 111px;
+    }
+
+    .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+      width: 64px;
+      height: 89px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .publication.has-journal-cover > .journal-cover--arxiv,
+    .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+      width: 92px;
+      height: 128px;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .publication.has-journal-cover > .journal-cover--arxiv,
+    .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
+      width: 86px;
+      height: 119px;
+    }
+  }
+}
