@@ -3722,3 +3722,94 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
     }
   }
 }
+
+
+/* ========================================================================
+   NMPDE Galaxy Tab / tablet text-fit correction
+   Keep every title token within the usable cover width on Android tablets.
+   ======================================================================== */
+.journal-cover--nmpde .journal-cover-title--nmpde {
+  margin-top: 8px;
+  gap: 0;
+  width: 100%;
+  max-width: 100%;
+  font-size: .44rem;
+  line-height: .98;
+  letter-spacing: -.01em;
+  overflow: visible;
+}
+
+.journal-cover--nmpde .journal-cover-title--nmpde > span {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.journal-cover--nmpde .journal-cover-meta {
+  margin-top: auto;
+}
+
+/* Container-relative sizing keeps the five-line title proportional to the
+   actual cover rather than to the Samsung/browser viewport. */
+@supports (font-size: 1cqw) {
+  .journal-cover--nmpde .journal-cover-title--nmpde {
+    font-size: clamp(.39rem, 6.45cqw, .50rem);
+  }
+}
+
+/* Galaxy Tab S9 FE+ and common Android/iPad tablet viewport range. */
+@media (min-width: 621px) and (max-width: 1024px) {
+  .journal-cover--nmpde {
+    padding-left: 8px;
+    padding-right: 7px;
+  }
+
+  .journal-cover--nmpde .journal-cover-publisher {
+    font-size: clamp(.33rem, 4.5cqw, .40rem);
+    line-height: 1;
+  }
+
+  .journal-cover--nmpde .journal-cover-title--nmpde {
+    margin-top: 7px;
+    font-size: clamp(.37rem, 6.15cqw, .47rem);
+    line-height: .97;
+  }
+
+  .journal-cover--nmpde .journal-cover-meta {
+    font-size: clamp(.29rem, 3.9cqw, .35rem);
+    line-height: 1;
+  }
+}
+
+/* Compact tablet cards have the least usable width. */
+@media (min-width: 621px) and (max-width: 1024px) {
+  .publication-list.is-compact .journal-cover--nmpde .journal-cover-title--nmpde {
+    margin-top: 6px;
+    font-size: clamp(.35rem, 5.95cqw, .44rem);
+    line-height: .96;
+  }
+
+  .publication-list.is-compact .journal-cover--nmpde .journal-cover-publisher {
+    font-size: clamp(.31rem, 4.25cqw, .37rem);
+  }
+
+  .publication-list.is-compact .journal-cover--nmpde .journal-cover-meta {
+    font-size: clamp(.27rem, 3.7cqw, .32rem);
+  }
+}
+
+/* Conservative fallback for embedded/older tablet browsers without cqw. */
+@supports not (font-size: 1cqw) {
+  @media (min-width: 621px) and (max-width: 1024px) {
+    .journal-cover--nmpde .journal-cover-title--nmpde {
+      font-size: .39rem;
+      line-height: .97;
+    }
+
+    .publication-list.is-compact .journal-cover--nmpde .journal-cover-title--nmpde {
+      font-size: .36rem;
+    }
+  }
+}
