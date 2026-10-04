@@ -3813,3 +3813,60 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
     }
   }
 }
+
+
+/* ========================================================================
+   Research-area mathematical markers
+   Replaces ordinal 01–04 labels with topic-appropriate visual symbols.
+   ======================================================================== */
+.research-symbol {
+  display: inline-grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  margin-bottom: .15rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--line));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-soft) 62%, transparent);
+  color: var(--accent-dark);
+  font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  speak: none;
+  user-select: none;
+}
+
+.info-card h3 {
+  margin-top: 11px;
+}
+
+html[data-theme="dark"] .research-symbol {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
+  background: color-mix(in srgb, var(--accent-soft) 78%, transparent);
+  color: var(--accent);
+}
+
+/* Fallback for older/embedded browsers without color-mix(). */
+@supports not (color: color-mix(in srgb, #000 50%, #fff)) {
+  .research-symbol {
+    border-color: #b8c9ec;
+    background: #eef4ff;
+    color: #285ca8;
+  }
+
+  html[data-theme="dark"] .research-symbol {
+    border-color: #5375ad;
+    background: #1c3159;
+    color: #79a6ff;
+  }
+}
+
+@media (max-width: 620px) {
+  .research-symbol {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.04rem;
+  }
+}
