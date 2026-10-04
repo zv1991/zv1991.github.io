@@ -4114,28 +4114,27 @@ html[data-theme="dark"] .journal-cover--arxiv {
 
 
 /* ========================================================================
-   arXiv cover size normalization
-   Keep preprint covers at the same nominal footprint as the original journal
-   covers while continuing to scale internal content from the rendered width.
+   arXiv cover exact size parity with journal covers
+   The outer box uses only the shared publication-cover sizing system.
    ======================================================================== */
 .publication.has-journal-cover > .journal-cover--arxiv {
-  --arxiv-cover-max: 88px;
-  width: min(var(--cover-width), var(--arxiv-cover-max));
-  max-width: min(100%, var(--arxiv-cover-max));
+  width: var(--cover-width);
+  max-width: 100%;
   height: auto;
   aspect-ratio: 88 / 122;
   justify-self: start;
   flex: none;
 }
 
+/* Compact view uses exactly the same shared compact cover width. */
 .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-  --arxiv-cover-max: 66px;
-  width: min(var(--cover-width), var(--arxiv-cover-max));
-  max-width: min(100%, var(--arxiv-cover-max));
+  width: var(--cover-width);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 88 / 122;
 }
 
-/* Slightly reduce visual density so the identity treatment does not make the
-   card appear larger than neighboring journal covers. */
+/* Only the content is arXiv-specific; the outer dimensions are not. */
 .journal-cover--arxiv {
   padding: 8px 7px 7px;
 }
@@ -4169,17 +4168,18 @@ html[data-theme="dark"] .journal-cover--arxiv {
   font-size: .30rem;
 }
 
+/* Content scales from the actual shared cover width. */
 @supports (font-size: 1cqw) {
   .journal-cover--arxiv {
     padding: 9cqw 7cqw 7cqw;
   }
 
   .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.70rem, 16.5cqw, .92rem);
+    font-size: clamp(.70rem, 16.5cqw, .98rem);
   }
 
   .journal-cover--arxiv .arxiv-cover-label {
-    font-size: clamp(.23rem, 3.7cqw, .29rem);
+    font-size: clamp(.23rem, 3.7cqw, .30rem);
   }
 
   .journal-cover--arxiv .arxiv-cover-rule {
@@ -4188,73 +4188,60 @@ html[data-theme="dark"] .journal-cover--arxiv {
 
   .journal-cover--arxiv .arxiv-cover-subject {
     margin-top: clamp(4px, 6.5cqw, 7px);
-    font-size: clamp(.27rem, 4.2cqw, .33rem);
+    font-size: clamp(.27rem, 4.2cqw, .34rem);
   }
 
   .journal-cover--arxiv .arxiv-cover-id {
     margin-top: clamp(2px, 3.5cqw, 4px);
-    font-size: clamp(.32rem, 5.15cqw, .39rem);
+    font-size: clamp(.32rem, 5.15cqw, .41rem);
   }
 
   .journal-cover--arxiv .arxiv-cover-year {
-    font-size: clamp(.26rem, 3.9cqw, .31rem);
+    font-size: clamp(.26rem, 3.9cqw, .32rem);
   }
 
   .journal-cover--arxiv::after {
-    font-size: clamp(3.2rem, 62cqw, 4.4rem);
+    font-size: clamp(3.2rem, 62cqw, 4.6rem);
   }
 }
 
-/* Tablet covers remain within the same shared journal-cover size range. */
+/* Tablet and phone adjustments affect content only; width remains shared. */
 @media (min-width: 621px) and (max-width: 1024px) {
-  .publication.has-journal-cover > .journal-cover--arxiv {
-    --arxiv-cover-max: 80px;
-  }
-
-  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-    --arxiv-cover-max: 64px;
-  }
-}
-
-/* Phones use a modestly larger stacked card, but never the 108px upper bound
-   used by the generic grid. This keeps arXiv visually consistent with the
-   traditional journal-cover footprint. */
-@media (max-width: 620px) {
-  .publication.has-journal-cover > .journal-cover--arxiv,
-  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-    --arxiv-cover-max: 92px;
-    width: min(var(--cover-width), var(--arxiv-cover-max));
-    max-width: var(--arxiv-cover-max);
-  }
-
   .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.72rem, 16cqw, .94rem);
+    font-size: clamp(.68rem, 16cqw, .92rem);
   }
 
   .journal-cover--arxiv .arxiv-cover-id {
-    font-size: clamp(.32rem, 5cqw, .40rem);
+    font-size: clamp(.31rem, 4.95cqw, .39rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .journal-cover--arxiv {
+    padding-left: 7%;
+    padding-right: 6%;
+  }
+
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.72rem, 16cqw, 1rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    font-size: clamp(.32rem, 5cqw, .41rem);
   }
 }
 
 @media (max-width: 390px) {
-  .publication.has-journal-cover > .journal-cover--arxiv,
-  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-    --arxiv-cover-max: 86px;
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.68rem, 15.5cqw, .90rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    font-size: clamp(.30rem, 4.85cqw, .38rem);
   }
 }
 
-/* Large desktop/TV screens: do not enlarge arXiv beyond the canonical cover. */
-@media (min-width: 1440px) {
-  .publication.has-journal-cover > .journal-cover--arxiv {
-    --arxiv-cover-max: 88px;
-  }
-
-  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-    --arxiv-cover-max: 66px;
-  }
-}
-
-/* Match the normalized footprint in older browsers without aspect-ratio. */
+/* Older browsers use the exact same fixed-size fallbacks as journal covers. */
 @supports not (aspect-ratio: 1 / 1) {
   .publication.has-journal-cover > .journal-cover--arxiv {
     width: 88px;
@@ -4266,31 +4253,23 @@ html[data-theme="dark"] .journal-cover--arxiv {
     height: 92px;
   }
 
-  @media (min-width: 621px) and (max-width: 1024px) {
-    .publication.has-journal-cover > .journal-cover--arxiv {
-      width: 80px;
-      height: 111px;
-    }
-
-    .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-      width: 64px;
-      height: 89px;
-    }
-  }
-
   @media (max-width: 620px) {
     .publication.has-journal-cover > .journal-cover--arxiv,
     .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-      width: 92px;
-      height: 128px;
+      width: 88px;
+      height: 122px;
     }
   }
 
-  @media (max-width: 390px) {
-    .publication.has-journal-cover > .journal-cover--arxiv,
+  @media (min-width: 1440px) {
+    .publication.has-journal-cover > .journal-cover--arxiv {
+      width: 96px;
+      height: 133px;
+    }
+
     .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-      width: 86px;
-      height: 119px;
+      width: 82px;
+      height: 114px;
     }
   }
 }
