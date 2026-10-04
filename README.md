@@ -119,13 +119,13 @@
 
 <p align="justify"><strong>Cross-platform compatibility:</strong> the final journal-cover layer is designed around rendered cover size rather than operating-system detection. This keeps the same HTML/CSS behavior on Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers. All covers use bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and `-webkit-text-size-adjust`/`text-size-adjust` safeguards. Modern browsers use container-relative units where available; older or embedded browsers fall back to conservative fixed font sizes and explicit width/height values if `aspect-ratio` is unsupported.</p>
 
-<p align="justify"><strong>arXiv preprint covers:</strong> the preprint cards reuse the same <code>has-journal-cover</code> grid and 88:122 cover geometry as the published-journal entries. After the initial arXiv design appeared visually oversized, the preprint cards were normalized to the canonical journal-cover footprint: up to 88 px wide in normal desktop view, 66 px in Compact view, 80 px on tablet layouts, and a modest 92 px maximum in the stacked phone layout (86 px on very narrow phones). Their typography is driven by the <em>actual capped cover width</em> through container-query units when supported, with fixed rem-based fallbacks for older browsers. The arXiv identifier remains on a single constrained monospace line, while the wordmark, preprint label, subject class, year, spacing, and decorative mark all scale down with the card so content remains bounded automatically.</p>
+<p align="justify"><strong>arXiv preprint covers:</strong> the preprint cards use the exact same outer sizing system as the journal covers. No arXiv-specific maximum width is applied: normal, Compact, tablet, phone, very-narrow-phone, and large-screen dimensions all come from the shared <code>--cover-width</code> rules and the same 88:122 aspect ratio. Only the internal arXiv typography and decoration are specialized. Wordmark, preprint label, subject class, identifier, year, spacing, and decorative mark scale from the actual shared cover width through container-query units where supported, with conservative fixed-size fallbacks for older browsers. This keeps the arXiv card physically identical in size to neighboring journal covers while its content adapts automatically inside the same box.</p>
 
 <p align="justify"><strong>Samsung Galaxy Tab S9 FE+ 5G correction:</strong> the NMPDE cover previously kept <strong>Numerical Methods</strong> on one line. At tablet cover widths, Android font metrics could make that line wider than the padded text area and clip the end of <strong>Methods</strong>. The title now uses five explicit lines, with tighter tablet/Compact spacing and cover-relative font sizing. A fixed-size fallback remains for browsers without container-query units.</p>
 
 <p align="justify">Current cover treatments include:</p>
 
-- **arXiv preprints** — paper-like arXiv identity covers containing the arXiv wordmark treatment, **PREPRINT** label, subject class, exact arXiv identifier, and year. The two current preprints use `math.NA` with identifiers `2609.27707` and `2607.21293`. The cover itself links to the corresponding arXiv abstract page, and its physical width is capped to the same nominal footprint used by the journal covers.
+- **arXiv preprints** — paper-like arXiv identity covers containing the arXiv wordmark treatment, **PREPRINT** label, subject class, exact arXiv identifier, and year. The two current preprints use `math.NA` with identifiers `2609.27707` and `2607.21293`. The cover itself links to the corresponding arXiv abstract page, and its outer dimensions use exactly the same shared responsive sizing rules as the journal covers.
 
 - **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card. Following testing on a Samsung Galaxy Tab S9 FE+ 5G, the title is split into five controlled lines (**Numerical / Methods / for Partial / Differential / Equations**) so no individual phrase can exceed the usable cover width on Android tablets, Compact view, or embedded browsers.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
@@ -513,7 +513,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-27`
+- `styles.css?v=20261004-28`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -587,7 +587,7 @@ form-action 'none';
 - geometric toolbar/hero redesign;
 - responsive journal-cover cards;
 - responsive arXiv preprint identity covers added to the two current preprints, using exact identifiers, subject classification, shared cover geometry, and cross-platform fallbacks;
-- arXiv cover size normalization after visual review: capped to the standard journal-cover footprint with tighter internal typography and content scaling from the actual rendered card width;
+- arXiv cover size parity correction: removed all arXiv-specific outer-width caps so preprint cards now inherit exactly the same shared responsive width and 88:122 geometry as journal covers, while only their internal content scales independently;
 - restoration of the omitted 2022 *Georgian Mathematical Journal* and 2020 *Memoirs on Differential Equations and Mathematical Physics* records;
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
