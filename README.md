@@ -61,7 +61,7 @@
 4. **Publications**
    - Eight selected publications are currently shown.
    - Six published journal papers have responsive journal-cover/identity cards.
-   - Two recent arXiv preprints now have dedicated responsive arXiv identity covers, so all eight selected publications use a bounded cover/identity treatment.
+   - Two recent arXiv preprints use an arXiv-specific visual variant of the NMPDE cover shell, so all eight selected publications use the same bounded responsive cover framework.
    - The restored publication list includes the 2022 *Georgian Mathematical Journal* article **“On the convergence of a three-layer semi-discrete scheme for the nonlinear dynamic Kirchhoff string equation”**, 29(4), 615–627, DOI `10.1515/gmj-2022-2149`.
    - It also includes the 2020 article **“An Application of the Legendre Polynomials for the Numerical Solution of the Nonlinear Dynamical Kirchhoff String Equation”**, *Memoirs on Differential Equations and Mathematical Physics*, 79, 107–119.
    - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links for arXiv-backed papers, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
@@ -119,13 +119,13 @@
 
 <p align="justify"><strong>Cross-platform compatibility:</strong> the final cover layer is designed around rendered cover size rather than operating-system detection. A canonical rule at the end of <code>styles.css</code> forces every publication cover to the same outer width and 88:122 geometry at the active breakpoint, preventing journal-specific legacy rules from producing a different physical card size on Windows, macOS, Linux, Android, iOS/iPadOS, or large-screen/Android TV browsers. Cover content uses bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and <code>-webkit-text-size-adjust</code>/<code>text-size-adjust</code> safeguards. Older or embedded browsers receive identical fixed-width/fixed-height fallbacks for every cover type if <code>aspect-ratio</code> is unavailable.</p>
 
-<p align="justify"><strong>arXiv preprint covers:</strong> a final canonical cover-box rule now acts as the last sizing authority for <em>all</em> publication covers, including arXiv, NMPDE, GMJ, ZAMM, JMAA, and Memoirs. Earlier journal-specific width declarations are therefore unable to make one cover physically smaller or larger than another on Windows, macOS, Linux, Android, or iOS. At each breakpoint every cover receives the same shared <code>--cover-width</code> and the same 88:122 aspect ratio; Compact, tablet, phone, very-narrow-phone, and large-screen modes likewise use one common outer-box rule. Only each cover’s internal typography and artwork remain specialized and responsive.</p>
+<p align="justify"><strong>arXiv preprint covers:</strong> the standalone arXiv cover component was retired after a persistent laptop-size mismatch. Each preprint now uses the same <code>journal-cover--nmpde</code> shell as the <em>Numerical Methods for Partial Differential Equations</em> card, together with a small <code>journal-cover--preprint</code> visual variant. As a result, the arXiv and NMPDE cards share the identical outer box, grid behavior, responsive width, 88:122 aspect ratio, Compact behavior, tablet/phone breakpoints, and older-browser fallbacks. The preprint variant changes only the palette, decorative symbol, publisher label, four controlled text lines, and metadata; it does not define any width, height, aspect-ratio, or grid sizing of its own.</p>
 
 <p align="justify"><strong>Samsung Galaxy Tab S9 FE+ 5G correction:</strong> the NMPDE cover previously kept <strong>Numerical Methods</strong> on one line. At tablet cover widths, Android font metrics could make that line wider than the padded text area and clip the end of <strong>Methods</strong>. The title now uses five explicit lines, with tighter tablet/Compact spacing and cover-relative font sizing. A fixed-size fallback remains for browsers without container-query units.</p>
 
 <p align="justify">Current cover treatments include:</p>
 
-- **arXiv preprints** — paper-like arXiv identity covers containing the arXiv wordmark treatment, **PREPRINT** label, subject class, exact arXiv identifier, and year. The two current preprints use `math.NA` with identifiers `2609.27707` and `2607.21293`. The cover itself links to the corresponding arXiv abstract page, and its outer dimensions use exactly the same shared responsive sizing rules as the journal covers.
+- **arXiv preprints** — NMPDE-derived preprint covers. They reuse the exact NMPDE cover shell and responsive dimensions, while replacing the journal-specific content with **arXiv**, **PREPRINT**, **Numerical / Analysis / math.NA**, and the exact arXiv identifier/year. This structural reuse is the final size-parity fix for Windows, macOS, Linux, Android, and iOS.
 
 - **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card. Following testing on a Samsung Galaxy Tab S9 FE+ 5G, the title is split into five controlled lines (**Numerical / Methods / for Partial / Differential / Equations**) so no individual phrase can exceed the usable cover width on Android tablets, Compact view, or embedded browsers.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
@@ -391,11 +391,11 @@ form-action 'none';
 - research and course cards;
 - topic-specific mathematical research markers (∇, ∂, λ, ∿) replacing ordinal card numbers;
 - publication layout;
-- publication-cover identity cards, including arXiv preprint, GMJ, JMAA, ZAMM, NMPDE, and Memoirs-specific treatments;
+- publication-cover identity cards, including an NMPDE-derived arXiv preprint variant plus GMJ, JMAA, ZAMM, NMPDE, and Memoirs-specific treatments;
 - JMAA dual-contrast text outlines/halos for mixed light/dark cover regions;
 - responsive publication images and horizontally scrollable tables on small screens;
 - a final cross-platform journal-cover safety layer for Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers;
-- responsive arXiv preprint identity covers using the shared publication-cover grid, container-relative typography, bounded identifiers, and older-browser fallbacks;
+- arXiv preprint covers implemented as an NMPDE-shell variant, deliberately defining no independent outer sizing and inheriting the same responsive/legacy fallbacks as NMPDE;
 - cover-relative typography with conservative fallbacks for browsers lacking container-query units or `aspect-ratio`;
 - explicit controlled title/subtitle lines for NMPDE, GMJ, ZAMM, JMAA, and Memoirs where long text could otherwise depend on platform wrapping;
 - citation controls;
@@ -513,7 +513,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-29`
+- `styles.css?v=20261004-30`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -586,9 +586,7 @@ form-action 'none';
 - command-palette navigation;
 - geometric toolbar/hero redesign;
 - responsive journal-cover cards;
-- responsive arXiv preprint identity covers added to the two current preprints, using exact identifiers, subject classification, shared cover geometry, and cross-platform fallbacks;
-- arXiv cover size parity correction: removed all arXiv-specific outer-width caps so preprint cards now inherit exactly the same shared responsive width and 88:122 geometry as journal covers, while only their internal content scales independently;
-- Windows-laptop follow-up: added a final canonical publication-cover box selector that overrides all earlier cover-specific width declarations, guaranteeing identical outer dimensions for arXiv and every journal cover at each responsive breakpoint;
+- final arXiv cover resolution: retired the standalone arXiv cover component and rebuilt both preprint cards as visual variants of the NMPDE cover shell. The preprints now inherit the exact NMPDE outer dimensions and responsive behavior on Windows, macOS, Linux, Android, and iOS, while only palette/text/artwork are customized;
 - restoration of the omitted 2022 *Georgian Mathematical Journal* and 2020 *Memoirs on Differential Equations and Mathematical Physics* records;
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
