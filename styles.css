@@ -4273,3 +4273,158 @@ html[data-theme="dark"] .journal-cover--arxiv {
     }
   }
 }
+
+
+/* ========================================================================
+   Canonical publication-cover box
+   Final cascade authority: every journal and arXiv cover has the same outer
+   dimensions at a given breakpoint. Cover-specific CSS may style only content.
+   ======================================================================== */
+.publication.has-journal-cover {
+  --cover-width: clamp(78px, 7.2vw, 96px);
+}
+
+.publication.has-journal-cover > .journal-cover {
+  width: var(--cover-width) !important;
+  inline-size: var(--cover-width) !important;
+  min-width: 0 !important;
+  max-width: var(--cover-width) !important;
+  height: auto !important;
+  block-size: auto !important;
+  aspect-ratio: 88 / 122 !important;
+  box-sizing: border-box !important;
+  justify-self: start;
+  flex: none;
+}
+
+/* Compact view: one shared size for every cover type. */
+.publication-list.is-compact .publication.has-journal-cover {
+  --cover-width: clamp(62px, 5.8vw, 76px);
+}
+
+.publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+  width: var(--cover-width) !important;
+  inline-size: var(--cover-width) !important;
+  max-width: var(--cover-width) !important;
+  height: auto !important;
+  aspect-ratio: 88 / 122 !important;
+}
+
+/* Tablets / small laptops. */
+@media (min-width: 621px) and (max-width: 900px) {
+  .publication.has-journal-cover {
+    --cover-width: clamp(72px, 10vw, 86px);
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(60px, 8vw, 70px);
+  }
+}
+
+/* Phones: stacked layout, but all cover types remain exactly equal. */
+@media (max-width: 620px) {
+  .publication.has-journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(82px, 27vw, 108px);
+  }
+
+  .publication.has-journal-cover > .journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+    width: var(--cover-width) !important;
+    inline-size: var(--cover-width) !important;
+    max-width: min(36vw, 108px) !important;
+    height: auto !important;
+    aspect-ratio: 88 / 122 !important;
+  }
+}
+
+/* Very narrow phones. */
+@media (max-width: 390px) {
+  .publication.has-journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(76px, 25vw, 92px);
+  }
+
+  .publication.has-journal-cover > .journal-cover,
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+    max-width: 92px !important;
+  }
+}
+
+/* Large desktop / TV view: one shared enlargement for all cover types. */
+@media (min-width: 1440px) {
+  .publication.has-journal-cover {
+    --cover-width: clamp(88px, 6vw, 104px);
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(70px, 4.8vw, 82px);
+  }
+}
+
+/* Older browsers without aspect-ratio use identical fixed dimensions for all
+   cover types, including arXiv. */
+@supports not (aspect-ratio: 1 / 1) {
+  .publication.has-journal-cover > .journal-cover {
+    width: 88px !important;
+    inline-size: 88px !important;
+    max-width: 88px !important;
+    height: 122px !important;
+    block-size: 122px !important;
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+    width: 66px !important;
+    inline-size: 66px !important;
+    max-width: 66px !important;
+    height: 92px !important;
+    block-size: 92px !important;
+  }
+
+  @media (min-width: 621px) and (max-width: 900px) {
+    .publication.has-journal-cover > .journal-cover {
+      width: 80px !important;
+      inline-size: 80px !important;
+      max-width: 80px !important;
+      height: 111px !important;
+      block-size: 111px !important;
+    }
+
+    .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+      width: 64px !important;
+      inline-size: 64px !important;
+      max-width: 64px !important;
+      height: 89px !important;
+      block-size: 89px !important;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .publication.has-journal-cover > .journal-cover,
+    .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+      width: 88px !important;
+      inline-size: 88px !important;
+      max-width: 88px !important;
+      height: 122px !important;
+      block-size: 122px !important;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .publication.has-journal-cover > .journal-cover {
+      width: 96px !important;
+      inline-size: 96px !important;
+      max-width: 96px !important;
+      height: 133px !important;
+      block-size: 133px !important;
+    }
+
+    .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+      width: 82px !important;
+      inline-size: 82px !important;
+      max-width: 82px !important;
+      height: 114px !important;
+      block-size: 114px !important;
+    }
+  }
+}
