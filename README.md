@@ -121,10 +121,10 @@
 - **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
 - **ZAMM — Journal of Applied Mathematics and Mechanics** — Wiley/GAMM identity card.
-- **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography.
+- **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography. On tablet widths, the long <strong>Mathematical Analysis</strong> line is split into two controlled lines so iPad and Android tablet browsers cannot clip it inside the narrow cover.
 - **Memoirs on Differential Equations and Mathematical Physics** — dark blue journal identity card for the restored 2020 publication. The title uses four explicit display lines (**Differential / Equations and / Mathematical / Physics**) so narrow mobile browsers cannot choose an unsafe wrap. Cover-relative typography, anchored volume/year/ISSN metadata, and Compact/tablet/phone overrides keep all text within the cover across desktop, laptop, Android, and iOS layouts.
 
-<p align="justify">The JMAA card uses separate title spans for <strong>“Journal of”</strong>, <strong>“Mathematical Analysis”</strong>, and <strong>“and Applications.”</strong> Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary.</p>
+<p align="justify">The JMAA card uses separate title spans for <strong>“Journal of”</strong>, <strong>“Mathematical Analysis”</strong>, and <strong>“and Applications.”</strong> Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary. A later tablet-specific fix made the JMAA cover a CSS size container and split <strong>Mathematical Analysis</strong> into <strong>Mathematical</strong> and <strong>Analysis</strong> only at tablet/Compact widths; phones retain the wider two-line composition because their stacked publication layout provides a larger cover.</p>
 
 <p align="justify">The Memoirs cover uses CSS container-query units so its typography follows the actual rendered cover width rather than the viewport alone. After mobile testing exposed clipping with automatic balanced wrapping, the journal title was changed to four explicit lines: <strong>Differential</strong>, <strong>Equations and</strong>, <strong>Mathematical</strong>, and <strong>Physics</strong>. The title span itself no longer clips its text, while the outer cover continues to hide only decorative overflow. Volume, year, and ISSN metadata remain anchored inside the cover, and dedicated Compact, tablet/small-laptop, phone, and very-narrow-phone rules preserve spacing and legibility.</p>
 
@@ -494,7 +494,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-21`
+- `styles.css?v=20261004-22`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -568,6 +568,7 @@ form-action 'none';
 - restoration of the omitted 2022 *Georgian Mathematical Journal* and 2020 *Memoirs on Differential Equations and Mathematical Physics* records;
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
+- JMAA tablet-specific clipping fix using cover-relative sizing and controlled line splitting for the long <strong>Mathematical Analysis</strong> title on iPad/Android tablet widths;
 - publication-level responsive image/table safeguards for Android, iOS, tablet, laptop, and desktop layouts;
 - Memoirs cover refinement with explicit four-line mobile-safe title layout, cover-relative text sizing, unclipped title rendering, anchored metadata, and dedicated Compact/tablet/phone safeguards;
 - verified co-author ORCID links;
