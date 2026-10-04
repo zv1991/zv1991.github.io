@@ -117,9 +117,9 @@
 
 <p align="justify">Published journal records and arXiv preprints use compact, responsive cover/identity cards designed to remain legible across device sizes.</p>
 
-<p align="justify"><strong>Cross-platform compatibility:</strong> the final journal-cover layer is designed around rendered cover size rather than operating-system detection. This keeps the same HTML/CSS behavior on Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers. All covers use bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and `-webkit-text-size-adjust`/`text-size-adjust` safeguards. Modern browsers use container-relative units where available; older or embedded browsers fall back to conservative fixed font sizes and explicit width/height values if `aspect-ratio` is unsupported.</p>
+<p align="justify"><strong>Cross-platform compatibility:</strong> the final cover layer is designed around rendered cover size rather than operating-system detection. A canonical rule at the end of <code>styles.css</code> forces every publication cover to the same outer width and 88:122 geometry at the active breakpoint, preventing journal-specific legacy rules from producing a different physical card size on Windows, macOS, Linux, Android, iOS/iPadOS, or large-screen/Android TV browsers. Cover content uses bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and <code>-webkit-text-size-adjust</code>/<code>text-size-adjust</code> safeguards. Older or embedded browsers receive identical fixed-width/fixed-height fallbacks for every cover type if <code>aspect-ratio</code> is unavailable.</p>
 
-<p align="justify"><strong>arXiv preprint covers:</strong> the preprint cards use the exact same outer sizing system as the journal covers. No arXiv-specific maximum width is applied: normal, Compact, tablet, phone, very-narrow-phone, and large-screen dimensions all come from the shared <code>--cover-width</code> rules and the same 88:122 aspect ratio. Only the internal arXiv typography and decoration are specialized. Wordmark, preprint label, subject class, identifier, year, spacing, and decorative mark scale from the actual shared cover width through container-query units where supported, with conservative fixed-size fallbacks for older browsers. This keeps the arXiv card physically identical in size to neighboring journal covers while its content adapts automatically inside the same box.</p>
+<p align="justify"><strong>arXiv preprint covers:</strong> a final canonical cover-box rule now acts as the last sizing authority for <em>all</em> publication covers, including arXiv, NMPDE, GMJ, ZAMM, JMAA, and Memoirs. Earlier journal-specific width declarations are therefore unable to make one cover physically smaller or larger than another on Windows, macOS, Linux, Android, or iOS. At each breakpoint every cover receives the same shared <code>--cover-width</code> and the same 88:122 aspect ratio; Compact, tablet, phone, very-narrow-phone, and large-screen modes likewise use one common outer-box rule. Only each cover’s internal typography and artwork remain specialized and responsive.</p>
 
 <p align="justify"><strong>Samsung Galaxy Tab S9 FE+ 5G correction:</strong> the NMPDE cover previously kept <strong>Numerical Methods</strong> on one line. At tablet cover widths, Android font metrics could make that line wider than the padded text area and clip the end of <strong>Methods</strong>. The title now uses five explicit lines, with tighter tablet/Compact spacing and cover-relative font sizing. A fixed-size fallback remains for browsers without container-query units.</p>
 
@@ -513,7 +513,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-28`
+- `styles.css?v=20261004-29`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -588,6 +588,7 @@ form-action 'none';
 - responsive journal-cover cards;
 - responsive arXiv preprint identity covers added to the two current preprints, using exact identifiers, subject classification, shared cover geometry, and cross-platform fallbacks;
 - arXiv cover size parity correction: removed all arXiv-specific outer-width caps so preprint cards now inherit exactly the same shared responsive width and 88:122 geometry as journal covers, while only their internal content scales independently;
+- Windows-laptop follow-up: added a final canonical publication-cover box selector that overrides all earlier cover-specific width declarations, guaranteeing identical outer dimensions for arXiv and every journal cover at each responsive breakpoint;
 - restoration of the omitted 2022 *Georgian Mathematical Journal* and 2020 *Memoirs on Differential Equations and Mathematical Physics* records;
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
