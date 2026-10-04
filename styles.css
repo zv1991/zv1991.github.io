@@ -3187,3 +3187,167 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
     line-height: 1;
   }
 }
+
+
+/* ========================================================================
+   JMAA tablet-safe title fitting
+   Prevents title clipping on iPad/Android tablet widths.
+   ======================================================================== */
+.journal-cover--jmaa {
+  container-type: inline-size;
+}
+
+.journal-cover--jmaa .journal-cover-script,
+.journal-cover--jmaa .journal-cover-title--jmaa,
+.journal-cover--jmaa .journal-cover-meta {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.journal-cover--jmaa .journal-cover-title--jmaa {
+  overflow: visible;
+}
+
+.journal-cover--jmaa .jmaa-title-main {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: .22em;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: visible;
+  font-size: clamp(.44rem, 7.4cqw, .64rem);
+  line-height: 1.02;
+}
+
+.journal-cover--jmaa .jmaa-main-word {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.journal-cover--jmaa .jmaa-title-sub {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: visible;
+  font-size: clamp(.42rem, 7.0cqw, .62rem);
+  line-height: 1.02;
+}
+
+/* Tablet / small laptop: split only the long main title into two safe lines. */
+@media (min-width: 621px) and (max-width: 900px) {
+  .journal-cover--jmaa {
+    --jmaa-cover-width: clamp(74px, 10vw, 88px);
+  }
+
+  .publication-list.is-compact .journal-cover--jmaa {
+    --jmaa-cover-width: clamp(62px, 8.5vw, 72px);
+  }
+
+  .journal-cover--jmaa .journal-cover-script {
+    margin-top: clamp(8px, 12cqw, 11px);
+    font-size: clamp(.39rem, 5.9cqw, .48rem);
+    line-height: 1;
+  }
+
+  .journal-cover--jmaa .journal-cover-title--jmaa {
+    margin-top: clamp(5px, 6.5cqw, 8px);
+    gap: .04em;
+    line-height: 1;
+  }
+
+  .journal-cover--jmaa .jmaa-title-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+    font-size: clamp(.40rem, 6.6cqw, .53rem);
+    line-height: .98;
+    white-space: normal;
+  }
+
+  .journal-cover--jmaa .jmaa-main-word {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .journal-cover--jmaa .jmaa-title-sub {
+    margin-top: .04em;
+    font-size: clamp(.38rem, 6.15cqw, .50rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .journal-cover--jmaa .journal-cover-meta {
+    font-size: clamp(.31rem, 4.5cqw, .39rem);
+    line-height: 1;
+  }
+}
+
+/* Compact mode may produce a cover even narrower than a normal tablet card. */
+.publication-list.is-compact .journal-cover--jmaa .jmaa-title-main {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  white-space: normal;
+  font-size: clamp(.36rem, 6.5cqw, .48rem);
+  line-height: .98;
+}
+
+.publication-list.is-compact .journal-cover--jmaa .jmaa-main-word {
+  display: block;
+  white-space: nowrap;
+}
+
+.publication-list.is-compact .journal-cover--jmaa .jmaa-title-sub {
+  font-size: clamp(.35rem, 6.0cqw, .46rem);
+  line-height: 1;
+}
+
+/* Phone cards are wider because the layout stacks; retain two title lines. */
+@media (max-width: 620px) {
+  .journal-cover--jmaa .jmaa-title-main {
+    flex-direction: row;
+    gap: .20em;
+    white-space: nowrap;
+    font-size: clamp(.43rem, 7.0cqw, .60rem);
+  }
+
+  .journal-cover--jmaa .jmaa-main-word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .journal-cover--jmaa .jmaa-title-sub {
+    font-size: clamp(.41rem, 6.7cqw, .58rem);
+  }
+
+  .publication-list.is-compact .journal-cover--jmaa .jmaa-title-main {
+    flex-direction: row;
+    gap: .18em;
+    white-space: nowrap;
+    font-size: clamp(.41rem, 6.8cqw, .56rem);
+  }
+
+  .publication-list.is-compact .journal-cover--jmaa .jmaa-main-word {
+    display: inline-block;
+  }
+}
+
+/* Very narrow tablet/phone engines without cqw support. */
+@supports not (font-size: 1cqw) {
+  @media (min-width: 621px) and (max-width: 900px) {
+    .journal-cover--jmaa .jmaa-title-main {
+      font-size: .42rem;
+    }
+
+    .journal-cover--jmaa .jmaa-title-sub {
+      font-size: .40rem;
+    }
+
+    .journal-cover--jmaa .journal-cover-script {
+      font-size: .40rem;
+    }
+  }
+}
