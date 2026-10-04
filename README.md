@@ -65,7 +65,7 @@
    - Two recent arXiv preprints use an official-logo arXiv visual variant of the NMPDE cover shell, so all eight selected publications use the same bounded responsive cover framework.
    - The restored publication list includes the 2022 *Georgian Mathematical Journal* article **“On the convergence of a three-layer semi-discrete scheme for the nonlinear dynamic Kirchhoff string equation”**, 29(4), 615–627, DOI `10.1515/gmj-2022-2149`.
    - It also includes the 2020 article **“An Application of the Legendre Polynomials for the Numerical Solution of the Nonlinear Dynamical Kirchhoff String Equation”**, *Memoirs on Differential Equations and Mathematical Physics*, 79, 107–119.
-   - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links for arXiv-backed papers, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
+   - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links for arXiv-backed papers, citation panels, and BibTeX copying. MathSciNet/MR Lookup is shown only for published journal articles, not arXiv-only preprints.
    - Verified author ORCID profiles are linked through small ORCID icons, including Zurab Vashakidze (`0000-0001-8736-6213`) consistently in all eight publication entries.
 
 5. **Teaching**
@@ -567,7 +567,7 @@ form-action 'none';
 4. **Wireframe/geometry changes** — edit `geometry.js`.
 5. **Automatic solar-theme changes** — edit `solar-theme.js` and, if needed, the `SOLAR_TZ_COORDS` table in `index.html`.
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
-7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, author ORCID links, and command-palette/search-visible text together. Keep Zurab Vashakidze’s ORCID icon (`0000-0001-8736-6213`) beside his name in every publication entry. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
+7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, author ORCID links, and command-palette/search-visible text together. MR Lookup should be included only for published journal records; use the exact published article title when the MathSciNet lookup is title-sensitive. Keep Zurab Vashakidze’s ORCID icon (`0000-0001-8736-6213`) beside his name in every publication entry. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
 9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, and outbound profile links.
 
@@ -603,6 +603,7 @@ form-action 'none';
 - verified co-author ORCID links;
 - Zurab Vashakidze ORCID icon added consistently beside his name in all eight publication records;
 - Research identifiers ORCID and Scopus values made clickable without changing their displayed numbers;
+- arXiv-only preprints no longer show MR Lookup; ZAMM MR Lookup corrected to use the exact published title, and the journal name expanded to ZAMM – Zeitschrift für Angewandte Mathematik und Mechanik;
 - automatic sunrise/sunset theming;
 - removal of visitor-tracking/counter experiments;
 - removal of external runtime image dependencies;
