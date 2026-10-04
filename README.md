@@ -206,9 +206,11 @@
 
 - a BibTeX block;
 - a **Copy BibTeX** button;
-- a MathSciNet/MR Lookup link.
+- for published journal articles only, a MathSciNet/MR Lookup link.
 
-<p align="justify">Journal articles use journal/DOI metadata. Recent preprints without a confirmed MathSciNet journal record are explicitly represented as arXiv fallbacks rather than being presented as indexed journal records.</p>
+<p align="justify">Journal articles use journal/DOI metadata. The two arXiv-only preprints are represented as arXiv fallbacks and intentionally omit MR Lookup.</p>
+
+<p align="justify">For the 2024 ZAMM record, the displayed article title and BibTeX <code>title</code> field are standardized as <strong>“On Convergence of a Three-Layer Semi-Discrete Scheme for the Non-Linear Dynamic String Equation of Kirchhoff-Type with Time-Dependent Coefficients”</strong>, matching the capitalization style used throughout the publication list. The MR Lookup URL is intentionally different: it keeps the exact publisher-title form used by MathSciNet search so the lookup remains functional.</p>
 
 <p align="justify">Clipboard copying uses the modern Clipboard API when possible and includes fallback copy methods for browsers where that API is unavailable.</p>
 
@@ -567,7 +569,7 @@ form-action 'none';
 4. **Wireframe/geometry changes** — edit `geometry.js`.
 5. **Automatic solar-theme changes** — edit `solar-theme.js` and, if needed, the `SOLAR_TZ_COORDS` table in `index.html`.
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
-7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, author ORCID links, and command-palette/search-visible text together. MR Lookup should be included only for published journal records; use the exact published article title when the MathSciNet lookup is title-sensitive. Keep Zurab Vashakidze’s ORCID icon (`0000-0001-8736-6213`) beside his name in every publication entry. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
+7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, author ORCID links, and command-palette/search-visible text together. MR Lookup should be included only for published journal records. Site-facing publication titles and BibTeX title fields follow the established Title Case style, while an MR Lookup URL may retain the publisher’s exact title spelling/capitalization when MathSciNet matching is title-sensitive. Keep Zurab Vashakidze’s ORCID icon (`0000-0001-8736-6213`) beside his name in every publication entry. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
 9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, and outbound profile links.
 
@@ -603,7 +605,7 @@ form-action 'none';
 - verified co-author ORCID links;
 - Zurab Vashakidze ORCID icon added consistently beside his name in all eight publication records;
 - Research identifiers ORCID and Scopus values made clickable without changing their displayed numbers;
-- arXiv-only preprints no longer show MR Lookup; ZAMM MR Lookup corrected to use the exact published title, and the journal name expanded to ZAMM – Zeitschrift für Angewandte Mathematik und Mechanik;
+- arXiv-only preprints no longer show MR Lookup; the ZAMM entry uses the full journal name, its visible/BibTeX article title follows the site’s established Title Case style, and its MR Lookup deliberately retains the exact publisher-title spelling/capitalization needed for reliable MathSciNet matching;
 - automatic sunrise/sunset theming;
 - removal of visitor-tracking/counter experiments;
 - removal of external runtime image dependencies;
