@@ -52,10 +52,11 @@
    - A modest summary of research interests and recent areas of work.
 
 3. **Research**
-   - Numerical analysis of evolution equations.
-   - Hyperbolic PDEs and nonlinear dynamics.
-   - Spectral and polynomial methods.
-   - Wave propagation.
+   - Numerical analysis of evolution equations — marked with **∇**.
+   - Hyperbolic PDEs and nonlinear dynamics — marked with **∂**.
+   - Spectral and polynomial methods — marked with **λ**.
+   - Wave propagation — marked with **∿**.
+   - The former numeric labels `01`–`04` were removed in favor of topic-related mathematical symbols.
 
 4. **Publications**
    - Eight selected publications are currently shown.
@@ -379,6 +380,7 @@ form-action 'none';
 - mobile menu;
 - hero/profile card;
 - research and course cards;
+- topic-specific mathematical research markers (∇, ∂, λ, ∿) replacing ordinal card numbers;
 - publication layout;
 - journal-cover identity cards, including GMJ, JMAA, ZAMM, NMPDE, and Memoirs-specific treatments;
 - JMAA dual-contrast text outlines/halos for mixed light/dark cover regions;
@@ -501,7 +503,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-24`
+- `styles.css?v=20261004-25`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -563,6 +565,7 @@ form-action 'none';
 <p align="justify">The current website is the result of iterative refinement. Major changes made during development include:</p>
 
 - initial GitHub Pages academic profile;
+- replacement of the Research-section numeric enumeration with topic-specific mathematical symbols for a more academic visual treatment;
 - justified typography and light/night theming;
 - citation and BibTeX controls;
 - responsive mobile navigation;
