@@ -122,11 +122,11 @@
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
 - **ZAMM — Journal of Applied Mathematics and Mechanics** — Wiley/GAMM identity card.
 - **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography.
-- **Memoirs on Differential Equations and Mathematical Physics** — dark blue journal identity card for the restored 2020 publication. Its title now wraps naturally rather than using a hard line break, while cover-relative typography, anchored volume/year/ISSN metadata, and Compact/tablet/phone overrides keep all text within the cover across desktop, laptop, Android, and iOS layouts.
+- **Memoirs on Differential Equations and Mathematical Physics** — dark blue journal identity card for the restored 2020 publication. The title uses four explicit display lines (**Differential / Equations and / Mathematical / Physics**) so narrow mobile browsers cannot choose an unsafe wrap. Cover-relative typography, anchored volume/year/ISSN metadata, and Compact/tablet/phone overrides keep all text within the cover across desktop, laptop, Android, and iOS layouts.
 
 <p align="justify">The JMAA card uses separate title spans for <strong>“Journal of”</strong>, <strong>“Mathematical Analysis”</strong>, and <strong>“and Applications.”</strong> Because the text crosses both dark and pale cover regions, the final styling combines light and dark contrast treatments, including a light inner outline and darker outer halo/shadow. This keeps the title readable when portions of a word or line cross the simulated binding/background boundary.</p>
 
-<p align="justify">The Memoirs cover uses CSS container-query units so its typography follows the actual rendered cover width rather than the viewport alone. The journal title is allowed to wrap at word boundaries, with balanced line distribution and no forced hyphenation. Volume, year, and ISSN metadata remain anchored inside the cover, and dedicated Compact, tablet/small-laptop, phone, and very-narrow-phone rules preserve spacing and legibility.</p>
+<p align="justify">The Memoirs cover uses CSS container-query units so its typography follows the actual rendered cover width rather than the viewport alone. After mobile testing exposed clipping with automatic balanced wrapping, the journal title was changed to four explicit lines: <strong>Differential</strong>, <strong>Equations and</strong>, <strong>Mathematical</strong>, and <strong>Physics</strong>. The title span itself no longer clips its text, while the outer cover continues to hide only decorative overflow. Volume, year, and ISSN metadata remain anchored inside the cover, and dedicated Compact, tablet/small-laptop, phone, and very-narrow-phone rules preserve spacing and legibility.</p>
 
 ### Live geometric header and hero
 
@@ -494,7 +494,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261003-20`
+- `styles.css?v=20261004-21`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -569,7 +569,7 @@ form-action 'none';
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
 - publication-level responsive image/table safeguards for Android, iOS, tablet, laptop, and desktop layouts;
-- Memoirs cover refinement with natural title wrapping, cover-relative text sizing, anchored metadata, and dedicated Compact/tablet/phone safeguards;
+- Memoirs cover refinement with explicit four-line mobile-safe title layout, cover-relative text sizing, unclipped title rendering, anchored metadata, and dedicated Compact/tablet/phone safeguards;
 - verified co-author ORCID links;
 - automatic sunrise/sunset theming;
 - removal of visitor-tracking/counter experiments;
