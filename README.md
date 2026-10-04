@@ -66,7 +66,7 @@
    - The restored publication list includes the 2022 *Georgian Mathematical Journal* article **“On the convergence of a three-layer semi-discrete scheme for the nonlinear dynamic Kirchhoff string equation”**, 29(4), 615–627, DOI `10.1515/gmj-2022-2149`.
    - It also includes the 2020 article **“An Application of the Legendre Polynomials for the Numerical Solution of the Nonlinear Dynamical Kirchhoff String Equation”**, *Memoirs on Differential Equations and Mathematical Physics*, 79, 107–119.
    - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links for arXiv-backed papers, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
-   - Verified co-author ORCID profiles are linked through small ORCID icons.
+   - Verified author ORCID profiles are linked through small ORCID icons, including Zurab Vashakidze (`0000-0001-8736-6213`) consistently in all eight publication entries.
 
 5. **Teaching**
    - Calculus I.
@@ -369,7 +369,7 @@ form-action 'none';
 - all selected publication titles and BibTeX blocks;
 - alphaXiv destinations only for publications that already have an arXiv preprint link, using the same identifier under `https://www.alphaxiv.org/abs/`;
 - journal-cover card markup;
-- verified co-author ORCID URLs;
+- verified author ORCID URLs, including Zurab Vashakidze’s ORCID on every publication entry;
 - obfuscated contact addresses;
 - command-palette dialog;
 - script references.
@@ -406,7 +406,7 @@ form-action 'none';
 - scroll/reveal UI;
 - live-geometry canvas placement;
 - compact publication mode;
-- co-author ORCID icons;
+- author ORCID icons, including the site author’s icon beside Zurab Vashakidze in every publication;
 - accessibility/reduced-motion rules.
 
 <p align="justify">Because later CSS declarations override earlier ones, when modifying a component it is important to search the entire file for the selector and check the final applicable rule.</p>
@@ -565,7 +565,7 @@ form-action 'none';
 4. **Wireframe/geometry changes** — edit `geometry.js`.
 5. **Automatic solar-theme changes** — edit `solar-theme.js` and, if needed, the `SOLAR_TZ_COORDS` table in `index.html`.
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
-7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
+7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, author ORCID links, and command-palette/search-visible text together. Keep Zurab Vashakidze’s ORCID icon (`0000-0001-8736-6213`) beside his name in every publication entry. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
 9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, and outbound profile links.
 
@@ -599,6 +599,7 @@ form-action 'none';
 - publication-level responsive image/table safeguards for Android, iOS, tablet, laptop, and desktop layouts;
 - Memoirs cover refinement with explicit four-line mobile-safe title layout, cover-relative text sizing, unclipped title rendering, anchored metadata, and dedicated Compact/tablet/phone safeguards;
 - verified co-author ORCID links;
+- Zurab Vashakidze ORCID icon added consistently beside his name in all eight publication records;
 - automatic sunrise/sunset theming;
 - removal of visitor-tracking/counter experiments;
 - removal of external runtime image dependencies;
