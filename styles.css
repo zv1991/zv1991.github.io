@@ -3087,3 +3087,103 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
   .journal-cover--mdemp .mdemp-year { font-size: .33rem; }
   .journal-cover--mdemp .mdemp-issn { font-size: .25rem; }
 }
+
+
+/* ========================================================================
+   Memoirs cover — mobile clipping fix
+   Explicit title lines avoid WebKit/Android balanced-wrap clipping.
+   ======================================================================== */
+.journal-cover--mdemp .mdemp-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .02em;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  text-wrap: initial;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  font-size: clamp(.40rem, 7.35cqw, .60rem);
+  line-height: 1.01;
+  letter-spacing: -.016em;
+}
+
+.journal-cover--mdemp .mdemp-title > span {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+  font-size: clamp(.38rem, 7.0cqw, .53rem);
+  line-height: 1;
+}
+
+/* Give the fixed four-line title enough vertical room before metadata. */
+.journal-cover--mdemp .mdemp-rule {
+  margin-top: clamp(4px, 5cqw, 7px);
+}
+
+.journal-cover--mdemp .mdemp-volume {
+  margin-top: clamp(4px, 5cqw, 7px);
+}
+
+@media (min-width: 621px) and (max-width: 900px) {
+  .journal-cover--mdemp .mdemp-title {
+    font-size: clamp(.39rem, 7.15cqw, .55rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .journal-cover--mdemp {
+    padding-left: 6.5%;
+    padding-right: 5.5%;
+  }
+
+  .journal-cover--mdemp .mdemp-title,
+  .publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+    margin-top: clamp(5px, 6cqw, 8px);
+    font-size: clamp(.39rem, 7.05cqw, .56rem);
+    line-height: 1;
+    overflow: visible;
+  }
+
+  .journal-cover--mdemp .mdemp-title > span {
+    white-space: nowrap;
+    overflow: visible;
+  }
+
+  .journal-cover--mdemp .mdemp-rule {
+    margin-top: clamp(4px, 4.5cqw, 6px);
+  }
+
+  .journal-cover--mdemp .mdemp-volume {
+    margin-top: clamp(4px, 4.5cqw, 6px);
+  }
+}
+
+@media (max-width: 390px) {
+  .journal-cover--mdemp {
+    padding-left: 6%;
+    padding-right: 4.5%;
+  }
+
+  .journal-cover--mdemp .mdemp-title,
+  .publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+    font-size: clamp(.37rem, 6.85cqw, .50rem);
+    line-height: .99;
+  }
+}
+
+/* Fallback for browsers that parse the layout but lack cqw sizing. */
+@supports not (font-size: 1cqw) {
+  .journal-cover--mdemp .mdemp-title,
+  .publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+    font-size: .43rem;
+    line-height: 1;
+  }
+}
