@@ -3870,3 +3870,244 @@ html[data-theme="dark"] .research-symbol {
     font-size: 1.04rem;
   }
 }
+
+
+/* ========================================================================
+   Responsive arXiv preprint identity covers
+   Reuses the publication-cover grid across phones, tablets and desktops.
+   ======================================================================== */
+.journal-cover--arxiv {
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 9px 8px 8px;
+  overflow: hidden;
+  color: #2b2524;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.92) 0 26%, rgba(255,255,255,.18) 26% 27%, transparent 27%),
+    linear-gradient(180deg, #fbf8f4 0%, #eee8e1 100%);
+  border-color: rgba(91,28,30,.22);
+}
+
+.journal-cover--arxiv::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 7%;
+  height: 100%;
+  background: #a51c30;
+}
+
+.journal-cover--arxiv::after {
+  content: "∑";
+  position: absolute;
+  z-index: 0;
+  right: -5%;
+  bottom: -12%;
+  color: rgba(165,28,48,.075);
+  font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
+  font-size: 4.6rem;
+  font-style: italic;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.journal-cover--arxiv .arxiv-cover-top,
+.journal-cover--arxiv .arxiv-cover-rule,
+.journal-cover--arxiv .arxiv-cover-subject,
+.journal-cover--arxiv .arxiv-cover-id,
+.journal-cover--arxiv .arxiv-cover-year {
+  position: relative;
+  z-index: 2;
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.journal-cover--arxiv .arxiv-cover-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding-left: 2%;
+}
+
+.journal-cover--arxiv .arxiv-cover-wordmark {
+  display: block;
+  max-width: 100%;
+  color: #8f1728;
+  font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: .92;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+}
+
+.journal-cover--arxiv .arxiv-cover-label {
+  display: block;
+  max-width: 100%;
+  color: #5e5551;
+  font-size: .31rem;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.journal-cover--arxiv .arxiv-cover-rule {
+  width: 67%;
+  height: 1px;
+  margin-top: 8px;
+  background: rgba(143,23,40,.45);
+}
+
+.journal-cover--arxiv .arxiv-cover-subject {
+  margin-top: 8px;
+  color: #665b57;
+  font-size: .35rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .055em;
+  white-space: nowrap;
+}
+
+.journal-cover--arxiv .arxiv-cover-id {
+  margin-top: 4px;
+  width: 100%;
+  color: #2d2725;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-size: .43rem;
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: -.025em;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.journal-cover--arxiv .arxiv-cover-year {
+  margin-top: auto;
+  color: #6b625e;
+  font-size: .34rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+/* Scale from the actual cover width rather than the device viewport. */
+@supports (font-size: 1cqw) {
+  .journal-cover--arxiv {
+    padding: 10cqw 8cqw 8cqw;
+  }
+
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.78rem, 18cqw, 1.08rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-label {
+    font-size: clamp(.25rem, 4.0cqw, .34rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-rule {
+    margin-top: clamp(5px, 8cqw, 9px);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-subject {
+    margin-top: clamp(5px, 8cqw, 9px);
+    font-size: clamp(.29rem, 4.6cqw, .39rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    margin-top: clamp(3px, 4cqw, 5px);
+    font-size: clamp(.35rem, 5.6cqw, .47rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-year {
+    font-size: clamp(.28rem, 4.2cqw, .36rem);
+  }
+
+  .journal-cover--arxiv::after {
+    font-size: clamp(3.5rem, 68cqw, 5rem);
+  }
+}
+
+/* Compact mode: preserve the composition without transform scaling. */
+.publication-list.is-compact .journal-cover--arxiv {
+  padding-top: 8px;
+  padding-bottom: 7px;
+}
+
+.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-wordmark,
+.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-label,
+.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-subject,
+.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-id,
+.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-year {
+  transform: none;
+}
+
+/* Android/iOS tablet range. */
+@media (min-width: 621px) and (max-width: 1024px) {
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.74rem, 17cqw, 1rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    font-size: clamp(.33rem, 5.35cqw, .44rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-rule,
+  .journal-cover--arxiv .arxiv-cover-subject {
+    margin-top: clamp(5px, 7cqw, 8px);
+  }
+}
+
+/* Android/iOS phones use the wider stacked cover from the publication grid. */
+@media (max-width: 620px) {
+  .journal-cover--arxiv {
+    padding-left: 8%;
+    padding-right: 7%;
+  }
+
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.82rem, 17cqw, 1.08rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    font-size: clamp(.36rem, 5.45cqw, .47rem);
+  }
+}
+
+@media (max-width: 390px) {
+  .journal-cover--arxiv .arxiv-cover-wordmark {
+    font-size: clamp(.75rem, 16.5cqw, .96rem);
+  }
+
+  .journal-cover--arxiv .arxiv-cover-id {
+    font-size: clamp(.34rem, 5.25cqw, .43rem);
+  }
+}
+
+/* Conservative fallback for older/embedded browsers without cqw support. */
+@supports not (font-size: 1cqw) {
+  .journal-cover--arxiv .arxiv-cover-wordmark { font-size: .82rem; }
+  .journal-cover--arxiv .arxiv-cover-label { font-size: .27rem; }
+  .journal-cover--arxiv .arxiv-cover-subject { font-size: .31rem; }
+  .journal-cover--arxiv .arxiv-cover-id { font-size: .37rem; }
+  .journal-cover--arxiv .arxiv-cover-year { font-size: .30rem; }
+
+  @media (min-width: 621px) and (max-width: 1024px) {
+    .publication-list.is-compact .journal-cover--arxiv .arxiv-cover-wordmark { font-size: .72rem; }
+    .publication-list.is-compact .journal-cover--arxiv .arxiv-cover-id { font-size: .33rem; }
+  }
+}
+
+html[data-theme="dark"] .journal-cover--arxiv {
+  border-color: rgba(255,255,255,.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,.24);
+}
