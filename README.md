@@ -83,6 +83,7 @@
    - arXiv.
    - ResearchGate.
    - The University of Georgia staff profile.
+   - In the hero/profile card’s **Research identifiers** block, the visible ORCID `0000-0001-8736-6213` and Scopus Author ID `57021771800` are clickable while their displayed text remains unchanged.
 
 7. **Contact**
    - University of Georgia and Tbilisi State University institutional email addresses.
@@ -370,6 +371,7 @@ form-action 'none';
 - alphaXiv destinations only for publications that already have an arXiv preprint link, using the same identifier under `https://www.alphaxiv.org/abs/`;
 - journal-cover card markup;
 - verified author ORCID URLs, including Zurab Vashakidze’s ORCID on every publication entry;
+- clickable Research identifiers values for ORCID and Scopus Author ID, preserving the original visible identifier text;
 - obfuscated contact addresses;
 - command-palette dialog;
 - script references.
@@ -600,6 +602,7 @@ form-action 'none';
 - Memoirs cover refinement with explicit four-line mobile-safe title layout, cover-relative text sizing, unclipped title rendering, anchored metadata, and dedicated Compact/tablet/phone safeguards;
 - verified co-author ORCID links;
 - Zurab Vashakidze ORCID icon added consistently beside his name in all eight publication records;
+- Research identifiers ORCID and Scopus values made clickable without changing their displayed numbers;
 - automatic sunrise/sunset theming;
 - removal of visitor-tracking/counter experiments;
 - removal of external runtime image dependencies;
