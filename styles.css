@@ -4099,41 +4099,23 @@ html[data-theme="dark"] .journal-cover--preprint {
 
 
 /* ========================================================================
-   arXiv preprints — official-logo interior with red boundary
-   Outer geometry is inherited entirely from the NMPDE/shared cover shell.
+   arXiv preprints — warm-gray interior and contoured official logo
+   Outer geometry remains inherited entirely from the NMPDE/shared shell.
    ======================================================================== */
 .journal-cover--preprint {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  color: #f6efe8;
-  background:
-    radial-gradient(circle at 78% 18%, rgba(175,164,151,.10), transparent 31%),
-    linear-gradient(160deg, rgba(170,20,45,.10), transparent 38%),
-    linear-gradient(180deg, #2b2426 0%, #1c1819 100%);
+  color: #241b1d;
+  background: #afa497;
   border: 2px solid #aa142d;
   box-shadow:
-    inset 0 0 0 1px rgba(170,20,45,.55),
+    inset 0 0 0 1px rgba(170,20,45,.34),
     0 8px 20px rgba(10,24,48,.12);
 }
 
-/* Official a/r/i/v letter shapes derived directly from the repository's
-   primary-light arXiv logo. They are decorative and stay behind the content. */
-.journal-cover--preprint .arxiv-cover-letters {
-  position: absolute;
-  z-index: 0;
-  left: -7%;
-  top: 39%;
-  display: block;
-  width: 114%;
-  max-width: none;
-  height: auto;
-  opacity: .15;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Main official logo: bordered and contoured, but the SVG itself is unchanged. */
+/* The official SVG is unchanged. Its warm-gray a/r/i/v shapes match the
+   cover interior, so a deep-charcoal #241b1d contour separates the logo. */
 .journal-cover--preprint .arxiv-cover-logo-frame {
   position: relative;
   z-index: 3;
@@ -4142,14 +4124,14 @@ html[data-theme="dark"] .journal-cover--preprint {
   justify-content: center;
   width: 92%;
   max-width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 5px 6px;
-  border: 1px solid #f6efe8;
+  border: 1px solid #241b1d;
   border-radius: 6px;
-  background: rgba(19,15,16,.58);
+  background: transparent;
   box-shadow:
-    0 0 0 1px rgba(170,20,45,.80),
-    0 3px 8px rgba(0,0,0,.18);
+    0 0 0 1px rgba(246,239,232,.44),
+    0 3px 8px rgba(36,27,29,.14);
 }
 
 .journal-cover--preprint .arxiv-cover-logo {
@@ -4161,8 +4143,11 @@ html[data-theme="dark"] .journal-cover--preprint {
   object-position: center;
   flex: none;
   filter:
-    drop-shadow(0 0 .65px #f6efe8)
-    drop-shadow(0 0 1.8px rgba(246,239,232,.92));
+    drop-shadow(.55px 0 0 #241b1d)
+    drop-shadow(-.55px 0 0 #241b1d)
+    drop-shadow(0 .55px 0 #241b1d)
+    drop-shadow(0 -.55px 0 #241b1d)
+    drop-shadow(0 0 1.2px rgba(36,27,29,.95));
 }
 
 .journal-cover--preprint .journal-cover-title--preprint {
@@ -4174,13 +4159,13 @@ html[data-theme="dark"] .journal-cover--preprint {
   gap: .08em;
   width: 100%;
   margin-top: 9px;
-  color: #f6efe8;
+  color: #241b1d;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   font-size: .45rem;
   font-weight: 850;
   line-height: 1;
   letter-spacing: .045em;
-  text-shadow: 0 1px 1px rgba(0,0,0,.55);
+  text-shadow: 0 1px 0 rgba(246,239,232,.28);
 }
 
 .journal-cover--preprint .journal-cover-title--preprint > span {
@@ -4190,8 +4175,12 @@ html[data-theme="dark"] .journal-cover--preprint {
   white-space: nowrap;
 }
 
+.journal-cover--preprint .journal-cover-title--preprint > span:first-child {
+  color: #7f1025;
+}
+
 .journal-cover--preprint .journal-cover-title--preprint > span:last-child {
-  color: #afa497;
+  color: #241b1d;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "DejaVu Sans Mono", monospace;
   font-size: .90em;
@@ -4202,12 +4191,11 @@ html[data-theme="dark"] .journal-cover--preprint {
   position: relative;
   z-index: 3;
   margin-top: auto;
-  color: #f6efe8;
-  opacity: .92;
+  color: #241b1d;
+  opacity: .90;
   font-size: .33rem;
   line-height: 1;
   white-space: nowrap;
-  text-shadow: 0 1px 1px rgba(0,0,0,.52);
 }
 
 @supports (font-size: 1cqw) {
@@ -4251,11 +4239,6 @@ html[data-theme="dark"] .journal-cover--preprint {
     margin-top: clamp(5px, 7cqw, 8px);
     font-size: clamp(.35rem, 5.7cqw, .45rem);
   }
-
-  .journal-cover--preprint .arxiv-cover-letters {
-    top: 40%;
-    opacity: .14;
-  }
 }
 
 @media (max-width: 620px) {
@@ -4287,8 +4270,9 @@ html[data-theme="dark"] .journal-cover--preprint {
 }
 
 html[data-theme="dark"] .journal-cover--preprint {
+  background: #afa497;
   border-color: #aa142d;
   box-shadow:
-    inset 0 0 0 1px rgba(170,20,45,.62),
+    inset 0 0 0 1px rgba(170,20,45,.40),
     0 8px 20px rgba(0,0,0,.24);
 }
