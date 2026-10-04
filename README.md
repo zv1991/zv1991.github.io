@@ -33,7 +33,6 @@
 | `assets/researchgate.svg` | Self-hosted ResearchGate identity icon. |
 | `assets/arxiv.svg` | Self-hosted arXiv identity icon. |
 | `assets/arxiv-logo-primary-light.svg` | Official arXiv primary-light logo, copied unchanged from arXiv’s public asset and self-hosted for the preprint cover cards. |
-| `assets/arxiv-letters-ariv.svg` | Decorative derivative containing only the official arXiv <strong>a</strong>, <strong>r</strong>, <strong>i</strong>, and <strong>v</strong> vector paths, used as a subtle interior motif on preprint covers. |
 | `assets/scopus.svg` | Self-hosted Scopus identity icon. |
 | `assets/ug-official-logo.jpg` | Official University of Georgia logo copied from the university's own website and served locally by this repository. |
 | `assets/tsu-official-logo.jpg` | Official Ivane Javakhishvili Tbilisi State University coat of arms copied from the university's own website and served locally by this repository. |
@@ -121,13 +120,13 @@
 
 <p align="justify"><strong>Cross-platform compatibility:</strong> the final cover layer is designed around rendered cover size rather than operating-system detection. A canonical rule at the end of <code>styles.css</code> forces every publication cover to the same outer width and 88:122 geometry at the active breakpoint, preventing journal-specific legacy rules from producing a different physical card size on Windows, macOS, Linux, Android, iOS/iPadOS, or large-screen/Android TV browsers. Cover content uses bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and <code>-webkit-text-size-adjust</code>/<code>text-size-adjust</code> safeguards. Older or embedded browsers receive identical fixed-width/fixed-height fallbacks for every cover type if <code>aspect-ratio</code> is unavailable.</p>
 
-<p align="justify"><strong>arXiv preprint covers:</strong> the outer card still reuses the exact <code>journal-cover--nmpde</code> shell, so its dimensions remain identical to the journal-cover framework across Windows, macOS, Linux, Android, and iOS. The boundary is fixed to arXiv red <code>#aa142d</code>. Inside the card, a decorative self-hosted SVG uses only the official <strong>a</strong>, <strong>r</strong>, <strong>i</strong>, and <strong>v</strong> vector paths from <code>assets/arxiv-logo-primary-light.svg</code>, preserving their original shapes and warm-gray color. The complete official arXiv logo is placed prominently above this motif and remains unchanged; a cream contour color <code>#f6efe8</code> is applied through the surrounding frame and CSS drop-shadow so the logo stays clearly visible against the dark neutral interior. Only interior artwork and typography are specialized—the cover width, height, aspect ratio, responsive breakpoints, and legacy fallbacks remain inherited from the shared NMPDE/journal shell.</p>
+<p align="justify"><strong>arXiv preprint covers:</strong> the outer card continues to reuse the exact <code>journal-cover--nmpde</code> shell, so its dimensions and responsive behavior remain identical to the shared journal-cover framework across Windows, macOS, Linux, Android, and iOS. The boundary remains arXiv red <code>#aa142d</code>. The entire cover interior is now the same warm gray <code>#afa497</code> used by the official logo’s <strong>a</strong>, <strong>r</strong>, <strong>i</strong>, and <strong>v</strong> shapes. The temporary decorative <code>arxiv-letters-ariv.svg</code> asset was removed from the repository. The unchanged official <code>assets/arxiv-logo-primary-light.svg</code> is centered near the top of the cover; because its warm-gray letterforms sit on the same warm-gray interior, CSS applies a specific deep-charcoal <code>#241b1d</code> contour through the logo frame and multi-directional drop shadows. This preserves the original SVG while keeping all logo components visible. Only the interior palette, logo presentation, and typography are specialized; no independent arXiv sizing rules are introduced.</p>
 
 <p align="justify"><strong>Samsung Galaxy Tab S9 FE+ 5G correction:</strong> the NMPDE cover previously kept <strong>Numerical Methods</strong> on one line. At tablet cover widths, Android font metrics could make that line wider than the padded text area and clip the end of <strong>Methods</strong>. The title now uses five explicit lines, with tighter tablet/Compact spacing and cover-relative font sizing. A fixed-size fallback remains for browsers without container-query units.</p>
 
 <p align="justify">Current cover treatments include:</p>
 
-- **arXiv preprints** — NMPDE-derived cards with a red `#aa142d` boundary, a subtle interior motif made from the official arXiv **a/r/i/v** vector paths, and the unchanged official primary-light logo placed inside a cream `#f6efe8` contour treatment for visibility. Outer responsive dimensions remain exactly those of the shared journal-cover shell.
+- **arXiv preprints** — NMPDE-derived cards with an arXiv-red `#aa142d` boundary and a `#afa497` warm-gray interior matching the official logo’s **a/r/i/v** letter color. The unchanged official logo is centered inside the cover and outlined with a deep-charcoal `#241b1d` contour for visibility. No separate decorative letter asset is retained.
 
 - **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card. Following testing on a Samsung Galaxy Tab S9 FE+ 5G, the title is split into five controlled lines (**Numerical / Methods / for Partial / Differential / Equations**) so no individual phrase can exceed the usable cover width on Android tablets, Compact view, or embedded browsers.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
@@ -397,7 +396,7 @@ form-action 'none';
 - JMAA dual-contrast text outlines/halos for mixed light/dark cover regions;
 - responsive publication images and horizontally scrollable tables on small screens;
 - a final cross-platform journal-cover safety layer for Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers;
-- arXiv preprint covers implemented as an NMPDE-shell variant with a fixed arXiv-red boundary, official a/r/i/v vector-path motif, contoured official logo, and no independent outer sizing;
+- arXiv preprint covers implemented as an NMPDE-shell variant with a fixed arXiv-red boundary, #afa497 interior matching the official a/r/i/v color, a #241b1d-contoured official logo, and no independent outer sizing;
 - cover-relative typography with conservative fallbacks for browsers lacking container-query units or `aspect-ratio`;
 - explicit controlled title/subtitle lines for NMPDE, GMJ, ZAMM, JMAA, and Memoirs where long text could otherwise depend on platform wrapping;
 - citation controls;
@@ -515,7 +514,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261005-32`
+- `styles.css?v=20261005-33`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -590,7 +589,7 @@ form-action 'none';
 - responsive journal-cover cards;
 - final arXiv cover resolution: retired the standalone arXiv cover component and rebuilt both preprint cards as visual variants of the NMPDE cover shell. The preprints now inherit the exact NMPDE outer dimensions and responsive behavior on Windows, macOS, Linux, Android, and iOS, while only palette/text/artwork are customized;
 - official arXiv branding pass: added the unchanged primary-light SVG as a self-hosted asset and redesigned the preprint interior around the logo’s #aa142d red and #afa497 warm gray colors while preserving the NMPDE-derived outer geometry;
-- arXiv cover interior refinement: kept the boundary red, added a decorative a/r/i/v motif built from the official logo paths, and gave the unchanged official logo a #f6efe8 contrasting contour while preserving the shared cover dimensions;
+- arXiv cover interior correction: removed the temporary decorative-letter asset, changed the full interior to the official letters’ #afa497 warm gray, retained the #aa142d boundary, and applied a #241b1d contour to the unchanged official logo while preserving shared cover dimensions;
 - restoration of the omitted 2022 *Georgian Mathematical Journal* and 2020 *Memoirs on Differential Equations and Mathematical Physics* records;
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
