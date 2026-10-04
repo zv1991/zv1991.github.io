@@ -118,9 +118,11 @@
 
 <p align="justify"><strong>Cross-platform compatibility:</strong> the final journal-cover layer is designed around rendered cover size rather than operating-system detection. This keeps the same HTML/CSS behavior on Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers. All covers use bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and `-webkit-text-size-adjust`/`text-size-adjust` safeguards. Modern browsers use container-relative units where available; older or embedded browsers fall back to conservative fixed font sizes and explicit width/height values if `aspect-ratio` is unsupported.</p>
 
+<p align="justify"><strong>Samsung Galaxy Tab S9 FE+ 5G correction:</strong> the NMPDE cover previously kept <strong>Numerical Methods</strong> on one line. At tablet cover widths, Android font metrics could make that line wider than the padded text area and clip the end of <strong>Methods</strong>. The title now uses five explicit lines, with tighter tablet/Compact spacing and cover-relative font sizing. A fixed-size fallback remains for browsers without container-query units.</p>
+
 <p align="justify">Current cover treatments include:</p>
 
-- **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card. The title is split into four controlled lines so its longest phrase cannot overflow on compact or embedded-browser layouts.
+- **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card. Following testing on a Samsung Galaxy Tab S9 FE+ 5G, the title is split into five controlled lines (**Numerical / Methods / for Partial / Differential / Equations**) so no individual phrase can exceed the usable cover width on Android tablets, Compact view, or embedded browsers.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
 - **ZAMM — Journal of Applied Mathematics and Mechanics** — Wiley/GAMM identity card. Its long subtitle is split into three controlled lines with cover-relative sizing and conservative fallbacks.
 - **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography. On tablet widths, the long <strong>Mathematical Analysis</strong> line is split into two controlled lines so iPad and Android tablet browsers cannot clip it inside the narrow cover.
@@ -499,7 +501,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-23`
+- `styles.css?v=20261004-24`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -575,6 +577,7 @@ form-action 'none';
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
 - JMAA tablet-specific clipping fix using cover-relative sizing and controlled line splitting for the long <strong>Mathematical Analysis</strong> title on iPad/Android tablet widths;
 - repository-wide journal-cover compatibility pass covering Android, iOS/iPadOS, Windows, macOS, Linux, and Android TV/large-screen browsers, including controlled NMPDE/ZAMM line layouts, text-inflation safeguards, container-relative scaling, and older-browser fallbacks;
+- Samsung Galaxy Tab S9 FE+ 5G follow-up for the NMPDE cover, splitting <strong>Numerical Methods</strong> into separate lines and tightening tablet/Compact typography so the word <strong>Methods</strong> cannot be clipped;
 - publication-level responsive image/table safeguards for Android, iOS, tablet, laptop, and desktop layouts;
 - Memoirs cover refinement with explicit four-line mobile-safe title layout, cover-relative text sizing, unclipped title rendering, anchored metadata, and dedicated Compact/tablet/phone safeguards;
 - verified co-author ORCID links;
