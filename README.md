@@ -61,7 +61,7 @@
 4. **Publications**
    - Eight selected publications are currently shown.
    - Six published journal papers have responsive journal-cover/identity cards.
-   - Two recent arXiv preprints are displayed without journal covers.
+   - Two recent arXiv preprints now have dedicated responsive arXiv identity covers, so all eight selected publications use a bounded cover/identity treatment.
    - The restored publication list includes the 2022 *Georgian Mathematical Journal* article **“On the convergence of a three-layer semi-discrete scheme for the nonlinear dynamic Kirchhoff string equation”**, 29(4), 615–627, DOI `10.1515/gmj-2022-2149`.
    - It also includes the 2020 article **“An Application of the Legendre Polynomials for the Numerical Solution of the Nonlinear Dynamical Kirchhoff String Equation”**, *Memoirs on Differential Equations and Mathematical Physics*, 79, 107–119.
    - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links for arXiv-backed papers, citation panels, BibTeX copying, and MathSciNet/MR Lookup links.
@@ -113,15 +113,19 @@
 
 <p align="justify">Publication media are also constrained responsively: images, SVGs, video, and canvas elements cannot exceed their publication container, and wide tables are allowed to scroll horizontally on small screens rather than overflowing the viewport. These safeguards are intended to behave consistently on Android, iOS, tablets, laptops, and desktop displays.</p>
 
-### Journal-cover treatments
+### Publication-cover treatments
 
-<p align="justify">Published journal records use compact, responsive cover/identity cards designed to remain legible across device sizes.</p>
+<p align="justify">Published journal records and arXiv preprints use compact, responsive cover/identity cards designed to remain legible across device sizes.</p>
 
 <p align="justify"><strong>Cross-platform compatibility:</strong> the final journal-cover layer is designed around rendered cover size rather than operating-system detection. This keeps the same HTML/CSS behavior on Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers. All covers use bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and `-webkit-text-size-adjust`/`text-size-adjust` safeguards. Modern browsers use container-relative units where available; older or embedded browsers fall back to conservative fixed font sizes and explicit width/height values if `aspect-ratio` is unsupported.</p>
+
+<p align="justify"><strong>arXiv preprint covers:</strong> the preprint cards reuse the same <code>has-journal-cover</code> grid and 88:122 cover geometry as the published-journal entries. Their typography is driven by the rendered cover width through container-query units when supported, with fixed rem-based fallbacks for older browsers. The arXiv identifier is kept on a single constrained monospace line, while the wordmark, preprint label, subject class, and year are separately sized so no text depends on operating-system font wrapping. Dedicated Compact, tablet, phone, very-narrow-phone, and dark-mode rules preserve the composition on Android/iOS and Windows/macOS/Linux devices.</p>
 
 <p align="justify"><strong>Samsung Galaxy Tab S9 FE+ 5G correction:</strong> the NMPDE cover previously kept <strong>Numerical Methods</strong> on one line. At tablet cover widths, Android font metrics could make that line wider than the padded text area and clip the end of <strong>Methods</strong>. The title now uses five explicit lines, with tighter tablet/Compact spacing and cover-relative font sizing. A fixed-size fallback remains for browsers without container-query units.</p>
 
 <p align="justify">Current cover treatments include:</p>
+
+- **arXiv preprints** — paper-like arXiv identity covers containing the arXiv wordmark treatment, **PREPRINT** label, subject class, exact arXiv identifier, and year. The two current preprints use `math.NA` with identifiers `2609.27707` and `2607.21293`. The cover itself links to the corresponding arXiv abstract page.
 
 - **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card. Following testing on a Samsung Galaxy Tab S9 FE+ 5G, the title is split into five controlled lines (**Numerical / Methods / for Partial / Differential / Equations**) so no individual phrase can exceed the usable cover width on Android tablets, Compact view, or embedded browsers.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
@@ -387,10 +391,11 @@ form-action 'none';
 - research and course cards;
 - topic-specific mathematical research markers (∇, ∂, λ, ∿) replacing ordinal card numbers;
 - publication layout;
-- journal-cover identity cards, including GMJ, JMAA, ZAMM, NMPDE, and Memoirs-specific treatments;
+- publication-cover identity cards, including arXiv preprint, GMJ, JMAA, ZAMM, NMPDE, and Memoirs-specific treatments;
 - JMAA dual-contrast text outlines/halos for mixed light/dark cover regions;
 - responsive publication images and horizontally scrollable tables on small screens;
 - a final cross-platform journal-cover safety layer for Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers;
+- responsive arXiv preprint identity covers using the shared publication-cover grid, container-relative typography, bounded identifiers, and older-browser fallbacks;
 - cover-relative typography with conservative fallbacks for browsers lacking container-query units or `aspect-ratio`;
 - explicit controlled title/subtitle lines for NMPDE, GMJ, ZAMM, JMAA, and Memoirs where long text could otherwise depend on platform wrapping;
 - citation controls;
@@ -508,7 +513,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-25`
+- `styles.css?v=20261004-26`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -559,7 +564,7 @@ form-action 'none';
 4. **Wireframe/geometry changes** — edit `geometry.js`.
 5. **Automatic solar-theme changes** — edit `solar-theme.js` and, if needed, the `SOLAR_TZ_COORDS` table in `index.html`.
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
-7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal-cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
+7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
 9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, and outbound profile links.
 
@@ -581,6 +586,7 @@ form-action 'none';
 - command-palette navigation;
 - geometric toolbar/hero redesign;
 - responsive journal-cover cards;
+- responsive arXiv preprint identity covers added to the two current preprints, using exact identifiers, subject classification, shared cover geometry, and cross-platform fallbacks;
 - restoration of the omitted 2022 *Georgian Mathematical Journal* and 2020 *Memoirs on Differential Equations and Mathematical Physics* records;
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
