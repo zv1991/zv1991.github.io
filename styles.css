@@ -4096,3 +4096,170 @@ html[data-theme="dark"] .journal-cover--preprint {
   border-color: rgba(255,255,255,.16);
   box-shadow: 0 8px 20px rgba(0,0,0,.24);
 }
+
+
+/* ========================================================================
+   arXiv preprints — official logo and brand-inspired palette
+   Outer geometry still comes entirely from the NMPDE/shared cover shell.
+   Official logo colors: arXiv red #aa142d and warm gray #afa497.
+   ======================================================================== */
+.journal-cover--preprint {
+  color: #f3eee9;
+  background:
+    linear-gradient(135deg,
+      transparent 0 61%,
+      rgba(170,20,45,.15) 61% 62%,
+      transparent 62% 100%),
+    linear-gradient(160deg, rgba(175,164,151,.12), transparent 36%),
+    linear-gradient(180deg, #2b2426 0%, #1d191a 100%);
+  border-color: rgba(170,20,45,.46);
+  box-shadow:
+    inset 3px 0 0 rgba(170,20,45,.96),
+    0 8px 20px rgba(10,24,48,.12);
+}
+
+.journal-cover--preprint::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -24%;
+  bottom: -13%;
+  width: 82%;
+  height: 48%;
+  border: 2px solid rgba(175,164,151,.10);
+  border-left-color: rgba(170,20,45,.17);
+  border-radius: 50%;
+  transform: rotate(-14deg);
+  pointer-events: none;
+}
+
+.journal-cover--preprint .arxiv-cover-logo {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 88%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  object-fit: contain;
+  object-position: left center;
+  flex: none;
+}
+
+.journal-cover--preprint .journal-cover-title--preprint {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .08em;
+  width: 100%;
+  margin-top: 10px;
+  color: #f3eee9;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: .46rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .035em;
+}
+
+.journal-cover--preprint .journal-cover-title--preprint > span {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.journal-cover--preprint .journal-cover-title--preprint > span:last-child {
+  color: #afa497;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-size: .90em;
+  letter-spacing: -.01em;
+}
+
+.journal-cover--preprint .journal-cover-meta {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  color: #afa497;
+  opacity: 1;
+  font-size: .34rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@supports (font-size: 1cqw) {
+  .journal-cover--preprint .journal-cover-title--preprint {
+    margin-top: clamp(6px, 9cqw, 10px);
+    font-size: clamp(.38rem, 6.1cqw, .48rem);
+  }
+
+  .journal-cover--preprint .journal-cover-meta {
+    font-size: clamp(.28rem, 4.1cqw, .35rem);
+  }
+
+  .journal-cover--preprint::after {
+    border-width: clamp(1px, 1.7cqw, 2px);
+  }
+}
+
+.publication-list.is-compact .journal-cover--preprint .arxiv-cover-logo {
+  width: 86%;
+}
+
+.publication-list.is-compact .journal-cover--preprint .journal-cover-title--preprint {
+  margin-top: 6px;
+  font-size: clamp(.34rem, 5.8cqw, .43rem);
+  transform: none;
+}
+
+.publication-list.is-compact .journal-cover--preprint .journal-cover-meta {
+  font-size: clamp(.25rem, 3.8cqw, .31rem);
+}
+
+@media (min-width: 621px) and (max-width: 1024px) {
+  .journal-cover--preprint .arxiv-cover-logo {
+    width: 86%;
+  }
+
+  .journal-cover--preprint .journal-cover-title--preprint {
+    margin-top: clamp(6px, 8cqw, 9px);
+    font-size: clamp(.36rem, 5.9cqw, .46rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .journal-cover--preprint .arxiv-cover-logo,
+  .publication-list.is-compact .journal-cover--preprint .arxiv-cover-logo {
+    width: 88%;
+  }
+
+  .journal-cover--preprint .journal-cover-title--preprint,
+  .publication-list.is-compact .journal-cover--preprint .journal-cover-title--preprint {
+    margin-top: clamp(7px, 8cqw, 10px);
+    font-size: clamp(.39rem, 5.9cqw, .48rem);
+  }
+
+  .journal-cover--preprint .journal-cover-meta,
+  .publication-list.is-compact .journal-cover--preprint .journal-cover-meta {
+    font-size: clamp(.29rem, 4.0cqw, .35rem);
+  }
+}
+
+@supports not (font-size: 1cqw) {
+  .journal-cover--preprint .journal-cover-title--preprint {
+    font-size: .42rem;
+  }
+
+  .journal-cover--preprint .journal-cover-meta {
+    font-size: .30rem;
+  }
+}
+
+html[data-theme="dark"] .journal-cover--preprint {
+  border-color: rgba(170,20,45,.58);
+  box-shadow:
+    inset 3px 0 0 rgba(170,20,45,.96),
+    0 8px 20px rgba(0,0,0,.24);
+}
