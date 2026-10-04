@@ -190,7 +190,7 @@
 
 ### alphaXiv links
 
-<p align="justify">Each selected publication now includes an <strong>alphaXiv</strong> link in its publication action row. For the six papers with verified arXiv-backed alphaXiv records, the link opens the corresponding alphaXiv paper page directly. The 2022 <em>Georgian Mathematical Journal</em> article and the 2020 <em>Memoirs on Differential Equations and Mathematical Physics</em> article do not currently expose a stable direct alphaXiv paper URL in public search results, although both appear in alphaXiv author/corpus data; those two entries therefore use exact-title alphaXiv search links rather than fabricated paper identifiers.</p>
+<p align="justify">Each selected publication now includes an <strong>alphaXiv</strong> link in its publication action row. For the five papers with verified direct alphaXiv records, the link opens the corresponding alphaXiv paper page directly. The 2023 <em>Journal of Mathematical Analysis and Applications</em> article, the 2022 <em>Georgian Mathematical Journal</em> article, and the 2020 <em>Memoirs on Differential Equations and Mathematical Physics</em> article do not currently expose a stable direct alphaXiv paper URL in public search results; those three entries therefore use exact-title alphaXiv search links rather than guessed paper identifiers.</p>
 
 ### Citation and BibTeX tools
 
@@ -577,7 +577,7 @@ form-action 'none';
 - academic-platform branding;
 - institutional email/contact cards;
 - dynamic publication search/filter/sort tools;
-- alphaXiv links added to all eight selected publications, with direct records for arXiv-backed papers and exact-title alphaXiv searches for the two journal-only records without stable direct paper URLs;
+- alphaXiv links added to all eight selected publications, with verified direct records where available and exact-title alphaXiv searches for the three entries without stable direct paper URLs;
 - command-palette navigation;
 - geometric toolbar/hero redesign;
 - responsive journal-cover cards;
