@@ -3351,3 +3351,374 @@ html[data-theme="dark"] .journal-cover--jmaa .jmaa-title-sub {
     }
   }
 }
+
+
+/* ========================================================================
+   Cross-platform journal-cover safety layer
+   Targets modern and older browsers across Android, iOS, Windows, macOS,
+   Linux and embedded/TV Chromium-based browsers.
+   ======================================================================== */
+.journal-cover {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-synthesis: none;
+}
+
+.journal-cover,
+.journal-cover * {
+  box-sizing: border-box;
+}
+
+.journal-cover > span,
+.journal-cover span {
+  min-width: 0;
+}
+
+.journal-cover .journal-cover-publisher,
+.journal-cover .journal-cover-title,
+.journal-cover .journal-cover-subtitle,
+.journal-cover .journal-cover-script,
+.journal-cover .journal-cover-meta {
+  max-width: 100%;
+}
+
+/* Use the rendered cover width as the preferred sizing reference when
+   supported. Unsupported browsers keep the conservative rem fallbacks below. */
+.journal-cover--nmpde,
+.journal-cover--gmj,
+.journal-cover--zamm,
+.journal-cover--jmaa,
+.journal-cover--mdemp {
+  container-type: inline-size;
+}
+
+/* ------------------------------------------------------------------------
+   NMPDE: four explicit lines keep the longest title safely inside the cover.
+   ------------------------------------------------------------------------ */
+.journal-cover--nmpde .journal-cover-publisher {
+  font-size: .40rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.journal-cover--nmpde .journal-cover-title--nmpde {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .025em;
+  margin-top: 11px;
+  width: 100%;
+  overflow: visible;
+  font-size: .48rem;
+  line-height: 1.02;
+  letter-spacing: -.012em;
+}
+
+.journal-cover--nmpde .journal-cover-title--nmpde > span {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.journal-cover--nmpde .journal-cover-meta {
+  font-size: .36rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------------
+   ZAMM: controlled subtitle lines avoid platform-dependent wrapping.
+   ------------------------------------------------------------------------ */
+.journal-cover--zamm .journal-cover-publisher {
+  font-size: .39rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.journal-cover--zamm .journal-cover-title--large {
+  margin-top: 14px;
+  font-size: 1.18rem;
+  line-height: .96;
+  white-space: nowrap;
+}
+
+.journal-cover--zamm .journal-cover-subtitle--zamm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .02em;
+  margin-top: 5px;
+  width: 100%;
+  overflow: visible;
+  font-size: .34rem;
+  line-height: 1.04;
+}
+
+.journal-cover--zamm .journal-cover-subtitle--zamm > span {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.journal-cover--zamm .journal-cover-meta {
+  font-size: .35rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------------
+   JMAA: safe default is the narrow-cover layout. Modern browsers may return
+   the main title to one row only when the actual cover is wide enough.
+   ------------------------------------------------------------------------ */
+.journal-cover--jmaa {
+  display: block;
+  padding: 0;
+}
+
+.journal-cover--jmaa .journal-cover-publisher {
+  position: absolute;
+  z-index: 2;
+  top: 6%;
+  left: 8%;
+  right: 6%;
+  margin: 0;
+  font-size: .38rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.journal-cover--jmaa .journal-cover-script {
+  position: absolute;
+  z-index: 2;
+  top: 26%;
+  left: 8%;
+  right: 6%;
+  margin: 0;
+  font-size: .42rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.journal-cover--jmaa .journal-cover-title--jmaa {
+  position: absolute;
+  z-index: 2;
+  top: 38%;
+  left: 8%;
+  right: 4%;
+  width: auto;
+  margin: 0;
+  gap: .04em;
+  overflow: visible;
+}
+
+.journal-cover--jmaa .jmaa-title-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+  max-width: 100%;
+  font-size: .40rem;
+  line-height: .98;
+  white-space: normal;
+  overflow: visible;
+}
+
+.journal-cover--jmaa .jmaa-main-word {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.journal-cover--jmaa .jmaa-title-sub {
+  display: block;
+  margin-top: .04em;
+  max-width: 100%;
+  font-size: .39rem;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.journal-cover--jmaa .journal-cover-meta {
+  position: absolute;
+  z-index: 2;
+  left: 8%;
+  right: 5%;
+  bottom: 6%;
+  margin: 0;
+  font-size: .31rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------------
+   GMJ and Memoirs already use explicit line structures; reinforce boundaries.
+   ------------------------------------------------------------------------ */
+.journal-cover--gmj .gmj-title-block,
+.journal-cover--gmj .gmj-topband,
+.journal-cover--gmj .gmj-footer-url,
+.journal-cover--mdemp .mdemp-title,
+.journal-cover--mdemp .mdemp-volume,
+.journal-cover--mdemp .mdemp-year,
+.journal-cover--mdemp .mdemp-issn {
+  max-width: 100%;
+}
+
+.journal-cover--gmj .journal-cover-title > span,
+.journal-cover--mdemp .mdemp-title > span {
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+/* Progressive enhancement: scale typography from actual cover width. */
+@supports (font-size: 1cqw) {
+  .journal-cover--nmpde .journal-cover-publisher {
+    font-size: clamp(.36rem, 4.9cqw, .45rem);
+  }
+
+  .journal-cover--nmpde .journal-cover-title--nmpde {
+    font-size: clamp(.42rem, 7.2cqw, .55rem);
+  }
+
+  .journal-cover--nmpde .journal-cover-meta {
+    font-size: clamp(.31rem, 4.25cqw, .39rem);
+  }
+
+  .journal-cover--zamm .journal-cover-publisher {
+    font-size: clamp(.35rem, 4.7cqw, .43rem);
+  }
+
+  .journal-cover--zamm .journal-cover-title--large {
+    font-size: clamp(.90rem, 18cqw, 1.25rem);
+  }
+
+  .journal-cover--zamm .journal-cover-subtitle--zamm {
+    font-size: clamp(.30rem, 4.9cqw, .38rem);
+  }
+
+  .journal-cover--zamm .journal-cover-meta {
+    font-size: clamp(.30rem, 4.15cqw, .38rem);
+  }
+
+  .journal-cover--jmaa .journal-cover-publisher {
+    font-size: clamp(.32rem, 4.6cqw, .40rem);
+  }
+
+  .journal-cover--jmaa .journal-cover-script {
+    font-size: clamp(.35rem, 5.3cqw, .45rem);
+  }
+
+  .journal-cover--jmaa .jmaa-title-main {
+    font-size: clamp(.36rem, 6.4cqw, .48rem);
+  }
+
+  .journal-cover--jmaa .jmaa-title-sub {
+    font-size: clamp(.35rem, 6.0cqw, .46rem);
+  }
+
+  .journal-cover--jmaa .journal-cover-meta {
+    font-size: clamp(.27rem, 4.0cqw, .34rem);
+  }
+}
+
+/* Only widen the JMAA main-title composition when the cover itself is wide.
+   Browsers without container queries simply keep the safe stacked version. */
+@supports (container-type: inline-size) {
+  @container (min-width: 84px) {
+    .journal-cover--jmaa .jmaa-title-main {
+      flex-direction: row;
+      align-items: baseline;
+      gap: .18em;
+      white-space: nowrap;
+    }
+
+    .journal-cover--jmaa .jmaa-main-word {
+      display: inline-block;
+    }
+  }
+}
+
+/* Compact mode: no transform scaling. Text is re-sized directly so browser
+   font rasterization cannot push glyphs beyond the card edge. */
+.publication-list.is-compact .journal-cover--nmpde .journal-cover-title--nmpde,
+.publication-list.is-compact .journal-cover--zamm .journal-cover-subtitle--zamm,
+.publication-list.is-compact .journal-cover--jmaa .journal-cover-title--jmaa,
+.publication-list.is-compact .journal-cover--mdemp .mdemp-title {
+  transform: none;
+}
+
+/* Tablet range used by common iPad/Android layouts. */
+@media (min-width: 621px) and (max-width: 1024px) {
+  .journal-cover--nmpde .journal-cover-title--nmpde {
+    margin-top: 9px;
+  }
+
+  .journal-cover--zamm .journal-cover-title--large {
+    margin-top: 12px;
+  }
+
+  .journal-cover--jmaa .journal-cover-title--jmaa {
+    top: 37%;
+  }
+}
+
+/* Phones and narrow portrait tablets. */
+@media (max-width: 620px) {
+  .journal-cover--nmpde .journal-cover-title--nmpde {
+    margin-top: 10px;
+  }
+
+  .journal-cover--zamm .journal-cover-title--large {
+    margin-top: 13px;
+  }
+
+  .journal-cover--jmaa .journal-cover-title--jmaa {
+    top: 38%;
+  }
+}
+
+/* Large-screen / TV viewing: covers remain bounded but receive a slightly
+   larger base width through the publication variable, improving legibility
+   without changing their aspect ratio or allowing text to escape. */
+@media (min-width: 1440px) {
+  .publication.has-journal-cover {
+    --cover-width: clamp(88px, 6vw, 104px);
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover {
+    --cover-width: clamp(70px, 4.8vw, 82px);
+  }
+}
+
+/* Aspect-ratio fallback for older embedded browsers. */
+@supports not (aspect-ratio: 1 / 1) {
+  .publication.has-journal-cover > .journal-cover {
+    width: 88px;
+    height: 122px;
+  }
+
+  .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+    width: 66px;
+    height: 92px;
+  }
+
+  @media (max-width: 620px) {
+    .publication.has-journal-cover > .journal-cover,
+    .publication-list.is-compact .publication.has-journal-cover > .journal-cover {
+      width: 88px;
+      height: 122px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .publication.has-journal-cover > .journal-cover {
+      width: 96px;
+      height: 133px;
+    }
+  }
+}
