@@ -3873,409 +3873,6 @@ html[data-theme="dark"] .research-symbol {
 
 
 /* ========================================================================
-   Responsive arXiv preprint identity covers
-   Reuses the publication-cover grid across phones, tablets and desktops.
-   ======================================================================== */
-.journal-cover--arxiv {
-  container-type: inline-size;
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 9px 8px 8px;
-  overflow: hidden;
-  color: #2b2524;
-  background:
-    linear-gradient(155deg, rgba(255,255,255,.92) 0 26%, rgba(255,255,255,.18) 26% 27%, transparent 27%),
-    linear-gradient(180deg, #fbf8f4 0%, #eee8e1 100%);
-  border-color: rgba(91,28,30,.22);
-}
-
-.journal-cover--arxiv::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  width: 7%;
-  height: 100%;
-  background: #a51c30;
-}
-
-.journal-cover--arxiv::after {
-  content: "∑";
-  position: absolute;
-  z-index: 0;
-  right: -5%;
-  bottom: -12%;
-  color: rgba(165,28,48,.075);
-  font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
-  font-size: 4.6rem;
-  font-style: italic;
-  line-height: 1;
-  pointer-events: none;
-}
-
-.journal-cover--arxiv .arxiv-cover-top,
-.journal-cover--arxiv .arxiv-cover-rule,
-.journal-cover--arxiv .arxiv-cover-subject,
-.journal-cover--arxiv .arxiv-cover-id,
-.journal-cover--arxiv .arxiv-cover-year {
-  position: relative;
-  z-index: 2;
-  display: block;
-  min-width: 0;
-  max-width: 100%;
-}
-
-.journal-cover--arxiv .arxiv-cover-top {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-  padding-left: 2%;
-}
-
-.journal-cover--arxiv .arxiv-cover-wordmark {
-  display: block;
-  max-width: 100%;
-  color: #8f1728;
-  font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: .92;
-  letter-spacing: -.055em;
-  white-space: nowrap;
-}
-
-.journal-cover--arxiv .arxiv-cover-label {
-  display: block;
-  max-width: 100%;
-  color: #5e5551;
-  font-size: .31rem;
-  font-weight: 850;
-  line-height: 1;
-  letter-spacing: .12em;
-  white-space: nowrap;
-}
-
-.journal-cover--arxiv .arxiv-cover-rule {
-  width: 67%;
-  height: 1px;
-  margin-top: 8px;
-  background: rgba(143,23,40,.45);
-}
-
-.journal-cover--arxiv .arxiv-cover-subject {
-  margin-top: 8px;
-  color: #665b57;
-  font-size: .35rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: .055em;
-  white-space: nowrap;
-}
-
-.journal-cover--arxiv .arxiv-cover-id {
-  margin-top: 4px;
-  width: 100%;
-  color: #2d2725;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
-  font-size: .43rem;
-  font-weight: 760;
-  line-height: 1;
-  letter-spacing: -.025em;
-  white-space: nowrap;
-  overflow: visible;
-}
-
-.journal-cover--arxiv .arxiv-cover-year {
-  margin-top: auto;
-  color: #6b625e;
-  font-size: .34rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: .04em;
-  white-space: nowrap;
-}
-
-/* Scale from the actual cover width rather than the device viewport. */
-@supports (font-size: 1cqw) {
-  .journal-cover--arxiv {
-    padding: 10cqw 8cqw 8cqw;
-  }
-
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.78rem, 18cqw, 1.08rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-label {
-    font-size: clamp(.25rem, 4.0cqw, .34rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-rule {
-    margin-top: clamp(5px, 8cqw, 9px);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-subject {
-    margin-top: clamp(5px, 8cqw, 9px);
-    font-size: clamp(.29rem, 4.6cqw, .39rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    margin-top: clamp(3px, 4cqw, 5px);
-    font-size: clamp(.35rem, 5.6cqw, .47rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-year {
-    font-size: clamp(.28rem, 4.2cqw, .36rem);
-  }
-
-  .journal-cover--arxiv::after {
-    font-size: clamp(3.5rem, 68cqw, 5rem);
-  }
-}
-
-/* Compact mode: preserve the composition without transform scaling. */
-.publication-list.is-compact .journal-cover--arxiv {
-  padding-top: 8px;
-  padding-bottom: 7px;
-}
-
-.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-wordmark,
-.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-label,
-.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-subject,
-.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-id,
-.publication-list.is-compact .journal-cover--arxiv .arxiv-cover-year {
-  transform: none;
-}
-
-/* Android/iOS tablet range. */
-@media (min-width: 621px) and (max-width: 1024px) {
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.74rem, 17cqw, 1rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    font-size: clamp(.33rem, 5.35cqw, .44rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-rule,
-  .journal-cover--arxiv .arxiv-cover-subject {
-    margin-top: clamp(5px, 7cqw, 8px);
-  }
-}
-
-/* Android/iOS phones use the wider stacked cover from the publication grid. */
-@media (max-width: 620px) {
-  .journal-cover--arxiv {
-    padding-left: 8%;
-    padding-right: 7%;
-  }
-
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.82rem, 17cqw, 1.08rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    font-size: clamp(.36rem, 5.45cqw, .47rem);
-  }
-}
-
-@media (max-width: 390px) {
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.75rem, 16.5cqw, .96rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    font-size: clamp(.34rem, 5.25cqw, .43rem);
-  }
-}
-
-/* Conservative fallback for older/embedded browsers without cqw support. */
-@supports not (font-size: 1cqw) {
-  .journal-cover--arxiv .arxiv-cover-wordmark { font-size: .82rem; }
-  .journal-cover--arxiv .arxiv-cover-label { font-size: .27rem; }
-  .journal-cover--arxiv .arxiv-cover-subject { font-size: .31rem; }
-  .journal-cover--arxiv .arxiv-cover-id { font-size: .37rem; }
-  .journal-cover--arxiv .arxiv-cover-year { font-size: .30rem; }
-
-  @media (min-width: 621px) and (max-width: 1024px) {
-    .publication-list.is-compact .journal-cover--arxiv .arxiv-cover-wordmark { font-size: .72rem; }
-    .publication-list.is-compact .journal-cover--arxiv .arxiv-cover-id { font-size: .33rem; }
-  }
-}
-
-html[data-theme="dark"] .journal-cover--arxiv {
-  border-color: rgba(255,255,255,.15);
-  box-shadow: 0 8px 20px rgba(0,0,0,.24);
-}
-
-
-/* ========================================================================
-   arXiv cover exact size parity with journal covers
-   The outer box uses only the shared publication-cover sizing system.
-   ======================================================================== */
-.publication.has-journal-cover > .journal-cover--arxiv {
-  width: var(--cover-width);
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 88 / 122;
-  justify-self: start;
-  flex: none;
-}
-
-/* Compact view uses exactly the same shared compact cover width. */
-.publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-  width: var(--cover-width);
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 88 / 122;
-}
-
-/* Only the content is arXiv-specific; the outer dimensions are not. */
-.journal-cover--arxiv {
-  padding: 8px 7px 7px;
-}
-
-.journal-cover--arxiv .arxiv-cover-wordmark {
-  font-size: .88rem;
-}
-
-.journal-cover--arxiv .arxiv-cover-label {
-  font-size: .27rem;
-  letter-spacing: .10em;
-}
-
-.journal-cover--arxiv .arxiv-cover-rule {
-  width: 62%;
-  margin-top: 6px;
-}
-
-.journal-cover--arxiv .arxiv-cover-subject {
-  margin-top: 6px;
-  font-size: .31rem;
-}
-
-.journal-cover--arxiv .arxiv-cover-id {
-  margin-top: 3px;
-  font-size: .37rem;
-  letter-spacing: -.03em;
-}
-
-.journal-cover--arxiv .arxiv-cover-year {
-  font-size: .30rem;
-}
-
-/* Content scales from the actual shared cover width. */
-@supports (font-size: 1cqw) {
-  .journal-cover--arxiv {
-    padding: 9cqw 7cqw 7cqw;
-  }
-
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.70rem, 16.5cqw, .98rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-label {
-    font-size: clamp(.23rem, 3.7cqw, .30rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-rule {
-    margin-top: clamp(4px, 6.5cqw, 7px);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-subject {
-    margin-top: clamp(4px, 6.5cqw, 7px);
-    font-size: clamp(.27rem, 4.2cqw, .34rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    margin-top: clamp(2px, 3.5cqw, 4px);
-    font-size: clamp(.32rem, 5.15cqw, .41rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-year {
-    font-size: clamp(.26rem, 3.9cqw, .32rem);
-  }
-
-  .journal-cover--arxiv::after {
-    font-size: clamp(3.2rem, 62cqw, 4.6rem);
-  }
-}
-
-/* Tablet and phone adjustments affect content only; width remains shared. */
-@media (min-width: 621px) and (max-width: 1024px) {
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.68rem, 16cqw, .92rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    font-size: clamp(.31rem, 4.95cqw, .39rem);
-  }
-}
-
-@media (max-width: 620px) {
-  .journal-cover--arxiv {
-    padding-left: 7%;
-    padding-right: 6%;
-  }
-
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.72rem, 16cqw, 1rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    font-size: clamp(.32rem, 5cqw, .41rem);
-  }
-}
-
-@media (max-width: 390px) {
-  .journal-cover--arxiv .arxiv-cover-wordmark {
-    font-size: clamp(.68rem, 15.5cqw, .90rem);
-  }
-
-  .journal-cover--arxiv .arxiv-cover-id {
-    font-size: clamp(.30rem, 4.85cqw, .38rem);
-  }
-}
-
-/* Older browsers use the exact same fixed-size fallbacks as journal covers. */
-@supports not (aspect-ratio: 1 / 1) {
-  .publication.has-journal-cover > .journal-cover--arxiv {
-    width: 88px;
-    height: 122px;
-  }
-
-  .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-    width: 66px;
-    height: 92px;
-  }
-
-  @media (max-width: 620px) {
-    .publication.has-journal-cover > .journal-cover--arxiv,
-    .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-      width: 88px;
-      height: 122px;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .publication.has-journal-cover > .journal-cover--arxiv {
-      width: 96px;
-      height: 133px;
-    }
-
-    .publication-list.is-compact .publication.has-journal-cover > .journal-cover--arxiv {
-      width: 82px;
-      height: 114px;
-    }
-  }
-}
-
-
-/* ========================================================================
    Canonical publication-cover box
    Final cascade authority: every journal and arXiv cover has the same outer
    dimensions at a given breakpoint. Cover-specific CSS may style only content.
@@ -4427,4 +4024,75 @@ html[data-theme="dark"] .journal-cover--arxiv {
       block-size: 114px !important;
     }
   }
+}
+
+
+/* ========================================================================
+   arXiv preprints — NMPDE-derived cover variant
+   The arXiv cards intentionally reuse the NMPDE shell and sizing classes.
+   No arXiv-specific width, height, aspect-ratio or grid rules are defined.
+   ======================================================================== */
+.journal-cover--preprint {
+  color: #fff;
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.13), transparent 32%),
+    #7c2432;
+  border-color: rgba(74,18,29,.28);
+}
+
+.journal-cover--preprint::after {
+  content: "χ";
+  color: rgba(255,255,255,.075);
+}
+
+.journal-cover--preprint .journal-cover-publisher {
+  color: #fff;
+  letter-spacing: .07em;
+}
+
+.journal-cover--preprint .journal-cover-title--preprint {
+  color: #fff;
+}
+
+.journal-cover--preprint .journal-cover-title--preprint > span {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.journal-cover--preprint .journal-cover-title--preprint > span:first-child {
+  letter-spacing: .035em;
+}
+
+.journal-cover--preprint .journal-cover-title--preprint > span:last-child {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-size: .86em;
+  letter-spacing: -.02em;
+}
+
+.journal-cover--preprint .journal-cover-meta {
+  color: rgba(255,255,255,.88);
+  opacity: 1;
+  white-space: nowrap;
+}
+
+/* Compact/tablet/phone behavior is inherited directly from the NMPDE cover.
+   These rules only tune internal text density; they never change box size. */
+@media (min-width: 621px) and (max-width: 1024px) {
+  .journal-cover--preprint .journal-cover-title--preprint > span:last-child {
+    font-size: .82em;
+  }
+}
+
+@media (max-width: 620px) {
+  .journal-cover--preprint .journal-cover-title--preprint > span:last-child {
+    font-size: .88em;
+  }
+}
+
+html[data-theme="dark"] .journal-cover--preprint {
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 8px 20px rgba(0,0,0,.24);
 }
