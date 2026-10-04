@@ -108,7 +108,7 @@
 - command-palette layout;
 - button sizes and touch targets.
 
-<p align="justify">Published journal entries use fluid `clamp()`-based cover sizing. On narrow phones, the publication year, cover, and text stack vertically instead of competing for horizontal space.</p>
+<p align="justify">Published journal entries use fluid `clamp()`-based cover sizing, with a final cross-platform safety layer that constrains every cover to its card, prevents mobile text inflation from changing the composition, and uses conservative fallbacks when newer CSS features are unavailable. On narrow phones, the publication year, cover, and text stack vertically instead of competing for horizontal space. Large desktop/TV viewports receive a modest cover-size increase while the same aspect ratio and text bounds are preserved.</p>
 
 <p align="justify">Publication media are also constrained responsively: images, SVGs, video, and canvas elements cannot exceed their publication container, and wide tables are allowed to scroll horizontally on small screens rather than overflowing the viewport. These safeguards are intended to behave consistently on Android, iOS, tablets, laptops, and desktop displays.</p>
 
@@ -116,11 +116,13 @@
 
 <p align="justify">Published journal records use compact, responsive cover/identity cards designed to remain legible across device sizes.</p>
 
+<p align="justify"><strong>Cross-platform compatibility:</strong> the final journal-cover layer is designed around rendered cover size rather than operating-system detection. This keeps the same HTML/CSS behavior on Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers. All covers use bounded dimensions, explicit or controlled title lines, direct font resizing instead of transform-based scaling, and `-webkit-text-size-adjust`/`text-size-adjust` safeguards. Modern browsers use container-relative units where available; older or embedded browsers fall back to conservative fixed font sizes and explicit width/height values if `aspect-ratio` is unsupported.</p>
+
 <p align="justify">Current cover treatments include:</p>
 
-- **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card.
+- **Numerical Methods for Partial Differential Equations** — Wiley-style journal identity card. The title is split into four controlled lines so its longest phrase cannot overflow on compact or embedded-browser layouts.
 - **Georgian Mathematical Journal** — orange De Gruyter-inspired cover with the title fixed to three explicit lines: **Georgian / Mathematical / Journal**. The issue strip and title use cover-relative sizing so they remain inside the card in normal, compact, tablet, and phone layouts.
-- **ZAMM — Journal of Applied Mathematics and Mechanics** — Wiley/GAMM identity card.
+- **ZAMM — Journal of Applied Mathematics and Mechanics** — Wiley/GAMM identity card. Its long subtitle is split into three controlled lines with cover-relative sizing and conservative fallbacks.
 - **Journal of Mathematical Analysis and Applications** — Elsevier-inspired binding-style card with responsive sizing and boundary-safe typography. On tablet widths, the long <strong>Mathematical Analysis</strong> line is split into two controlled lines so iPad and Android tablet browsers cannot clip it inside the narrow cover.
 - **Memoirs on Differential Equations and Mathematical Physics** — dark blue journal identity card for the restored 2020 publication. The title uses four explicit display lines (**Differential / Equations and / Mathematical / Physics**) so narrow mobile browsers cannot choose an unsafe wrap. Cover-relative typography, anchored volume/year/ISSN metadata, and Compact/tablet/phone overrides keep all text within the cover across desktop, laptop, Android, and iOS layouts.
 
@@ -379,6 +381,9 @@ form-action 'none';
 - journal-cover identity cards, including GMJ, JMAA, ZAMM, NMPDE, and Memoirs-specific treatments;
 - JMAA dual-contrast text outlines/halos for mixed light/dark cover regions;
 - responsive publication images and horizontally scrollable tables on small screens;
+- a final cross-platform journal-cover safety layer for Android, iOS/iPadOS, Windows, macOS, Linux, and large-screen/Android TV browsers;
+- cover-relative typography with conservative fallbacks for browsers lacking container-query units or `aspect-ratio`;
+- explicit controlled title/subtitle lines for NMPDE, GMJ, ZAMM, JMAA, and Memoirs where long text could otherwise depend on platform wrapping;
 - citation controls;
 - profile/institution icons;
 - contact/email controls;
@@ -494,7 +499,7 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261004-22`
+- `styles.css?v=20261004-23`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
 - `script.js?v=20261003-11`
@@ -547,7 +552,7 @@ form-action 'none';
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
 7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, co-author ORCID links, and command-palette/search-visible text together. For journal-cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
-9. **Before publishing** — verify desktop, tablet, mobile, light/day mode, dark/night mode, keyboard navigation, copy actions, citation panels, and outbound profile links.
+9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, and outbound profile links.
 
 ---
 
@@ -569,6 +574,7 @@ form-action 'none';
 - iterative GMJ cover fitting so all cover text remains within bounds;
 - JMAA cross-device cover refinement with dual light/dark contrast treatment for text crossing mixed backgrounds;
 - JMAA tablet-specific clipping fix using cover-relative sizing and controlled line splitting for the long <strong>Mathematical Analysis</strong> title on iPad/Android tablet widths;
+- repository-wide journal-cover compatibility pass covering Android, iOS/iPadOS, Windows, macOS, Linux, and Android TV/large-screen browsers, including controlled NMPDE/ZAMM line layouts, text-inflation safeguards, container-relative scaling, and older-browser fallbacks;
 - publication-level responsive image/table safeguards for Android, iOS, tablet, laptop, and desktop layouts;
 - Memoirs cover refinement with explicit four-line mobile-safe title layout, cover-relative text sizing, unclipped title rendering, anchored metadata, and dedicated Compact/tablet/phone safeguards;
 - verified co-author ORCID links;
