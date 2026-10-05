@@ -231,17 +231,23 @@
 - **Ctrl+K** on Windows/Linux;
 - **Cmd+K** on macOS.
 
+<p align="justify">The palette dynamically indexes all major page sections and all eight publication cards from the current DOM. Results are no longer truncated, so opening Quick Navigation with an empty query exposes the complete six-section/eight-publication index inside the scrollable results panel.</p>
+
 <p align="justify">The palette can search:</p>
 
 - major page sections;
-- publication titles;
-- authors;
+- all publication titles;
+- authors and journal text;
 - publication years.
+
+<p align="justify">Publication cards now have stable fragment identifiers. Selecting a paper from Quick Navigation clears any active publication search/year filter, closes the dialog without restoring focus to the toolbar, updates the page fragment, scrolls to the exact publication card, and briefly highlights it. This keeps navigation functional even when the requested paper was previously hidden by a publication filter.</p>
 
 <p align="justify">Within the palette:</p>
 
-- Up/Down arrows move through results;
+- Up/Down arrows move through results without rebuilding the result buttons;
 - Enter opens the highlighted result;
+- mouse hover changes the active row without replacing its DOM node, so the subsequent click remains reliable;
+- clicking/tapping a result opens the corresponding section or publication;
 - Escape closes the palette.
 
 <p align="justify">The regular publication search can also be focused with the <strong>/</strong> key when the user is not already typing in an input.</p>
@@ -376,6 +382,7 @@ form-action 'none';
 - clickable Research identifiers values for ORCID and Scopus Author ID, preserving the original visible identifier text;
 - obfuscated contact addresses;
 - command-palette dialog;
+- stable IDs for all eight publication cards so Quick Navigation can link to an exact paper;
 - script references.
 
 <p align="justify">When changing academic facts, publication details, teaching entries, profile links, or contact text, this is usually the first file to edit.</p>
@@ -426,6 +433,7 @@ form-action 'none';
 - mobile menu opening/closing;
 - Escape-key behavior;
 - command palette and keyboard navigation;
+- complete eight-publication Quick Navigation indexing, filter-safe publication jumps, and stable mouse/keyboard result selection;
 - publication search/year filters;
 - publication sorting;
 - compact/comfortable view;
@@ -521,7 +529,7 @@ form-action 'none';
 - `styles.css?v=20261005-33`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
-- `script.js?v=20261003-11`
+- `script.js?v=20261005-12`
 
 <p align="justify">These query strings are used only to encourage browsers to fetch a new revision after significant updates.</p>
 
@@ -587,6 +595,7 @@ form-action 'none';
 - academic-platform branding;
 - institutional email/contact cards;
 - dynamic publication search/filter/sort tools;
+- Quick Navigation completeness and activation fix: removed the 12-result truncation, indexed all eight papers with stable anchors, prevented hover from replacing result buttons before clicks, and made publication jumps clear active filters before scrolling;
 - alphaXiv linking policy revised so only arXiv-backed publications receive an alphaXiv link, using the same arXiv identifier under the `alphaxiv.org/abs/` path; journal-only entries without arXiv links omit alphaXiv entirely;
 - command-palette navigation;
 - geometric toolbar/hero redesign;
