@@ -285,7 +285,7 @@
       type: "Paper",
       title,
       meta: year,
-      target: "#publications",
+      target: publication.id ? "#" + publication.id : "#publications",
       search: (title + " " + authors + " " + year).toLowerCase(),
       publication
     });
@@ -294,24 +294,58 @@
   let activeCommandIndex = 0;
   let filteredCommandItems = commandItems.slice();
 
-  function closeCommandPalette() {
+  function closeCommandPalette(restoreFocus = true) {
     if (!commandPalette?.open) return;
     commandPalette.close();
-    commandButton?.focus();
+    if (restoreFocus) commandButton?.focus();
   }
 
   function runCommandItem(item) {
     if (!item) return;
-    closeCommandPalette();
+
+    const target = item.publication || document.querySelector(item.target);
+    if (!target) return;
 
     if (item.publication) {
-      item.publication.scrollIntoView({ behavior: "smooth", block: "center" });
-      item.publication.classList.add("command-highlight");
-      window.setTimeout(() => item.publication.classList.remove("command-highlight"), 1800);
-      return;
+      activeYear = "all";
+      if (searchInput) searchInput.value = "";
+      filterHost?.querySelectorAll(".year-filter").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.year === "all");
+      });
+      applyPublicationFilters();
     }
 
-    document.querySelector(item.target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    closeCommandPalette(false);
+
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({
+        behavior: reducedMotion.matches ? "auto" : "smooth",
+        block: item.publication ? "center" : "start"
+      });
+
+      if (item.publication) {
+        item.publication.classList.add("command-highlight");
+        window.setTimeout(() => item.publication.classList.remove("command-highlight"), 1800);
+      }
+
+      if (item.target?.startsWith("#") && window.history?.replaceState) {
+        window.history.replaceState(null, "", item.target);
+      }
+    });
+  }
+
+  function syncCommandSelection(scrollActive = false) {
+    if (!commandResults) return;
+    const buttons = Array.from(commandResults.querySelectorAll(".command-result"));
+    buttons.forEach((button, index) => {
+      const active = index === activeCommandIndex;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-selected", String(active));
+    });
+
+    if (scrollActive) {
+      buttons[activeCommandIndex]?.scrollIntoView({ block: "nearest" });
+    }
   }
 
   function renderCommandResults(query = "") {
@@ -320,7 +354,7 @@
     const normalized = query.trim().toLowerCase();
     filteredCommandItems = commandItems.filter((item) =>
       !normalized || (item.title + " " + item.meta + " " + item.search).toLowerCase().includes(normalized)
-    ).slice(0, 12);
+    );
 
     activeCommandIndex = Math.min(activeCommandIndex, Math.max(0, filteredCommandItems.length - 1));
     commandResults.innerHTML = "";
@@ -349,7 +383,7 @@
       button.querySelector(".command-result-meta").textContent = item.meta;
       button.addEventListener("mouseenter", () => {
         activeCommandIndex = index;
-        renderCommandResults(commandInput?.value || "");
+        syncCommandSelection(false);
       });
       button.addEventListener("click", () => runCommandItem(item));
       commandResults.appendChild(button);
@@ -380,11 +414,11 @@
     if (event.key === "ArrowDown") {
       event.preventDefault();
       activeCommandIndex = Math.min(filteredCommandItems.length - 1, activeCommandIndex + 1);
-      renderCommandResults(commandInput.value);
+      syncCommandSelection(true);
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
       activeCommandIndex = Math.max(0, activeCommandIndex - 1);
-      renderCommandResults(commandInput.value);
+      syncCommandSelection(true);
     } else if (event.key === "Enter") {
       event.preventDefault();
       runCommandItem(filteredCommandItems[activeCommandIndex]);
