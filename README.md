@@ -2,7 +2,7 @@
 
 <p align="justify">Personal academic website published with GitHub Pages at <strong>https://zv1991.github.io/</strong>.</p>
 
-<p align="justify">This repository contains a static, client-side academic profile. There is no framework, package manager, build step, server application, database, analytics service, or backend API. GitHub Pages serves the files directly from the `main` branch.</p>
+<p align="justify">This repository contains a static, client-side academic profile. There is no framework, package manager, build step, server application, database, or backend API. GitHub Pages serves the files directly from the <code>main</code> branch. Google Analytics 4 is loaded client-side for site-usage measurement through web stream <strong>Zurab Vashakidze Academic Website</strong> (Stream ID <code>16051772112</code>, Measurement ID <code>G-4WMP1R64CW</code>).</p>
 
 <p align="justify">The site currently presents research interests, selected publications, teaching information, academic profiles, institutional contact details, publication citation tools, and an interactive mathematical visual design.</p>
 
@@ -17,7 +17,7 @@
 | File | Purpose |
 | --- | --- |
 | `README.md` | This documentation: architecture, feature inventory, privacy/security notes, file descriptions, and maintenance guidance. |
-| `index.html` | Main single-page website. Contains semantic page structure, academic content, publication metadata, contact information, structured Schema.org metadata, the Content Security Policy, the browser-time-zone coordinate table used by automatic solar theming, and references to all CSS/JavaScript/assets. |
+| `index.html` | Main single-page website. Contains the Google Analytics 4 tag, semantic page structure, academic content, publication metadata, contact information, structured Schema.org metadata, the Content Security Policy, the browser-time-zone coordinate table used by automatic solar theming, and references to all CSS/JavaScript/assets. |
 | `styles.css` | All visual styling and responsive behavior. Covers the light/dark palettes, navigation, hero, publications, journal-cover cards, citation panels, teaching/profile/contact cards, mobile layout, command palette, interactive states, accessibility rules, and device breakpoints. |
 | `script.js` | Main interface controller. Handles mobile navigation, publication search/filter/sort/view density, BibTeX panels and clipboard copying, email-copy actions, sharing, quick navigation, active-section tracking, scroll effects, back-to-top behavior, keyboard shortcuts, and UI feedback. |
 | `geometry.js` | Dedicated canvas renderer for the live mathematical wireframe in the toolbar and hero. Keeps decorative animation separate from the main interaction code. |
@@ -297,13 +297,11 @@
 - WebRTC peer discovery;
 - WebSockets;
 - service workers;
-- analytics trackers;
-- advertising scripts;
-- background `fetch()`/XHR requests.
+- advertising scripts.
 
-<p align="justify">The page currently self-hosts all images/icons required at load time.</p>
+<p align="justify"><strong>Google Analytics 4:</strong> the site intentionally loads Google’s <code>gtag.js</code> from <code>www.googletagmanager.com</code> and sends analytics measurement requests for Measurement ID <code>G-4WMP1R64CW</code>. This is the only deliberate automatic third-party runtime service added by the site itself. The visual/site assets remain self-hosted.</p>
 
-<p align="justify">External URLs such as ORCID, DOI, arXiv, Google Scholar, publishers, MathSciNet, ResearchGate, Scopus, and university profile pages are ordinary links opened only when the visitor chooses them.</p>
+<p align="justify">External URLs such as ORCID, DOI, arXiv, Google Scholar, publishers, MathSciNet, ResearchGate, Scopus, and university profile pages remain ordinary links opened only when the visitor chooses them.</p>
 
 ### Content Security Policy
 
@@ -311,10 +309,10 @@
 
 ```text
 default-src 'self';
-script-src 'self' 'unsafe-inline';
+script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
 style-src 'self' 'unsafe-inline';
-img-src 'self' data:;
-connect-src 'none';
+img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com;
+connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com;
 font-src 'self' data:;
 media-src 'none';
 object-src 'none';
@@ -325,11 +323,27 @@ base-uri 'self';
 form-action 'none';
 ```
 
-<p align="justify">Of particular importance, `connect-src 'none'` prevents the page from initiating background network connections through mechanisms governed by that directive.</p>
+<p align="justify">The CSP remains restrictive but now explicitly permits the endpoints required by Google Analytics without Google Ads features: the Google tag script, Google Analytics image/measurement endpoints, and Google-hosted analytics connections. Other third-party script origins remain blocked.</p>
 
 <p align="justify">The policy still allows normal visitor-initiated navigation to external academic/profile links.</p>
 
 <p align="justify">All current `target="_blank"` links use `rel="noopener"`.</p>
+
+---
+
+## Google Analytics 4
+
+<p align="justify">Google Analytics 4 is installed once in <code>index.html</code>, immediately after the opening <code>&lt;head&gt;</code> element, using the Google-provided <code>gtag.js</code> snippet.</p>
+
+- **Stream name:** Zurab Vashakidze Academic Website
+- **Stream URL:** `https://zv1991.github.io`
+- **Stream ID:** `16051772112`
+- **Measurement ID:** `G-4WMP1R64CW`
+- **Tag source:** `https://www.googletagmanager.com/gtag/js?id=G-4WMP1R64CW`
+
+<p align="justify">The inline configuration initializes <code>window.dataLayer</code>, defines <code>gtag()</code>, records the initial <code>js</code> event, and configures Measurement ID <code>G-4WMP1R64CW</code>. The tag must remain unique: do not add a second Google tag for the same measurement stream unless the analytics architecture is intentionally changed.</p>
+
+<p align="justify">Because the site uses a CSP meta policy, the allowlist in <code>index.html</code> must continue to permit <code>www.googletagmanager.com</code>, <code>*.google-analytics.com</code>, and the Google connection endpoints required by GA4. Removing those allowances will prevent analytics from functioning even if the tag markup remains present.</p>
 
 ---
 
@@ -368,6 +382,7 @@ form-action 'none';
 
 - document metadata;
 - viewport configuration;
+- Google Analytics 4 tag for Measurement ID `G-4WMP1R64CW`;
 - Content Security Policy;
 - initial JavaScript capability marker;
 - approximately 96 representative time-zone coordinate entries for solar theming;
@@ -579,7 +594,7 @@ form-action 'none';
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
 7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, author ORCID links, and command-palette/search-visible text together. MR Lookup should be included only for published journal records. Site-facing publication titles and BibTeX title fields follow the established Title Case style, while an MR Lookup URL may retain the publisher’s exact title spelling/capitalization when MathSciNet matching is title-sensitive. Keep Zurab Vashakidze’s ORCID icon (`0000-0001-8736-6213`) beside his name in every publication entry. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
-9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, and outbound profile links.
+9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, outbound profile links, and that the single GA4 tag still uses Measurement ID `G-4WMP1R64CW` with compatible CSP allowances.
 
 ---
 
@@ -616,7 +631,8 @@ form-action 'none';
 - Research identifiers ORCID and Scopus values made clickable without changing their displayed numbers;
 - arXiv-only preprints no longer show MR Lookup; the ZAMM entry uses the full journal name, its visible/BibTeX article title follows the site’s established Title Case style, and its MR Lookup deliberately retains the exact publisher-title spelling/capitalization needed for reliable MathSciNet matching;
 - automatic sunrise/sunset theming;
-- removal of visitor-tracking/counter experiments;
+- removal of earlier visitor-counter experiments;
+- later installation of the official Google Analytics 4 tag for web stream <strong>Zurab Vashakidze Academic Website</strong> (Measurement ID <code>G-4WMP1R64CW</code>), with CSP updated for the required Google Analytics endpoints;
 - removal of external runtime image dependencies;
 - restrictive CSP and permission-minimizing design;
 - replacement of placeholder university marks with official self-hosted logos;
@@ -628,5 +644,5 @@ form-action 'none';
 - modest and welcoming in tone;
 - responsive and keyboard-friendly;
 - privacy-conscious;
-- self-contained at page-load time;
+- self-hosted for visual/content assets, with GA4 as the deliberate external runtime dependency;
 - easy to host on GitHub Pages without a backend.
