@@ -345,6 +345,8 @@ form-action 'none';
 
 <p align="justify">Because the site uses a CSP meta policy, the allowlist in <code>index.html</code> must continue to permit <code>www.googletagmanager.com</code>, <code>*.google-analytics.com</code>, and the Google connection endpoints required by GA4. Removing those allowances will prevent analytics from functioning even if the tag markup remains present.</p>
 
+<p align="justify"><strong>Deployment verification note:</strong> Google Analytics can detect the tag only after the corresponding GitHub Pages deployment has completed. If the repository contains the tag but the Pages workflow is still queued or waiting, the public site continues serving the previously deployed HTML and Google’s installation test will report that the tag is not detected. After any analytics-related edit, confirm that the latest <strong>pages build and deployment</strong> workflow finishes successfully before testing the stream in Google Analytics or Tag Assistant.</p>
+
 ---
 
 ## Academic metadata and source links
