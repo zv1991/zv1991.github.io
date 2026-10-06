@@ -347,6 +347,28 @@ form-action 'none';
 
 <p align="justify"><strong>Deployment verification note:</strong> Google Analytics can detect the tag only after the corresponding GitHub Pages deployment has completed. If the repository contains the tag but the Pages workflow is still queued or waiting, the public site continues serving the previously deployed HTML and Google’s installation test will report that the tag is not detected. After any analytics-related edit, confirm that the latest <strong>pages build and deployment</strong> workflow finishes successfully before testing the stream in Google Analytics or Tag Assistant.</p>
 
+### Resolved GA4 / GitHub Pages deployment incident — 2026-10-06
+
+<p align="justify">The first GA4 installation was committed correctly to <code>index.html</code>, but Google Analytics initially reported <strong>“Your Google tag wasn't detected on your website.”</strong> At the same time, GitHub Actions showed the Pages deployment in a <strong>Waiting</strong> state. Repository inspection confirmed that the tag markup and CSP changes were present on <code>main</code>; the problem was that the updated HTML had not yet reached the public GitHub Pages deployment.</p>
+
+<p align="justify">The deployment sequence was:</p>
+
+- Pages run **#153** for commit <code>32bd5addc54f2ab872a514562033c08e02f3ac1f</code> (“Install Google Analytics 4 tag”) was superseded and cancelled.
+- Pages run **#154** for commit <code>5896a2458dd016eeaadbadeca7dc734b126f59b2</code> (“Document Google Analytics 4 installation”) completed its build successfully but remained at the deploy stage in <strong>Waiting</strong> status; it was later cancelled when the recovery deployment began.
+- A single follow-up documentation commit, <code>49f229fb2c3af69529e64bc00a54de5aec208b92</code>, triggered Pages run **#155**. Its build, deploy, and build-status jobs all completed successfully, restoring a current public deployment containing the GA4-enabled site.
+
+<p align="justify">This explains the original Google Analytics warning: while the Pages deploy job was waiting, the public URL continued serving the previously deployed version, which did not contain Measurement ID <code>G-4WMP1R64CW</code>. The repository source was already correct, but Google’s detector checks the deployed website rather than the unpublished repository state.</p>
+
+<p align="justify"><strong>Operational guidance:</strong> when validating analytics or other changes that must be detected externally, prefer batching closely related edits into one commit where practical, then wait for the newest Pages run to finish with <strong>success</strong>. GitHub Pages may cancel an older run when a newer commit supersedes it; the relevant result is the newest deployment. Do not treat a cancelled superseded run as evidence that the site code itself is invalid.</p>
+
+<p align="justify"><strong>GA4 verification checklist:</strong></p>
+
+1. Confirm that the latest GitHub Actions **pages build and deployment** run completed successfully.
+2. Confirm that the deployed page contains exactly one external <code>gtag.js</code> include for <code>G-4WMP1R64CW</code> and exactly one <code>gtag('config', 'G-4WMP1R64CW')</code> call.
+3. Confirm that the CSP still permits <code>www.googletagmanager.com</code>, <code>*.google-analytics.com</code>, and the Google connection endpoints required by GA4.
+4. Open the public site in a normal browser without an analytics/ad blocker, then use Google Analytics installation testing, Tag Assistant, or the GA4 Realtime report.
+5. If Google still reports the tag as undetected immediately after a successful deployment, allow for detector/cache delay before changing the repository again.
+
 ---
 
 ## Academic metadata and source links
@@ -596,7 +618,7 @@ form-action 'none';
 6. **Brand/icon changes** — replace the corresponding self-hosted file under `assets/`.
 7. **Publication updates** — update the visible record, DOI/arXiv/PDF links, BibTeX, journal-cover metadata, author ORCID links, and command-palette/search-visible text together. MR Lookup should be included only for published journal records. Site-facing publication titles and BibTeX title fields follow the established Title Case style, while an MR Lookup URL may retain the publisher’s exact title spelling/capitalization when MathSciNet matching is title-sensitive. Keep Zurab Vashakidze’s ORCID icon (`0000-0001-8736-6213`) beside his name in every publication entry. Add alphaXiv only when an arXiv preprint link exists, by replacing `https://arxiv.org/abs/` with `https://www.alphaxiv.org/abs/` and keeping the same identifier; if no arXiv link exists, omit alphaXiv entirely. For journal/preprint cover cards, verify the result in normal and Compact views at desktop, tablet, and phone widths.
 8. **After JS/CSS changes** — consider incrementing the relevant cache-busting version in `index.html`.
-9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, outbound profile links, and that the single GA4 tag still uses Measurement ID `G-4WMP1R64CW` with compatible CSP allowances.
+9. **Before publishing** — verify desktop, laptop, tablet, mobile, and large-screen/TV layouts in both light/day and dark/night modes; check all journal-cover text at normal and Compact density, keyboard navigation, copy actions, citation panels, outbound profile links, and that the single GA4 tag still uses Measurement ID `G-4WMP1R64CW` with compatible CSP allowances. After committing, verify that the newest **pages build and deployment** run reaches `success` before testing GA4 against the public URL.
 
 ---
 
@@ -635,6 +657,7 @@ form-action 'none';
 - automatic sunrise/sunset theming;
 - removal of earlier visitor-counter experiments;
 - later installation of the official Google Analytics 4 tag for web stream <strong>Zurab Vashakidze Academic Website</strong> (Measurement ID <code>G-4WMP1R64CW</code>), with CSP updated for the required Google Analytics endpoints;
+- resolution of the initial GA4 detection failure: identified a GitHub Pages deploy-stage wait as the reason the public site still served pre-GA HTML, then completed a fresh successful Pages deployment (run #155) and documented the deployment/verification procedure;
 - removal of external runtime image dependencies;
 - restrictive CSP and permission-minimizing design;
 - replacement of placeholder university marks with official self-hosted logos;
