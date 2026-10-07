@@ -268,7 +268,16 @@
 
 ### Sharing
 
-<p align="justify">The browser-tab title is <strong>Zurab Vashakidze | Academic Profile</strong>. The <strong>Share profile</strong> button uses the same title in the Web Share API and supplies the exact message <strong>Zurab Vashakidze | Academic Profile: zv1991.github.io</strong>, together with the canonical destination <code>https://zv1991.github.io/</code>. Individual receiving apps may format the shared text, title, and URL differently. If native sharing is unavailable or fails (other than a user cancellation), the button copies the exact message—not just the bare URL—to the clipboard and confirms the copy with a toast.</p>
+<p align="justify">The browser-tab title remains <strong>Zurab Vashakidze | Academic Profile</strong>. The <strong>Share profile</strong> button sends a <strong>single text-only share payload</strong>, without additional <code>title</code> or <code>url</code> fields, to avoid duplicating the website address in native share targets. The intended message contains exactly two lines:</p>
+
+```text
+Zurab Vashakidze | Academic Profile:
+https://zv1991.github.io/
+```
+
+<p align="justify">The text contains one absolute HTTPS URL; receiving apps may automatically turn it into a clickable link or create their own previews, which the website cannot control. If the native Web Share API is unavailable (for example in browsers where it is disabled or unsupported) or sharing fails for a reason other than user cancellation, the button copies the <strong>same exact two-line message</strong> to the clipboard and displays a confirmation toast. Cancelling a native share does not trigger clipboard copying. This change does not modify the site’s visual layout.</p>
+
+<p align="justify"><strong>Browser and operating-system coverage:</strong> sharing uses the feature-detected standard <code>navigator.share({ text })</code> API rather than a browser-specific implementation. Where native sharing is available, this works with the operating system’s share sheet; where it is absent, the clipboard fallback supports Chrome, Firefox, Safari, and Edge in secure contexts, subject to clipboard permissions. Browser/OS combinations to check on real devices include Windows, macOS, Ubuntu/Linux, Android, and iOS. The site can ensure the outgoing JavaScript payload contains no duplicate URL, but cannot guarantee how every destination app formats, previews, or autolinks the text.</p>
 
 ### Email privacy and copying
 
@@ -570,7 +579,7 @@ form-action 'none';
 - `styles.css?v=20261007-34`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
-- `script.js?v=20261007-13`
+- `script.js?v=20261007-14`
 
 <p align="justify">These query strings are used only to encourage browsers to fetch a new revision after significant updates.</p>
 
@@ -638,7 +647,7 @@ form-action 'none';
 - dynamic publication search/filter/sort tools;
 - Quick Navigation completeness and activation fix: removed the 12-result truncation, indexed all eight papers with stable anchors, prevented hover from replacing result buttons before clicks, and made publication jumps clear active filters before scrolling;
 - sunset-mode publication-filter highlight correction: active year buttons now retain a distinct high-contrast blue fill, pale-blue border, and white text;
-- academic-profile sharing alignment: browser tab renamed to <strong>Zurab Vashakidze | Academic Profile</strong>, and native/fallback sharing updated to include the exact requested message <strong>Zurab Vashakidze | Academic Profile: zv1991.github.io</strong>;
+- academic-profile sharing alignment: browser tab renamed to <strong>Zurab Vashakidze | Academic Profile</strong>; later corrected native/fallback sharing to a single exact two-line text payload with one <code>https://zv1991.github.io/</code> URL, removing duplicate URL/title fields from the Web Share call;
 - alphaXiv linking policy revised so only arXiv-backed publications receive an alphaXiv link, using the same arXiv identifier under the `alphaxiv.org/abs/` path; journal-only entries without arXiv links omit alphaXiv entirely;
 - command-palette navigation;
 - geometric toolbar/hero redesign;

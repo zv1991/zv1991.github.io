@@ -243,17 +243,13 @@
   const shareButton = document.getElementById("share-profile");
   if (shareButton) {
     shareButton.addEventListener("click", async () => {
-      const shareTitle = "Zurab Vashakidze | Academic Profile";
-      const shareText = "Zurab Vashakidze | Academic Profile: zv1991.github.io";
-      const shareData = {
-        title: shareTitle,
-        text: shareText,
-        url: "https://zv1991.github.io/"
-      };
+      // Share the complete two-line message as text only. Passing a separate
+      // url/title makes some native share targets duplicate the website URL.
+      const shareText = "Zurab Vashakidze | Academic Profile:\nhttps://zv1991.github.io/";
 
-      if (navigator.share) {
+      if (typeof navigator.share === "function") {
         try {
-          await navigator.share(shareData);
+          await navigator.share({ text: shareText });
           return;
         } catch (error) {
           if (error && error.name === "AbortError") return;
