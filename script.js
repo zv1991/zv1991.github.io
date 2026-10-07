@@ -243,10 +243,12 @@
   const shareButton = document.getElementById("share-profile");
   if (shareButton) {
     shareButton.addEventListener("click", async () => {
+      const shareTitle = "Zurab Vashakidze | Academic Profile";
+      const shareText = "Zurab Vashakidze | Academic Profile: zv1991.github.io";
       const shareData = {
-        title: document.title,
-        text: "Zurab Vashakidze — academic profile",
-        url: window.location.href.split("#")[0]
+        title: shareTitle,
+        text: shareText,
+        url: "https://zv1991.github.io/"
       };
 
       if (navigator.share) {
@@ -258,9 +260,9 @@
         }
       }
 
-      const copied = await copyPlainText(shareData.url);
+      const copied = await copyPlainText(shareText);
       showToast(
-        copied ? "Profile link copied to clipboard" : "Could not copy the profile link",
+        copied ? "Profile sharing text copied to clipboard" : "Could not copy the profile sharing text",
         !copied
       );
     });

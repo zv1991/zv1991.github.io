@@ -17,7 +17,7 @@
 | File | Purpose |
 | --- | --- |
 | `README.md` | This documentation: architecture, feature inventory, privacy/security notes, file descriptions, and maintenance guidance. |
-| `index.html` | Main single-page website. Contains the Google Analytics 4 tag, semantic page structure, academic content, publication metadata, contact information, structured Schema.org metadata, the Content Security Policy, the browser-time-zone coordinate table used by automatic solar theming, and references to all CSS/JavaScript/assets. |
+| `index.html` | Main single-page website. Defines the browser title `Zurab Vashakidze | Academic Profile`, Google Analytics 4 tag, semantic page structure, academic content, publication metadata, contact information, structured Schema.org metadata, the Content Security Policy, the browser-time-zone coordinate table used by automatic solar theming, and references to all CSS/JavaScript/assets. |
 | `styles.css` | All visual styling and responsive behavior. Covers the light/dark palettes, navigation, hero, publications, journal-cover cards, citation panels, teaching/profile/contact cards, mobile layout, command palette, interactive states, accessibility rules, and device breakpoints. |
 | `script.js` | Main interface controller. Handles mobile navigation, publication search/filter/sort/view density, BibTeX panels and clipboard copying, email-copy actions, sharing, quick navigation, active-section tracking, scroll effects, back-to-top behavior, keyboard shortcuts, and UI feedback. |
 | `geometry.js` | Dedicated canvas renderer for the live mathematical wireframe in the toolbar and hero. Keeps decorative animation separate from the main interaction code. |
@@ -194,6 +194,8 @@
 
 <p align="justify">The compact/comfortable preference is stored in `localStorage` as `publicationCompact`.</p>
 
+<p align="justify">The selected publication-year filter is visibly highlighted in both sunrise (light) and sunset (dark) themes. In sunset mode, inactive buttons retain a neutral navy fill while <code>.year-filter.is-active</code> has an explicit blue background <code>#2c6bed</code>, pale-blue border <code>#79a6ff</code>, and white text. This overrides the previous dark-mode selector that accidentally erased the active-button distinction.</p>
+
 ### alphaXiv links
 
 <p align="justify">An <strong>alphaXiv</strong> link is shown only when the same publication already has a corresponding arXiv preprint link. The alphaXiv URL is derived deterministically by replacing the arXiv prefix <code>https://arxiv.org/abs/</code> with <code>https://www.alphaxiv.org/abs/</code> while preserving the same arXiv identifier. Publications without an arXiv preprint link do not display or imply an alphaXiv link. Under the current publication list, six entries have arXiv/alphaXiv pairs, while the 2022 <em>Georgian Mathematical Journal</em> article and the 2020 <em>Memoirs on Differential Equations and Mathematical Physics</em> article have no alphaXiv link because no arXiv link is listed for them.</p>
@@ -266,7 +268,7 @@
 
 ### Sharing
 
-<p align="justify">The <strong>Share profile</strong> button uses the Web Share API on compatible devices. If native sharing is unavailable, it falls back to copying the profile URL to the clipboard.</p>
+<p align="justify">The browser-tab title is <strong>Zurab Vashakidze | Academic Profile</strong>. The <strong>Share profile</strong> button uses the same title in the Web Share API and supplies the exact message <strong>Zurab Vashakidze | Academic Profile: zv1991.github.io</strong>, together with the canonical destination <code>https://zv1991.github.io/</code>. Individual receiving apps may format the shared text, title, and URL differently. If native sharing is unavailable or fails (other than a user cancellation), the button copies the exact message—not just the bare URL—to the clipboard and confirms the copy with a toast.</p>
 
 ### Email privacy and copying
 
@@ -565,10 +567,10 @@ form-action 'none';
 
 <p align="justify">The page currently references versioned static files, for example:</p>
 
-- `styles.css?v=20261005-33`
+- `styles.css?v=20261007-34`
 - `solar-theme.js?v=20261003-1`
 - `geometry.js?v=20261003-6`
-- `script.js?v=20261005-12`
+- `script.js?v=20261007-13`
 
 <p align="justify">These query strings are used only to encourage browsers to fetch a new revision after significant updates.</p>
 
@@ -635,6 +637,8 @@ form-action 'none';
 - institutional email/contact cards;
 - dynamic publication search/filter/sort tools;
 - Quick Navigation completeness and activation fix: removed the 12-result truncation, indexed all eight papers with stable anchors, prevented hover from replacing result buttons before clicks, and made publication jumps clear active filters before scrolling;
+- sunset-mode publication-filter highlight correction: active year buttons now retain a distinct high-contrast blue fill, pale-blue border, and white text;
+- academic-profile sharing alignment: browser tab renamed to <strong>Zurab Vashakidze | Academic Profile</strong>, and native/fallback sharing updated to include the exact requested message <strong>Zurab Vashakidze | Academic Profile: zv1991.github.io</strong>;
 - alphaXiv linking policy revised so only arXiv-backed publications receive an alphaXiv link, using the same arXiv identifier under the `alphaxiv.org/abs/` path; journal-only entries without arXiv links omit alphaXiv entirely;
 - command-palette navigation;
 - geometric toolbar/hero redesign;

@@ -856,11 +856,18 @@ p, h1, h2, h3, small { overflow-wrap: anywhere; hyphens: auto; }
 }
 
 html[data-theme="dark"] .publication-search input,
-html[data-theme="dark"] .year-filter,
+html[data-theme="dark"] .year-filter:not(.is-active),
 html[data-theme="dark"] .back-to-top {
   background: #162135;
   border-color: var(--line);
   color: var(--ink);
+}
+
+/* Keep the selected publication-year filter visibly distinct in sunset mode. */
+html[data-theme="dark"] .year-filter.is-active {
+  background: #2c6bed;
+  border-color: #79a6ff;
+  color: #fff;
 }
 
 @media (max-width: 900px) {
