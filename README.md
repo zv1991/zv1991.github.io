@@ -60,13 +60,14 @@
    - The former numeric labels `01`–`04` were removed in favor of topic-related mathematical symbols.
 
 4. **Publications**
-   - Eight selected publications are currently shown.
+   - Nine selected publications are currently shown.
    - Six published journal papers have responsive journal-cover/identity cards.
-   - Two recent arXiv preprints use an official-logo arXiv visual variant of the NMPDE cover shell, so all eight selected publications use the same bounded responsive cover framework.
+   - The newest preprint is **“Conservative Finite Element Methods for Kirchhoff-Type Equations”**, arXiv `2610.31487` (`math.NA`), by Benjamin Dörich, Felix Krumbiegel, Jemal Rogava, Andreas Rupp, and Zurab Vashakidze.
+   - Three recent arXiv preprints use an official-logo arXiv visual variant of the NMPDE cover shell, so all nine selected publications use the same bounded responsive cover framework.
    - The restored publication list includes the 2022 *Georgian Mathematical Journal* article **“On the convergence of a three-layer semi-discrete scheme for the nonlinear dynamic Kirchhoff string equation”**, 29(4), 615–627, DOI `10.1515/gmj-2022-2149`.
    - It also includes the 2020 article **“An Application of the Legendre Polynomials for the Numerical Solution of the Nonlinear Dynamical Kirchhoff String Equation”**, *Memoirs on Differential Equations and Mathematical Physics*, 79, 107–119.
    - Publication controls include search, year filtering, sorting, compact/comfortable views, DOI/arXiv/PDF links, alphaXiv links for arXiv-backed papers, citation panels, and BibTeX copying. MathSciNet/MR Lookup is shown only for published journal articles, not arXiv-only preprints.
-   - Verified author ORCID profiles are linked through small ORCID icons, including Zurab Vashakidze (`0000-0001-8736-6213`) consistently in all eight publication entries.
+   - Verified author ORCID profiles are linked through small ORCID icons, including Zurab Vashakidze (`0000-0001-8736-6213`) consistently in all nine publication entries.
 
 5. **Teaching**
    - Calculus I.
@@ -198,7 +199,7 @@
 
 ### alphaXiv links
 
-<p align="justify">An <strong>alphaXiv</strong> link is shown only when the same publication already has a corresponding arXiv preprint link. The alphaXiv URL is derived deterministically by replacing the arXiv prefix <code>https://arxiv.org/abs/</code> with <code>https://www.alphaxiv.org/abs/</code> while preserving the same arXiv identifier. Publications without an arXiv preprint link do not display or imply an alphaXiv link. Under the current publication list, six entries have arXiv/alphaXiv pairs, while the 2022 <em>Georgian Mathematical Journal</em> article and the 2020 <em>Memoirs on Differential Equations and Mathematical Physics</em> article have no alphaXiv link because no arXiv link is listed for them.</p>
+<p align="justify">An <strong>alphaXiv</strong> link is shown only when the same publication already has a corresponding arXiv preprint link. The alphaXiv URL is derived deterministically by replacing the arXiv prefix <code>https://arxiv.org/abs/</code> with <code>https://www.alphaxiv.org/abs/</code> while preserving the same arXiv identifier. Publications without an arXiv preprint link do not display or imply an alphaXiv link. Under the current publication list, seven entries have arXiv/alphaXiv pairs, while the 2022 <em>Georgian Mathematical Journal</em> article and the 2020 <em>Memoirs on Differential Equations and Mathematical Physics</em> article have no alphaXiv link because no arXiv link is listed for them.</p>
 
 ### Citation and BibTeX tools
 
@@ -210,7 +211,7 @@
 - a **Copy BibTeX** button;
 - for published journal articles only, a MathSciNet/MR Lookup link.
 
-<p align="justify">Journal articles use journal/DOI metadata. The two arXiv-only preprints are represented as arXiv fallbacks and intentionally omit MR Lookup.</p>
+<p align="justify">Journal articles use journal/DOI metadata. The three arXiv-only preprints are represented as arXiv fallbacks and intentionally omit MR Lookup.</p>
 
 <p align="justify">For the 2024 ZAMM record, the displayed article title and BibTeX <code>title</code> field are standardized as <strong>“On Convergence of a Three-Layer Semi-Discrete Scheme for the Non-Linear Dynamic String Equation of Kirchhoff-Type with Time-Dependent Coefficients”</strong>, matching the capitalization style used throughout the publication list. The MR Lookup URL is intentionally different: it keeps the exact publisher-title form used by MathSciNet search so the lookup remains functional.</p>
 
@@ -233,7 +234,7 @@
 - **Ctrl+K** on Windows/Linux;
 - **Cmd+K** on macOS.
 
-<p align="justify">The palette dynamically indexes all major page sections and all eight publication cards from the current DOM. Results are no longer truncated, so opening Quick Navigation with an empty query exposes the complete six-section/eight-publication index inside the scrollable results panel.</p>
+<p align="justify">The palette dynamically indexes all major page sections and all nine publication cards from the current DOM. Results are no longer truncated, so opening Quick Navigation with an empty query exposes the complete six-section/nine-publication index inside the scrollable results panel.</p>
 
 <p align="justify">The palette can search:</p>
 
@@ -432,7 +433,7 @@ form-action 'none';
 - clickable Research identifiers values for ORCID and Scopus Author ID, preserving the original visible identifier text;
 - obfuscated contact addresses;
 - command-palette dialog;
-- stable IDs for all eight publication cards so Quick Navigation can link to an exact paper;
+- stable IDs for all nine publication cards so Quick Navigation can link to an exact paper;
 - script references.
 
 <p align="justify">When changing academic facts, publication details, teaching entries, profile links, or contact text, this is usually the first file to edit.</p>
@@ -483,7 +484,7 @@ form-action 'none';
 - mobile menu opening/closing;
 - Escape-key behavior;
 - command palette and keyboard navigation;
-- complete eight-publication Quick Navigation indexing, filter-safe publication jumps, and stable mouse/keyboard result selection;
+- complete nine-publication Quick Navigation indexing, filter-safe publication jumps, and stable mouse/keyboard result selection;
 - publication search/year filters;
 - publication sorting;
 - compact/comfortable view;
@@ -645,7 +646,8 @@ form-action 'none';
 - academic-platform branding;
 - institutional email/contact cards;
 - dynamic publication search/filter/sort tools;
-- Quick Navigation completeness and activation fix: removed the 12-result truncation, indexed all eight papers with stable anchors, prevented hover from replacing result buttons before clicks, and made publication jumps clear active filters before scrolling;
+- newest arXiv preprint integration: added <strong>Conservative Finite Element Methods for Kirchhoff-Type Equations</strong> (arXiv <code>2610.31487</code>, <code>math.NA</code>) as the first 2026 record, including the established arXiv cover, alphaXiv link, BibTeX fallback, verified author ORCID links, stable publication anchor, Quick Navigation indexing, and publication-search/filter participation;
+- Quick Navigation completeness and activation fix: removed the 12-result truncation, indexed all nine papers with stable anchors, prevented hover from replacing result buttons before clicks, and made publication jumps clear active filters before scrolling;
 - sunset-mode publication-filter highlight correction: active year buttons now retain a distinct high-contrast blue fill, pale-blue border, and white text;
 - academic-profile sharing alignment: browser tab renamed to <strong>Zurab Vashakidze | Academic Profile</strong>; later corrected native/fallback sharing to a single exact two-line text payload with one <code>https://zv1991.github.io/</code> URL, removing duplicate URL/title fields from the Web Share call;
 - alphaXiv linking policy revised so only arXiv-backed publications receive an alphaXiv link, using the same arXiv identifier under the `alphaxiv.org/abs/` path; journal-only entries without arXiv links omit alphaXiv entirely;
@@ -664,7 +666,7 @@ form-action 'none';
 - publication-level responsive image/table safeguards for Android, iOS, tablet, laptop, and desktop layouts;
 - Memoirs cover refinement with explicit four-line mobile-safe title layout, cover-relative text sizing, unclipped title rendering, anchored metadata, and dedicated Compact/tablet/phone safeguards;
 - verified co-author ORCID links;
-- Zurab Vashakidze ORCID icon added consistently beside his name in all eight publication records;
+- Zurab Vashakidze ORCID icon added consistently beside his name in all nine publication records;
 - Research identifiers ORCID and Scopus values made clickable without changing their displayed numbers;
 - arXiv-only preprints no longer show MR Lookup; the ZAMM entry uses the full journal name, its visible/BibTeX article title follows the site’s established Title Case style, and its MR Lookup deliberately retains the exact publisher-title spelling/capitalization needed for reliable MathSciNet matching;
 - automatic sunrise/sunset theming;
